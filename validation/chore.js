@@ -9,7 +9,6 @@ module.exports = function validateChoreInput(data) {
     data.userId = !isEmpty(data.userId) ? data.userId : '';
     data.deadline = !isEmpty(data.deadline) ? data.deadline : '';
     data.estTime = !isEmpty(data.estTime) ? data.estTime : '';
-    data.completed = !isEmpty(data.completed) ? data.completed : '';
 
     if (!Validator.isLength(data.name, { min: 3, max: 300 })) {
         errors.name = 'Event name must be between 3 and 300 characters';
@@ -17,6 +16,18 @@ module.exports = function validateChoreInput(data) {
 
     if (Validator.isEmpty(data.name)) {
         errors.name = 'Chore name is required';
+    }
+
+    if (Validator.isEmpty(data.userId)) {
+      errors.userId = 'User must be assigned to chore';
+    }
+
+    if (Validator.isEmpty(data.deadline)) {
+      errors.deadline = 'Deadline is required';
+    }
+
+    if (Validator.isEmpty(data.estTime)) {
+      errors.estTime = 'estTime is required';
     }
 
     return {
