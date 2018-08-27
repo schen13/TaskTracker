@@ -9,14 +9,14 @@ With this application, users will be able to:
 + Track stats and visualize the distribution of responsibilities
 + Chat with other neighbors living near or around you
 
-Technologies & Technical Challenges
+### Technologies & Technical Challenges
 + MERN stack - MongoDB, Express, React, Node
 + HTML/CSS
 + mLab/AWS cloud hosting
 + D3
 + Web-sockets
 
-Wireframes
+### Wireframes
 
 ![frame2](https://github.com/schen13/Flex_Project/blob/master/frame2.png)
 
@@ -43,7 +43,7 @@ Things we accomplished this weekend:
 + Went over tutorials for the MERN stack and familiarize ourselves with how to build an application
 + The team also started the skeleton of the project and started the developmental version of the application
 
-Group Members & Work Breakdown
+### Group Members & Work Breakdown
 
 Our group consists of four members: Brian Jeong, Eric Tran, Michael Park and Steven Chen.
 
