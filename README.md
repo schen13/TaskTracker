@@ -76,14 +76,15 @@ Steven’s primary responsibilities will be:
 * Phase 2B: Splash (Eric) and Chore Index Page (Michael) (2 days)
     * Objective: Set up functional splash for login and index page for accessing other features
     * By the end of Day 4, users will be able to signup/login through the splash page, and see the index upon login
-* Phase 2C: Chore CRUD (Steven) and Analysis (Brian) (2 days)
-    * Objective: Set up CRUD routes/actions for chores, along with an analysis page
-    * By the end of Day 4, users will be able to create, edit, and delete chores
+* Phase 2C: Chore CRUD and Group CRUD (Steven, Brian) (2 days)
+    * Objective: Set up CRUD routes/actions for chores and groups
+    * By the end of Day 4, users will be able to create, edit, and delete chores and groups
 
 ### Phase 3: Fleshing out MVPs (4 days)
-* Phase 3A: Group CRUD (Eric, Steven) (2 days)
-    * Objective: Set up CRUD routes/actions for groups
-    * By the end of Day 6, users can create and delete groups, with the ability to add/remove people from a group
+* Phase 3A: Chore Analysis (Eric, Steven) (2 days)
+    * Features include:
+        * Stats tracking
+        * Visualization of chore distribution/responsibilities
 * Phase 3B: Group messaging w/socket.io (Michael, Brian) (4 days)
     * Features include:
         * Photos
