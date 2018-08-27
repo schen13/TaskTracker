@@ -61,3 +61,30 @@ Michael’s primary responsibilities will be:
 Steven’s primary responsibilities will be:
 + Models and Middleware
 + Writing the repo's README, complete with screenshots and code snippets
+
+## Implementation Timeline
+
+### Phase 1: Learn Technologies (2 days)
+* Objective: All group members will be responsible for learning the MERN stack (MongoDB, Express, React Native, Node)
+* By the end of the weekend, we will have completed the proposal README
+
+### Phase 2: Functional App (3 days)
+* Phase 2A: User Auth (All) (1 day)
+    * Objective: Set up user auth through React Native and Node
+    * We will work together on user auth to understand Node better.
+    * By the end of Day 3, users will be able to signup and login, then stay logged in until logged out.
+* Phase 2B: Splash (Eric) and Chore Index Page (Michael) (2 days)
+    * Objective: Set up functional splash for login and index page for accessing other features
+    * By the end of Day 4, users will be able to signup/login through the splash page, and see the index upon login
+* Phase 2C: Chore CRUD (Steven) and Analysis (Brian) (2 days)
+    * Objective: Set up CRUD routes/actions for chores, along with an analysis page
+    * By the end of Day 4, users will be able to create, edit, and delete chores
+
+### Phase 3: Fleshing out MVPs (4 days)
+* Phase 3A: Group CRUD (Eric, Steven) (2 days)
+    * Objective: Set up CRUD routes/actions for groups
+    * By the end of Day 6, users can create and delete groups, with the ability to add/remove people from a group
+* Phase 3B: Group messaging w/socket.io (Michael, Brian) (4 days)
+    * Features include:
+        * Photos
+        * Database for message storage
