@@ -5,6 +5,9 @@ const User = require('../../models/User');
 const jsonwebtoken = require('jsonwebtoken');
 const keys = require('../../config/keys');
 const passport = require('passport');
+const validateRegisterInput = require("../../validation/register");
+const validateLoginInput = require("../../validation/login");
+const isEmpty = require("../../validation/is-empty");
 
 router.get("/test", (req, res) => res.json({msg: "This is the users route"}));
 
@@ -18,6 +21,12 @@ router.get('/current', passport.authenticate('jwt', {session: false}), (req, res
 
 router.post('/register', (req, res) => {
   // Check to make sure nobody has already registered with a duplicate email
+  const { errors, isValid } = validateRegisterInput(req.body);
+
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
+
   User.findOne({ email: req.body.email })
     .then(user => {
       if (user) {
@@ -38,7 +47,7 @@ router.post('/register', (req, res) => {
 
         bcrypt.genSalt(10, (err, salt) => {
           bcrypt.hash(newUser.password, salt, (err, hash) => {
-            if (err) throw err;
+            if (err) console.log(err);
             newUser.password = hash;
             newUser.save()
               .then(user => res.json(user))
@@ -50,6 +59,12 @@ router.post('/register', (req, res) => {
 })
 
 router.post('/login', (req, res) => {
+  const { errors, isValid } = validateLoginInput(req.body);
+  
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
+
   const email = req.body.email;
   const password = req.body.password;
 
