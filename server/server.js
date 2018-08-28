@@ -27,5 +27,18 @@ app.use('/api/users', users);
 app.use(passport.initialize());
 require('./config/passport')(passport);
 
+// Socket.io for chat functionality
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
+io.on('connection', function (socket) {
+  console.log('a user connected');
+  socket.on('disconnect', function () {
+    console.log('User Disconnected');
+  });
+  socket.on('example_message', function (msg) {
+    console.log('message: ' + msg);
+  });
+});
+io.listen(8000);
 
 app.listen(port, () => console.log(`Server is running on ${port}`));
