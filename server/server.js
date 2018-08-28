@@ -15,6 +15,7 @@ mongoose
 //Routes
 const users = require('./controllers/users');
 const chatRoutes = express.Router();
+const chore = require('./controllers/chore');
 // const events = require('./routes/api/events');
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -30,6 +31,13 @@ app.use('/api/users', users);
 // app.use('/api/chores', chores);
 
 // app.get('/', (req, res) => res.send('Hello World'));
+
+app.post('/chores', chore.addChore);
+app.get('/chores', chore.getChores);
+
+app.get('/chores/:id', chore.getChore);
+app.delete('/chores/:id', chore.deleteChore);
+app.patch('/chores/:id', chore.updateChore);
 
 //Passport middleware
 app.use(passport.initialize());
