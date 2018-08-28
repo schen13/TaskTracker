@@ -25,7 +25,7 @@ app.use('/api/users', users);
 // app.get('/', (req, res) => res.send('Hello World'));
 
 app.post('/chores', chore.addChore);
-app.get('/chores', chore.getChores);
+app.get('/chores', chore.getUserChores);
 
 app.get('/chores/:id', chore.getChore);
 app.delete('/chores/:id', chore.deleteChore);

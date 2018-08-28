@@ -4,26 +4,30 @@ const Schema = mongoose.Schema;
 const ChoreSchema = new Schema ({
   name: {
     type: String,
-      default: 'Chore'
+    default: 'Chore'
   },
-  description: {
-      type: String
+    description: {
+    type: String
   },
   userId: {
     type: Number,
-      required: true
+    required: true
+  },
+  groupId: {
+    type: Number,
+    required: true
   },
   deadline: {
     type: Date,
-      required: true
+    equired: true
   },
   estTime: {
     type: Number,
-      required: true
+    required: true
   },
   completed: {
     type: Boolean,
-      default: false
+    default: false
   }
 });
 
