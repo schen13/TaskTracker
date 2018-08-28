@@ -9,10 +9,10 @@ const passport = require('passport');
 mongoose
   .connect(db)
   .then(() => console.log('Connected to MongoDB successfully'))
-  .catch( err => console.log(err))
+  .catch(err => console.log(err))
 
 //Routes
-const users = require('./server/controllers/users');
+const users = require('./controllers/users');
 // const events = require('./routes/api/events');
 
 app.use(bodyParser.urlencoded({ extended: false }));
