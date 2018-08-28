@@ -44,7 +44,8 @@ exports.deleteChore = [
 
     Chore.findOneAndRemove({
       _id: id,
-      userId: req.user._id
+      // userId: req.user._id
+      userId: 4
     }).then((chore) => {
       if (!chore) {
         return res.status(404).send();
@@ -93,7 +94,6 @@ exports.updateChore = [
       }
       chore.name = req.body.name;
       chore.description = req.body.description;
-      chore.userId = req.user._id;
       chore.deadline = req.body.deadline;
       chore.estTime = req.body.estTime;
       chore.completed = req.body.completed;
