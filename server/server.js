@@ -36,10 +36,8 @@ app.use(passport.initialize());
 require('./config/passport')(passport);
 
 // Socket.io for chat functionality
-const server = require('http').createServer();
-const io = require('socket.io')(server, {
-  
-});
+// const server = require('http').createServer();
+// const io = require('socket.io')(server, {});
 
 
 app.listen(port, () => console.log(`Server is running on ${port}`));

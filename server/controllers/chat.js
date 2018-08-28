@@ -36,22 +36,22 @@ exports.getChats = function (req, res, next) {
               )
             )
           )
-          .then (data => 
+          .then (data => {
             allChats.push(data);
             if (allChats.length === chats.length) {
               return res.status(200).json({ chats: allChats });
             }
-          )
-          .catch (err =>
+          })
+          .catch (err => {
             if (err) {
               res.send({ error: err });
               return next(err);
             }
-          )
+          })
+        });
       });
-    });
-  });
-}
+};
+
 
 exports.getChat = function (req, res, next) {
   //message show page

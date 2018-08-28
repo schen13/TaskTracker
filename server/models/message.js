@@ -1,5 +1,5 @@
 const mongoose = require('mongoose'),
-const Schema = mongoose.Schema;
+  Schema = mongoose.Schema;
 
 const MessageSchema = new Schema({
   chatId: {
@@ -7,7 +7,7 @@ const MessageSchema = new Schema({
     required: true
   },
   body: {
-    type: Text,
+    type: String,
     required: true
   },
   author: {
@@ -20,8 +20,8 @@ const MessageSchema = new Schema({
     required: true
   }
 },
-//createdAt and updatedAt as dates
 {
+  //createdAt and updatedAt as dates
   timestamps: true
 });
 
