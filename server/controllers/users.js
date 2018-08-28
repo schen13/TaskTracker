@@ -1,25 +1,26 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const User = require('../../models/User');
 const jsonwebtoken = require('jsonwebtoken');
 const keys = require('../../config/keys');
 const passport = require('passport');
-const validateRegisterInput = require("../../validation/register");
-const validateLoginInput = require("../../validation/login");
-const isEmpty = require("../../validation/is-empty");
+const validateRegisterInput = require('../../validation/register');
+const validateLoginInput = require('../../validation/login');
+// const isEmpty = require('../../validation/is-empty');
 
-router.get("/test", (req, res) => res.json({msg: "This is the users route"}));
+router.get('/test', (req, res) => res.json({msg: 'This is the users route'}));
 
 router.get('/current', passport.authenticate('jwt', {session: false}), (req, res) => {
   res.json({
     id: req.user.id,
-    name: req.user.name,
+    username: req.user.username,
     email: req.user.email
   });
 })
 
 router.post('/register', (req, res) => {
+  console.log(req.body);
   // Check to make sure nobody has already registered with a duplicate email
   const { errors, isValid } = validateRegisterInput(req.body);
 
@@ -31,16 +32,14 @@ router.post('/register', (req, res) => {
     .then(user => {
       if (user) {
         // Throw a 400 error if the email address already exists
-        return res.status(400).json({email: "A user has already registered with this address"})
+        return res.status(400).json({email: 'A user has already registered with this address'})
       } else {
         // Otherwise create a new user
-        console.log(req)
-        console.log(req.body)
-        console.log(req.body.name)
-        console.log(req.body.email)
-        console.log(req.body.password)
+
         const newUser = new User({
-          name: req.body.name,
+          fName: req.body.fName,
+          lName: req.body.lName,
+          username: req.body.username,
           email: req.body.email,
           password: req.body.password
         })
@@ -77,7 +76,7 @@ router.post('/login', (req, res) => {
       bcrypt.compare(password, user.password)
         .then(isMatch => {
           if (isMatch) {
-            const payload = {id: user.id, name: user.name};
+            const payload = {id: user.id, username: user.username};
 
             jsonwebtoken.sign(
               payload,

@@ -1,8 +1,20 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
-  name: {
+  fName: {
+    type: String,
+    required: false
+  },
+  lName: {
+    type: String,
+    required: false
+  },
+  profileImageUrl: {
+    type: String,
+    required: false
+  },
+  username: {
     type: String,
     required: true
   },
