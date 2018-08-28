@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const db = require('./config/keys').mongoURI;
 const bodyParser = require('body-parser');
 const passport = require('passport');
+const ChatController = require('./controllers/chat');
 
 mongoose
   .connect(db)
@@ -13,10 +14,17 @@ mongoose
 
 //Routes
 const users = require('./controllers/users');
+const chatRoutes = express.Router();
 // const events = require('./routes/api/events');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+//chatRoutes
+chatRoutes.get('/chats', requireAuth, ChatController.getChats);
+chatRoutes.get('/chats/:chatId', requireAuth, ChatController.getChat);
+chatRoutes.post('/chats/new/:recipient', requireAuth, ChatController.newChat);
+chatRoutes.post('/chats/:chatId', requireAuth, ChatController.sendReply);
 
 app.use('/api/users', users);
 // app.use('/api/chores', chores);
