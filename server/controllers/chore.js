@@ -75,3 +75,30 @@ exports.addChore = [
     });
   }
 ];
+
+exports.updateChore = [
+  function (req, res, next) {
+    const id = req.params.id;
+
+    Chore.findOne({
+      _id: id,
+      userId: req.user._id
+    }).then((chore) => {
+      if(!chore) {
+        return res.status(404).send();
+      }
+      chore.name = req.body.name;
+      chore.description = req.body.description;
+      chore.userId = req.user._id;
+      chore.deadline = req.body.deadline;
+      chore.estTime = req.body.estTime;
+      chore.completed = req.body.completed;
+
+      chore.save().then((updatedChore) => {
+        res.send(updatedChore);
+      }, e => {
+        res.status(400).send(e);
+      });
+    });
+  }
+];
