@@ -1,7 +1,7 @@
 "use strict"
 const Chat = require('../models/chat');
 const Message = require('../models/message');
-const User = require('../models/User');
+// const User = require('../models/sers');
 
 exports.getChats = function (req, res, next) {
   // Only returns one message from each conversation for message index page

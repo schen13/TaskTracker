@@ -1,5 +1,5 @@
-const mongoose = require('mongoose'),
-  Schema = mongoose.Schema;
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 const ChatSchema = new Schema({
   participants: [{ 
@@ -11,4 +11,6 @@ const ChatSchema = new Schema({
   timestamps: true
 });
 
-module.exports = Chat = mongoose.model('Chat', ChatSchema);
+const Chat  = mongoose.model('Chat', ChatSchema);
+
+module.exports = Chat;
