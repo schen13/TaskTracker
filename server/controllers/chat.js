@@ -3,7 +3,7 @@ const Chat = require('../models/chat'),
   User = require('../models/user');
 
 exports.getChats = function (req, res, next) {
-  // Only return one message from each conversation to display as snippet
+  // Only return one message from each conversation for preview
   Chat.find({ participants: req.user._id })
     .select('_id')
     .exec(function (err, chats) {
@@ -12,10 +12,10 @@ exports.getChats = function (req, res, next) {
         return next(err);
       }
 
-      // Set up empty array to hold conversations + most recent message
-      let fullChats = [];
+      // Set up empty array to hold chats + most recent message
+      let allChats = [];
       chats.forEach(function (chat) {
-        Message.find({ 'chatId': chat._id })
+        chats.find({ 'chatId': chat._id })
           .sort('-createdAt')
           .limit(1)
           .populate({
@@ -27,9 +27,9 @@ exports.getChats = function (req, res, next) {
               res.send({ error: err });
               return next(err);
             }
-            fullConversations.push(message);
-            if (fullConversations.length === conversations.length) {
-              return res.status(200).json({ conversations: fullConversations });
+            allChats.push(message);
+            if (allChats.length === conversations.length) {
+              return res.status(200).json({ messages: allChats });
             }
           });
       });
