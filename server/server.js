@@ -25,6 +25,7 @@ app.get('/chats', chat.getChats);
 app.get('/chats/:chatId', chat.getChat);
 app.post('/chats', chat.newChat);
 app.post('/chats/:chatId', chat.sendReply);
+// app.post('/messages', chat.newMessage);
 
 app.use('/api/users', users);
 // app.use('/api/chores', chores);
