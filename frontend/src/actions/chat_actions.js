@@ -3,6 +3,7 @@ import jwt_decode from 'jwt-decode';
 
 export const RECEIVE_CHATS = 'RECEIVE_CHATS';
 export const RECEIVE_CHAT = 'RECEIVE_CHAT';
+export const RECEIVE_MESSAGE = 'RECEIVE_MESSAGE';
 export const GET_ERRORS = 'GET_ERRORS';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 
@@ -14,6 +15,11 @@ export const receiveChats = userId => ({
 export const receiveChat = userId => ({
   type: RECEIVE_CHAT,
   userId
+});
+
+export const receiveMessage = message => ({
+  type: RECEIVE_MESSAGE,
+  message
 });
 
 export const signup = user => dispatch => (

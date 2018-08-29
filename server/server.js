@@ -45,7 +45,7 @@ app.get('/api/chats', chat.getChats);
 app.get('/api/chats/:chatId', chat.getChat);
 app.post('/api/chats', chat.newChat);
 app.post('/api/chats/:chatId', message.createMessage);
-app.delete('/api/chats/:chatId', deleteChat);
+app.delete('/api/chats/:chatId', chat.deleteChat);
 
 // Socket.io for chat functionality
 // const server = require('http').createServer();

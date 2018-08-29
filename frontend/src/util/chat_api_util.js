@@ -25,6 +25,10 @@ export const createChat = chatData => (
   axios.post('/api/chats', chatData)
 );
 
-export const replyChat = chatData => (
-  axios.post('/api/chats/:chatId', chatData)
+export const replyToChat = messageData => (
+  axios.post('/api/chats/:chatId', messageData)
+);
+
+export const deleteChat = chatData => (
+  axios.delete('/api/chats/:chatId', chatData)
 );
