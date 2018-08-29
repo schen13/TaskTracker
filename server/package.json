@@ -21,6 +21,7 @@
     "mongoose": "^5.2.9",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
+    "socket.io": "^2.1.1",
     "validator": "^10.7.0"
   },
   "devDependencies": {

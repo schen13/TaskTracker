@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 const passport = require('passport');
 const users = require('./controllers/users');
 const chore = require('./controllers/chore');
+const chat = require('./controllers/chat');
 import {
   getGroups,
   getGroup,
@@ -18,16 +19,13 @@ import {
 mongoose
   .connect(db)
   .then(() => console.log('Connected to MongoDB successfully'))
-  .catch(err => console.log(err));
+  .catch(err => console.log(err))
 
+//Routes
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-//Passport middleware
-app.use(passport.initialize());
-require('./config/passport')(passport);
-
-// Routes
+app.use('/api/users', users);
 app.use('/api/users', users);
 
 app.get('/chores', chore.getChores);
@@ -36,11 +34,22 @@ app.post('/chores', chore.addChore);
 app.patch('/chores/:id', chore.updateChore);
 app.delete('/chores/:id', chore.deleteChore);
 
-
 app.get('/api/groups/', getGroups);
 app.get('/api/groups/:groupId', getGroup);
 app.post('/api/groups', createGroup);
 app.patch('/api/groups/:groupId', updateGroup);
 app.delete('/api/groups/:groupId', deleteGroup);
+
+//chat
+app.get('/chats', chat.getChats);
+app.get('/chats/:chatId', chat.getChat);
+app.post('/chats', chat.newChat);
+app.post('/chats/:chatId', chat.sendReply);
+// app.post('/messages', chat.newMessage);
+
+// Socket.io for chat functionality
+// const server = require('http').createServer();
+// const io = require('socket.io')(server, {});
+
 
 app.listen(port, () => console.log(`Server is running on ${port}`));
