@@ -4,9 +4,9 @@ import jwt_decode from 'jwt-decode';
 export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
 export const LOGOUT_CURRENT_USER = 'LOGOUT_CURRENT_USER';
 export const RECEIVE_SESSION_ERRORS = 'RECEIVE_SESSION_ERRORS';
-export const SET_CURRENT_USER = 'SET_CURRENT_USER';
+// export const SET_CURRENT_USER = 'SET_CURRENT_USER';
 export const GET_ERRORS = 'GET_ERRORS';
-export const CLEAR_ERRORS = 'CLEAR_ERRORS';
+// export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 
 export const receiveCurrentUser = currentUser => ({
   type: RECEIVE_CURRENT_USER,
@@ -25,6 +25,7 @@ export const receiveErrors = errors => ({
 export const signup = user => dispatch => (
     APIUtil.registerUser(user).then(res => {
         // Save to localStorage
+        console.log(res.data, "resdata")
         const { token } = res.data;
         // Set token to ls
         localStorage.setItem('jwtToken', token);
@@ -35,7 +36,6 @@ export const signup = user => dispatch => (
         // Set current user
         dispatch(setCurrentUser(decoded));
     }, err => {
-        console.log(err, "hello");
         dispatch({
             type: GET_ERRORS,
             payload: err.response.data

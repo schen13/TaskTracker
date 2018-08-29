@@ -19,7 +19,6 @@ router.get('/current', passport.authenticate('jwt', { session: false }), (req, r
 });
 
 router.post('/register', (req, res) => {
-  console.log(req.body);
   // Check to make sure nobody has already registered with a duplicate email
   const { errors, isValid } = validateRegisterInput(req.body);
 
@@ -47,8 +46,27 @@ router.post('/register', (req, res) => {
           bcrypt.hash(newUser.password, salt, (err, hash) => {
             if (err) console.log(err);
             newUser.password = hash;
-            newUser.save()
-              .then(user => res.json(user))
+            newUser
+              .save()
+              .then(user => {
+                const payload = { 
+                  id: user.id, 
+                  username: user.username,
+                  
+                };
+
+                jsonwebtoken.sign(
+                  payload,
+                  keys.secretOrKey,
+                  { expiresIn: 3600 },
+                  (err, token) => {
+                    res.json({
+                      success: true,
+                      token: "Bearer " + token
+                    });
+                  }
+                );
+              })
               .catch(err => console.log(err));
           })
         })
