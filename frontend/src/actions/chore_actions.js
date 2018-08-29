@@ -36,5 +36,5 @@ export const updateChore = chore => dispatch => (
 );
 
 export const deleteChore = id => dispatch => (
-  ChoreApiUtil.removeChore(id).then(chore => dispatch(removeChore(chore)))
+  ChoreApiUtil.deleteChore(id).then(chore => dispatch(removeChore(chore)))
 );
