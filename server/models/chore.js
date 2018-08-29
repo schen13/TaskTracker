@@ -7,7 +7,7 @@ const ChoreSchema = new Schema ({
       default: 'Chore'
   },
   description: {
-      type: Text
+      type: String
   },
   userId: {
     type: Number,
