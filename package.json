@@ -11,7 +11,7 @@
     "frontend-install": "npm install --prefix frontend",
     "frontend": "npm start --prefix frontend",
     "server-install": "npm install --prefix server",
-    "server": "npm start --prefix server",
+    "server": "npm run server --prefix server",
     "dev": "concurrently \"npm run server\" \"npm run frontend\""
   },
   "repository": {
