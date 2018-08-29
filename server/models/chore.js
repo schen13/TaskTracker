@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const ChoreSchema = new Schema ({
+const ChoreSchema = new Schema({
   name: {
     type: String,
     default: 'Chore'
   },
-    description: {
+  description: {
     type: String
   },
   userId: {

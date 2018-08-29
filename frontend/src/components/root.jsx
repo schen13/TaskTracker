@@ -1,5 +1,4 @@
 import React from 'react';
-import { Provider } from 'react-redux';
 import {
   Route,
   Link
@@ -7,7 +6,7 @@ import {
 
 import NavBarContainer from './navbar/navbar_container';
 import SignUpFormContainer from "./session_form/signup_form_container";
-import LogInFormContainer from "./session_form/login_form_container.jsx";
+import LogInFormContainer from "./session_form/login_form_container";
 
 const Root = () => (
   <div>
@@ -19,8 +18,8 @@ const Root = () => (
     </header>
     <Route exact path="/login" component={LogInFormContainer} />
     <Route exact path="/signup" component={SignUpFormContainer} />
-    
-    </div>
+
+  </div>
 );
 
 export default Root;
