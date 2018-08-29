@@ -1,8 +1,11 @@
 const Chore = require('../models/chore');
 const User = require('../models/user');
+const jsonwebtoken = require('jsonwebtoken');
+
 
 exports.getUserChores = [
   function (req, res, next) {
+    console.log(req);
     Chore.find({
       // userId: req.user._id
       userId: 4
