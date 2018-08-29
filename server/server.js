@@ -29,7 +29,9 @@ app.use(bodyParser.json());
 app.use('/api/users', users);
 app.use('/api/users', users);
 
-app.get('/chores', chore.getChores);
+app.post('/chores', chore.addChore);
+app.get('/chores', chore.getUserChores);
+
 app.get('/chores/:id', chore.getChore);
 app.post('/chores', chore.addChore);
 app.patch('/chores/:id', chore.updateChore);

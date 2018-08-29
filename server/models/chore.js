@@ -13,9 +13,13 @@ const ChoreSchema = new Schema({
     type: Number,
     required: true
   },
+  groupId: {
+    type: Number,
+    required: true
+  },
   deadline: {
     type: Date,
-    required: true
+    equired: true
   },
   estTime: {
     type: Number,
