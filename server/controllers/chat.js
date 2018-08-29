@@ -93,25 +93,6 @@ exports.newChat = (req, res, next) => {
   });
 };
 
-exports.sendReply = (req, res, next) => {
-  const reply = new Message({
-    chatId: req.params.chatId,
-    body: req.body.composedMessage,
-    author: req.user._id,
-    anon: req.body.anon
-  });
-
-  reply.save(function (err, newReply) {
-    if (err) {
-      res.status(400).send({ error: err });
-      return next(err);
-    };
-
-    res.status(200).send({ message: newReply });
-    return next();
-  });
-};
-
 exports.deleteChat = (req, res, next) => {
   Chat.findOneAndDelete({
     $and: [

@@ -8,6 +8,7 @@ const passport = require('passport');
 const users = require('./controllers/users');
 const chore = require('./controllers/chore');
 const chat = require('./controllers/chat');
+const message = require('./controllers/message');
 import {
   getGroups,
   getGroup,
@@ -40,16 +41,14 @@ app.post('/api/groups', createGroup);
 app.patch('/api/groups/:groupId', updateGroup);
 app.delete('/api/groups/:groupId', deleteGroup);
 
-//chat
-app.get('/chats', chat.getChats);
-app.get('/chats/:chatId', chat.getChat);
-app.post('/chats', chat.newChat);
-app.post('/chats/:chatId', chat.sendReply);
-// app.post('/messages', chat.newMessage);
+app.get('/api/chats', chat.getChats);
+app.get('/api/chats/:chatId', chat.getChat);
+app.post('/api/chats', chat.newChat);
+app.post('/api/chats/:chatId', message.createMessage);
+app.delete('/api/chats/:chatId', deleteChat);
 
 // Socket.io for chat functionality
 // const server = require('http').createServer();
 // const io = require('socket.io')(server, {});
-
 
 app.listen(port, () => console.log(`Server is running on ${port}`));
