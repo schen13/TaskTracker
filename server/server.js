@@ -28,7 +28,13 @@ app.use(bodyParser.json());
 app.use('/api/users', users);
 app.use('/api/users', users);
 
+<<<<<<< HEAD
+app.post('/chores', chore.addChore);
+app.get('/chores', chore.getUserChores);
+
+=======
 app.get('/chores', chore.getChores);
+>>>>>>> 0a862ad7a8de7012e8d6290fe08f0072c9979754
 app.get('/chores/:id', chore.getChore);
 app.post('/chores', chore.addChore);
 app.patch('/chores/:id', chore.updateChore);

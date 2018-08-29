@@ -1,7 +1,7 @@
 const Chore = require('../models/chore');
 const User = require('../models/user');
 
-exports.getChores = [
+exports.getUserChores = [
   function (req, res, next) {
     Chore.find({
       // userId: req.user._id
@@ -21,9 +21,7 @@ exports.getChore = [
     const id = req.params.id;
 
     Chore.findOne({
-      _id: id,
-      // userId: req.user._id
-      userId: 4
+      _id: id
     }).then((chore) => {
       if (!chore) {
         return res.status(404).send();
@@ -44,8 +42,6 @@ exports.deleteChore = [
 
     Chore.findOneAndRemove({
       _id: id,
-      // userId: req.user._id
-      userId: 4
     }).then((chore) => {
       if (!chore) {
         return res.status(404).send();
@@ -65,6 +61,8 @@ exports.addChore = [
     const chore = new Chore({
       name: req.body.name,
       description: req.body.description,
+      // groupId: req.params.id,
+      groupId: 1,
       // userId: req.user._id,
       userId: 4,
       deadline: req.body.deadline,
@@ -86,8 +84,6 @@ exports.updateChore = [
 
     Chore.findOne({
       _id: id,
-      // userId: req.user._id
-      userId: 4
     }).then((chore) => {
       if(!chore) {
         return res.status(404).send();
@@ -97,6 +93,7 @@ exports.updateChore = [
       chore.deadline = req.body.deadline;
       chore.estTime = req.body.estTime;
       chore.completed = req.body.completed;
+      chore.userId = req.body.userId;
 
       chore.save().then((updatedChore) => {
         res.send(updatedChore);
