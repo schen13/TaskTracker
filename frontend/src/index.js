@@ -9,8 +9,6 @@ import configureStore from './store/store';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
-import {createChore, fetchChore, fetchChores, deleteChore } from './actions/chore_actions';
-
 document.addEventListener('DOMContentLoaded', () => {
     let store = configureStore();
     // Check for token
@@ -31,11 +29,6 @@ document.addEventListener('DOMContentLoaded', () => {
             window.location.href = '/login';
         }
     }
-
-    // window.createChore = createChore();
-    // window.fetchChore = fetchChore();
-    window.fetchChores = fetchChores;
-    // window.deleteChore = deleteChore();
 
     const root = document.getElementById('root');
     ReactDOM.render(<App store={store} />, root);

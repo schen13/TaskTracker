@@ -13,18 +13,18 @@ const choreReducer = (state = {}, action) => {
   switch (action.type) {
     case RECEIVE_CHORE:
       const newChore = {
-        [action.chore.id]: action.chore
+        [action.chore._id]: action.chore
       };
       return merge(nextState, newChore);
     
       case RECEIVE_CHORES:
         action.chores.forEach(chore => {
-          nextState[chore.id] = chore;
+          nextState[chore._id] = chore;
         });
         return nextState;
 
       case REMOVE_CHORE:
-        delete nextState[action.chore.id];
+        delete nextState[action.chore._id];
         return nextState;
 
     default:

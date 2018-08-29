@@ -4,19 +4,19 @@ export const RECEIVE_CHORE = 'RECEIVE_CHORE';
 export const RECEIVE_CHORES = 'RECEIVE_CHORES'; 
 export const REMOVE_CHORE = 'REMOVE_CHORE';
 
-export const receiveChore = chore => ({
+export const receiveChore = payload => ({
   type: RECEIVE_CHORE,
-  chore
+  chore: payload.data
 });
 
-export const receiveChores = chores => ({
+export const receiveChores = payload => ({
   type: RECEIVE_CHORES,
-  chores
+  chores: payload.data.chores
 });
 
-export const removeChore = chore => ({
+export const removeChore = payload => ({
   type: REMOVE_CHORE,
-  chore
+  chore: payload.data.chore
 });
 
 export const fetchChores = () => dispatch => (
