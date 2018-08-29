@@ -16,6 +16,6 @@ export const updateChore = data => (
   axios.post('/chores', data)
 );
 
-export const removeChore = id => (
+export const deleteChore = id => (
   axios.delete(`/chores/${id}`)
 );
