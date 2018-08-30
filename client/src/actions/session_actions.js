@@ -9,17 +9,17 @@ export const GET_ERRORS = 'GET_ERRORS';
 // export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 
 export const receiveCurrentUser = currentUser => ({
-  type: RECEIVE_CURRENT_USER,
-  currentUser
+    type: RECEIVE_CURRENT_USER,
+    currentUser
 });
 
 export const logoutCurrentUser = () => ({
-  type: LOGOUT_CURRENT_USER,
+    type: LOGOUT_CURRENT_USER,
 });
 
 export const receiveErrors = errors => ({
-  type: RECEIVE_SESSION_ERRORS,
-  errors
+    type: RECEIVE_SESSION_ERRORS,
+    errors
 });
 
 export const signup = user => dispatch => (
@@ -56,10 +56,10 @@ export const login = user => dispatch => (
         // Set current user
         dispatch(setCurrentUser(decoded));
     }, err =>
-        dispatch({
-            type: GET_ERRORS,
-            payload: err.response.data
-        })
+            dispatch({
+                type: GET_ERRORS,
+                payload: err.response.data
+            })
     )
 );
 
@@ -70,7 +70,7 @@ export const logoutUser = () => dispatch => {
     // Remove auth header for future requests
     APIUtil.setAuthToken(false);
     // Set current user to {} which will set isAuthenticated to false
-    dispatch(setCurrentUser({}));
+    dispatch(logoutCurrentUser());
 };
 
 // export const logoutUser = () => dispatch => (
