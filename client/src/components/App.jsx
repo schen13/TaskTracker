@@ -2,7 +2,7 @@ import React from 'react';
 import {
   Route,
   Link
-} from 'react-rout./App';
+} from 'react-router-dom';
 
 import NavBarContainer from './navbar/navbar_container';
 import SignUpFormContainer from "./session_form/signup_form_container";
