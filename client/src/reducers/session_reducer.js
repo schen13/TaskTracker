@@ -1,5 +1,6 @@
 import {
     RECEIVE_CURRENT_USER,
+    LOGOUT_CURRENT_USER
 } from '../actions/session_actions';
 
 const _nullUser = Object.freeze({
@@ -11,12 +12,14 @@ const sessionReducer = (state = _nullUser, action) => {
     switch (action.type) {
         case RECEIVE_CURRENT_USER:
             return {
-                id: action.payload.id,
-                username: action.payload.username,
-                fName: action.payload.fName,
-                lName: action.payload.lName,
-                email: action.payload.email
+                id: action.payload.user._id,
+                username: action.payload.user.username,
+                fName: action.payload.user.fName,
+                lName: action.payload.user.lName,
+                email: action.payload.user.email
             };
+        case LOGOUT_CURRENT_USER:
+            return _nullUser;
         default:
             return state;
     }
