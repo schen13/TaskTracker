@@ -31,7 +31,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.use('/api/users', users);
-app.use('/api/users', users);
 
 app.post('/api/tasks', task.addTask);
 app.get('/api/tasks', passport.authenticate('jwt', { session: false }), task.getUserTasks);
