@@ -12,8 +12,16 @@ router.get('/:id', (req, res) => {
 
   User.findOne({ _id: req.params.id }).then( user => {
     if (user) {
-      console.log(user)
-      res.send(user)
+      res.send({
+        id: user._id,
+        username: user.username,
+        fName: user.fName,
+        lName: user.lName,
+        email: user.email,
+        groups: user.groups,
+        tasks: user.tasks,
+        chats: user.chats
+      })
     }
   })
 });
