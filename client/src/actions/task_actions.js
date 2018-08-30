@@ -28,7 +28,7 @@ export const fetchTask = id => dispatch => (
 );
 
 export const createTask = task => dispatch => (
-  TaskApiUtil.createtask(task).then(newTask => dispatch(receiveTask(newTask)))
+  TaskApiUtil.createTask(task).then(newTask => dispatch(receiveTask(newTask)))
 );
 
 export const updateTask = task => dispatch => (
