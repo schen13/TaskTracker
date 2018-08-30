@@ -1,30 +1,30 @@
 {
-  "name": "Flex_Project",
+  "name": "TaskTracker",
   "version": "1.0.0",
-  "description": "CHORE_APP_NAME is an iOS mobile application that aims to delegate responsibilities between housemates and provide an outlet to express comments and suggestions to one another anonymously. Living with others can be difficult, but CHORE_APP_NAME makes it easy to ensure everyone does their part. ### Functionality & MVP With this application, users will be able to: + Create a list of weekly responsibilities that can be randomly delegated + Participate in an anonymous group chat and post photos to highlight certain issues + Private messaging between members in your house + Track stats and visualize the distribution of responsibilities + Chat with other neighbors living near or around you",
+  "description": "TaskTracker is an iOS mobile application that aims to delegate responsibilities between housemates and provide an outlet to express comments and suggestions to one another anonymously. Living with others can be difficult, but CHORE_APP_NAME makes it easy to ensure everyone does their part. ### Functionality & MVP With this application, users will be able to: + Create a list of weekly responsibilities that can be randomly delegated + Participate in an anonymous group chat and post photos to highlight certain issues + Private messaging between members in your house + Track stats and visualize the distribution of responsibilities + Chat with other neighbors living near or around you",
   "main": "index.js",
   "directories": {
     "doc": "docs"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "frontend-install": "npm install --prefix frontend",
-    "frontend": "npm start --prefix frontend",
+    "client-install": "npm install --prefix client",
+    "client": "npm start --prefix client",
     "server-install": "npm install --prefix server",
     "server": "npm run server --prefix server",
-    "dev": "concurrently \"npm run server\" \"npm run frontend\""
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/schen13/Flex_Project.git"
+    "url": "git+https://github.com/schen13/TaskTracker.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/schen13/Flex_Project/issues"
+    "url": "https://github.com/schen13/TaskTracker/issues"
   },
-  "homepage": "https://github.com/schen13/Flex_Project#readme",
+  "homepage": "https://github.com/schen13/TaskTracker#readme",
   "dependencies": {
     "concurrently": "^4.0.1"
   }

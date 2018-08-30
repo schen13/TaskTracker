@@ -24,7 +24,7 @@ With this application, users will be able to:
 ![frame1](docs/frame1.png)
 
 
-This application will be implemented using the MERN stack (MongoDB, Express.js, React.js, Node.js) for a dynamic and user oriented experience. Express.js and Node.js on the back-end permits easy data storage and fetching through custom APIs routes. Additionally, MongoDB and Mongoose allows for a versatile interface with the database by extracting out the complex SQL document-style requirements. React Native serves as the front-end and enables a modular and unidirectional data flow to enhance the speed of our application.
+This application will be implemented using the MERN stack (MongoDB, Express.js, React.js, Node.js) for a dynamic and user oriented experience. Express.js and Node.js on the back-end permits easy data storage and fetching through custom APIs routes. Additionally, MongoDB and Mongoose allows for a versatile interface with the database by extracting out the complex SQL document-style requirements. React serves as the front-end and enables a modular and unidirectional data flow to enhance the speed of our application.
 
 In addition to the manifest.json and package.json files, there will be two scripts:
 + content.js: will contain the logic for listing and delegating responsibilities 
