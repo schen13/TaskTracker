@@ -8,7 +8,7 @@ import merge from 'lodash/merge';
 
 const choreReducer = (state = {}, action) => {
   Object.freeze(state);
-  let nextState = merge({}, merge);
+  let nextState = merge({}, state);
 
   switch (action.type) {
     case RECEIVE_CHORE:

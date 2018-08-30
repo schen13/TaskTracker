@@ -1,5 +1,7 @@
 const Chore = require('../models/chore');
-const User = require('../models/user');
+// const User = require('../models/User');
+const jsonwebtoken = require('jsonwebtoken');
+
 
 exports.getUserChores = [
   function (req, res, next) {
@@ -63,8 +65,8 @@ exports.addChore = [
       description: req.body.description,
       // groupId: req.params.id,
       groupId: 1,
-      // userId: req.user._id,
-      userId: 4,
+      userId: req.user._id,
+      // userId: 4,
       deadline: req.body.deadline,
       estTime: req.body.estTime,
       completed: false
