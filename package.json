@@ -12,7 +12,8 @@
     "client": "npm start --prefix client",
     "server-install": "npm install --prefix server",
     "server": "npm run server --prefix server",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "css-watch": "sass --watch client/public/stylesheets/main.scss:client/src/index.css",
+    "dev": "concurrently \"npm run server\" \"npm run client\" \"npm run css-watch\""
   },
   "repository": {
     "type": "git",

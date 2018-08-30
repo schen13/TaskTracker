@@ -45,11 +45,11 @@ app.post('/api/groups', createGroup);
 app.patch('/api/groups/:groupId', updateGroup);
 app.delete('/api/groups/:groupId', deleteGroup);
 
-app.get('/api/chats', chat.getChats);
+app.get('/api/chats', passport.authenticate('jwt', { session: false }), chat.getChats);
 app.get('/api/chats/:chatId', chat.getChat);
-app.post('/api/chats', chat.newChat);
-app.post('/api/chats/:chatId', message.createMessage);
-app.delete('/api/chats/:chatId', chat.deleteChat);
+app.post('/api/chats', passport.authenticate('jwt', { session: false }), chat.newChat);
+app.post('/api/chats/:chatId', passport.authenticate('jwt', { session: false }), message.createMessage);
+app.delete('/api/chats/:chatId', passport.authenticate('jwt', { session: false }), chat.deleteChat);
 
 // Socket.io for chat functionality
 // const server = require('http').createServer();
