@@ -9,15 +9,14 @@ const GroupSchema = new Schema({
   imageUrl: {
     type: String
   },
-  choreList: {
-    type: Array
-  },
-  chatList: {
-    type: Array
-  },
-  userList: {
-    type: Array
-  },
+  users: [{
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+  }],
+  chores: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Chore'
+  }],
   timeStamp: {
     type: Date,
     required: true
