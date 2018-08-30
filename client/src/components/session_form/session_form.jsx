@@ -9,7 +9,8 @@ class SessionForm extends React.Component {
             password: '',
             email: '',
             fName: '',
-            lName: ''
+            lName: '',
+            password2: ''
         };
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -69,7 +70,6 @@ class SessionForm extends React.Component {
     }
 
     render() {
-        console.log(this.props)
         const pass2 = this.props.formType === "signup" ? 
             (
             < label > Confirm Password:
