@@ -11,6 +11,7 @@ import GroupIndexContainer from './group/group_index_container';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import ChatIndexContainer from './chat/chat_index_container';
 import ChatShowContainer from './chat/chat_show_container';
+import TaskIndexContainer from './task/task_index_container';
 
 const App = () => (
   <div>
@@ -20,10 +21,12 @@ const App = () => (
       </Link>
       <NavBarContainer />
       <ChatIndexContainer />
+      <TaskIndexContainer/>
     </header>
     <AuthRoute exact path='/login' component={LogInFormContainer} />
     <AuthRoute exact path='/signup' component={SignUpFormContainer} />
     <Route exact path='/chats/:chatId' component={ChatShowContainer} />
+    {/* <Route exact path='/tasks' component={TaskIndexContainer} /> */}
 
   </div>
 );

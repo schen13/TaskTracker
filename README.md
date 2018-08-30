@@ -35,7 +35,7 @@ There will also be two HTML files to display the content:
 + options.html: the file that renders the Settings menu for the user
 
 The primary technical challenges will be:
-+ Determining a simplified group experience to make delegation of tasks and chores easy
++ Determining a simplified group experience to make delegation of tasks and tasks easy
 + Creating and managing web-sockets for seamless peer to peer chat
 + Intuitive visual breakdown of responsibilities
 
@@ -94,9 +94,9 @@ Steven’s primary responsibilities will be:
     * Photos
     * Database for message storage
     * Anonymous posting
-* Phase 3E: Chore Analysis (Eric, Brian, Steven) (2 days)
+* Phase 3E: Task Analysis (Eric, Brian, Steven) (2 days)
   * Features include:
     * Stats tracking
-    * Visualization of chore distribution/responsibilities
+    * Visualization of task distribution/responsibilities
     * Reminders for those falling behind or those who regularly fail to meet deadlines
 

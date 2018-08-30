@@ -1,7 +1,7 @@
 const Validator = require('validator');
 const isEmpty = require('./is-empty');
 
-module.exports = function validateChoreInput(data) {
+module.exports = function validateTaskInput(data) {
     let errors = {};
 
     data.name = !isEmpty(data.name) ? data.name : '';
@@ -15,11 +15,11 @@ module.exports = function validateChoreInput(data) {
     }
 
     if (Validator.isEmpty(data.name)) {
-        errors.name = 'Chore name is required';
+        errors.name = 'Task name is required';
     }
 
     if (Validator.isEmpty(data.userId)) {
-      errors.userId = 'User must be assigned to chore';
+      errors.userId = 'User must be assigned to task';
     }
 
     if (Validator.isEmpty(data.deadline)) {

@@ -13,9 +13,9 @@ const GroupSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User'
   }],
-  chores: [{
+  tasks: [{
     type: Schema.Types.ObjectId,
-    ref: 'Chore'
+    ref: 'Task'
   }],
   timeStamp: {
     type: Date,

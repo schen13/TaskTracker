@@ -1,16 +1,13 @@
-const Chore = require('../models/chore');
-// const User = require('../models/User');
-const jsonwebtoken = require('jsonwebtoken');
+const Task = require('../models/task');
 
 
-exports.getUserChores = [
+exports.getUserTasks = [
   function (req, res, next) {
-    Chore.find({
-      // userId: req.user._id
-      userId: 4
-    }).then((chores) => {
+    Task.find({
+      userId: req.user._id
+    }).then((tasks) => {
       res.send({
-        chores
+        tasks
       });
     }, e => {
       res.status(400).send(e);
@@ -18,18 +15,18 @@ exports.getUserChores = [
   }
 ];
 
-exports.getChore = [
+exports.getTask = [
   function (req, res, next) {
     const id = req.params.id;
 
-    Chore.findOne({
+    Task.findOne({
       _id: id
-    }).then((chore) => {
-      if (!chore) {
+    }).then((task) => {
+      if (!task) {
         return res.status(404).send();
       }
       res.send({
-        chore
+        task
       });
 
     }).catch(e => {
@@ -38,18 +35,18 @@ exports.getChore = [
   }
 ];
 
-exports.deleteChore = [
+exports.deleteTask = [
   function (req, res, next) {
     const id = req.params.id;
 
-    Chore.findOneAndRemove({
+    Task.findOneAndRemove({
       _id: id,
-    }).then((chore) => {
-      if (!chore) {
+    }).then((task) => {
+      if (!task) {
         return res.status(404).send();
       }
       res.send({
-        chore
+        task
       });
 
     }).catch(e => {
@@ -58,47 +55,46 @@ exports.deleteChore = [
   }
 ];
 
-exports.addChore = [
+exports.addTask = [
   function (req, res, next) {
-    const chore = new Chore({
+    const task = new Task({
       name: req.body.name,
       description: req.body.description,
       // groupId: req.params.id,
       groupId: 1,
-      userId: req.user._id,
-      // userId: 4,
+      userId: req.body.userId,
       deadline: req.body.deadline,
       estTime: req.body.estTime,
       completed: false
     });
 
-    chore.save().then((newChore) => {
-      res.send(newChore);
+    task.save().then((newTask) => {
+      res.send(newTask);
     }, e => {
       res.status(400).send(e);
     });
   }
 ];
 
-exports.updateChore = [
+exports.updateTask = [
   function (req, res, next) {
     const id = req.params.id;
 
-    Chore.findOne({
+    Task.findOne({
       _id: id,
-    }).then((chore) => {
-      if(!chore) {
+    }).then((task) => {
+      if(!task) {
         return res.status(404).send();
       }
-      chore.name = req.body.name;
-      chore.description = req.body.description;
-      chore.deadline = req.body.deadline;
-      chore.estTime = req.body.estTime;
-      chore.completed = req.body.completed;
-      chore.userId = req.body.userId;
+      task.name = req.body.name;
+      task.description = req.body.description;
+      task.deadline = req.body.deadline;
+      task.estTime = req.body.estTime;
+      task.completed = req.body.completed;
+      task.userId = req.body.userId;
 
-      chore.save().then((updatedChore) => {
-        res.send(updatedChore);
+      task.save().then((updatedTask) => {
+        res.send(updatedTask);
       }, e => {
         res.status(400).send(e);
       });

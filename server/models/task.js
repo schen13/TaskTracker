@@ -1,20 +1,20 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const ChoreSchema = new Schema({
+const TaskSchema = new Schema({
   name: {
     type: String,
-    default: 'Chore'
+    default: 'Task'
   },
   description: {
     type: String
   },
   userId: {
-    type: Number,
+    type: String,
     required: true
   },
   groupId: {
-    type: Number,
+    type: String,
     required: true
   },
   deadline: {
@@ -31,6 +31,6 @@ const ChoreSchema = new Schema({
   }
 });
 
-const Chore = mongoose.model('chores', ChoreSchema);
+const Task = mongoose.model('tasks', TaskSchema);
 
-module.exports = Chore;
+module.exports = Task;

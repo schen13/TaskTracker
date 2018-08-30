@@ -6,7 +6,7 @@ const db = require('./config/keys').mongoURI;
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const users = require('./controllers/users');
-const chore = require('./controllers/chore');
+const task = require('./controllers/task');
 const chat = require('./controllers/chat');
 const message = require('./controllers/message');
 const jsonwebtoken = require('jsonwebtoken');
@@ -33,13 +33,12 @@ app.use(bodyParser.json());
 app.use('/api/users', users);
 app.use('/api/users', users);
 
-app.post('/chores', chore.addChore);
-app.get('/chores', passport.authenticate('jwt', { session: false }), chore.getUserChores);
-
-app.get('/chores/:id', chore.getChore);
-app.post('/chores', chore.addChore);
-app.patch('/chores/:id', chore.updateChore);
-app.delete('/chores/:id', chore.deleteChore);
+app.post('/api/tasks', task.addTask);
+app.get('/api/tasks', passport.authenticate('jwt', { session: false }), task.getUserTasks);
+app.get('/api/tasks/:id', task.getTask);
+app.post('/api/tasks', passport.authenticate('jwt', { session: false }), task.addTask);
+app.patch('/api/tasks/:id', task.updateTask);
+app.delete('/api/tasks/:id', task.deleteTask);
 
 app.get('/api/groups/', getGroups);
 app.get('/api/groups/:groupId', getGroup);
