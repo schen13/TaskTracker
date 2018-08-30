@@ -10,11 +10,11 @@ const ChoreSchema = new Schema({
     type: String
   },
   userId: {
-    type: Number,
+    type: String,
     required: true
   },
   groupId: {
-    type: Number,
+    type: String,
     required: true
   },
   deadline: {

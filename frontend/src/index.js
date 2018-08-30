@@ -46,8 +46,8 @@ document.addEventListener('DOMContentLoaded', () => {
       deadline: "2016-05-18T16:00:00.000Z"
     };
 
-    // window.createChore = store.dispatch(createChore(task1));   
-    // window.fetchChores = store.dispatch(fetchChores()); 
+    // window.createChore = store.dispatch(createChore(task2));   
+    // window.fetchChores = store.dispatch(fetchChores());
 
 
     const root = document.getElementById('root');

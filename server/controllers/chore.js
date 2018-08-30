@@ -1,13 +1,10 @@
 const Chore = require('../models/chore');
-// const User = require('../models/User');
-const jsonwebtoken = require('jsonwebtoken');
 
 
 exports.getUserChores = [
   function (req, res, next) {
     Chore.find({
-      // userId: req.user._id
-      userId: 4
+      userId: req.user._id
     }).then((chores) => {
       res.send({
         chores
@@ -60,13 +57,13 @@ exports.deleteChore = [
 
 exports.addChore = [
   function (req, res, next) {
+    debugger;
     const chore = new Chore({
       name: req.body.name,
       description: req.body.description,
       // groupId: req.params.id,
       groupId: 1,
-      userId: req.user._id,
-      // userId: 4,
+      userId: req.body.userId,
       deadline: req.body.deadline,
       estTime: req.body.estTime,
       completed: false

@@ -36,7 +36,7 @@ app.post('/chores', chore.addChore);
 app.get('/chores', passport.authenticate('jwt', { session: false }), chore.getUserChores);
 
 app.get('/chores/:id', chore.getChore);
-app.post('/chores', chore.addChore);
+app.post('/chores', passport.authenticate('jwt', { session: false }), chore.addChore);
 app.patch('/chores/:id', chore.updateChore);
 app.delete('/chores/:id', chore.deleteChore);
 
