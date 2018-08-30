@@ -40,13 +40,13 @@ app.post('/api/tasks', passport.authenticate('jwt', { session: false }), task.ad
 app.patch('/api/tasks/:id', task.updateTask);
 app.delete('/api/tasks/:id', task.deleteTask);
 
-app.get('/api/groups/', getGroups);
+app.get('/api/groups/', passport.authenticate('jwt', { session: false }), getGroups);
 app.get('/api/groups/:groupId', getGroup);
 app.post('/api/groups', createGroup);
 app.patch('/api/groups/:groupId', updateGroup);
 app.delete('/api/groups/:groupId', deleteGroup);
 
-app.get('/api/chats', chat.getChats);
+app.get('/api/chats', passport.authenticate('jwt', { session: false }), chat.getChats);
 app.get('/api/chats/:chatId', chat.getChat);
 app.post('/api/chats', chat.newChat);
 app.post('/api/chats/:chatId', message.createMessage);

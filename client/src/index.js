@@ -8,6 +8,7 @@ import * as APIUtil from './util/session_api_util';
 import configureStore from './store/store';
 import Root from './components/root';
 import registerServiceWorker from './registerServiceWorker';
+import { fetchAllGroups } from './actions/group_actions';
 
 document.addEventListener('DOMContentLoaded', () => {
     let store = configureStore();
@@ -30,6 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    window.fetchAllGroups = store.dispatch(fetchAllGroups());
     const root = document.getElementById('root');
     ReactDOM.render(<Root store={store} />, root);
     registerServiceWorker();
