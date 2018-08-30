@@ -77,7 +77,7 @@ export const logoutUser = () => dispatch => {
 //   APIUtil.logoutUser().then(() => (
 //     dispatch(logoutCurrentUser())
 //   ))
-// );
+// ); 
 
 // Set logged in user
 export const setCurrentUser = decoded => {
