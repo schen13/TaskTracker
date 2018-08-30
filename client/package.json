@@ -20,7 +20,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "build-css": "node-sass --include-path scss ./stylesheets/scss/main.scss ./src/index.css",
+    "build-css": "node-sass --include-path scss ./stylesheets/main.scss ./src/index.css",
     "watch-css": "npm run build-css && npm run build-css -- -w"
   },
   "proxy": "http://localhost:5000",
