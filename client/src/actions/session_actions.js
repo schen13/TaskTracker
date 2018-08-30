@@ -25,7 +25,6 @@ export const receiveErrors = errors => ({
 export const signup = user => dispatch => (
     APIUtil.registerUser(user).then(res => {
         // Save to localStorage
-        console.log(res.data, "resdata")
         const { token } = res.data;
         // Set token to ls
         localStorage.setItem('jwtToken', token);
