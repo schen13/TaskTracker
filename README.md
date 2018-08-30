@@ -19,9 +19,10 @@ With this application, users will be able to:
 
 ### Wireframes
 
-![frame2](docs/frame2.png)
-
-![frame1](docs/frame1.png)
+![Home Page](docs/home.png)
+![Group Show](docs/group_show.png)
+![Group Show Cont.](docs/group_show_cont.png)
+![Chat](docs/chat.png)
 
 
 This application will be implemented using the MERN stack (MongoDB, Express.js, React.js, Node.js) for a dynamic and user oriented experience. Express.js and Node.js on the back-end permits easy data storage and fetching through custom APIs routes. Additionally, MongoDB and Mongoose allows for a versatile interface with the database by extracting out the complex SQL document-style requirements. React serves as the front-end and enables a modular and unidirectional data flow to enhance the speed of our application.
