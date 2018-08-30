@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import jwt_decode from 'jwt-decode';
+import './index.css';
 import { setCurrentUser, logoutUser } from './actions/session_actions';
 import * as APIUtil from './util/session_api_util';
 //Components
 import configureStore from './store/store';
 import Root from './components/root';
 import registerServiceWorker from './registerServiceWorker';
-import { fetchAllGroups } from './actions/group_actions';
+import { fetchChats } from './actions/chat_actions';
 
 document.addEventListener('DOMContentLoaded', () => {
     let store = configureStore();
@@ -30,6 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
             window.location.href = '/login';
         }
     }
+    window.fetchChats = store.dispatch(fetchChats());
 
     window.fetchAllGroups = store.dispatch(fetchAllGroups());
     const root = document.getElementById('root');
