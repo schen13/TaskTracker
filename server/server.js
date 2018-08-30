@@ -33,9 +33,9 @@ app.use(bodyParser.json());
 app.use('/api/users', users);
 
 app.post('/api/tasks', task.addTask);
-app.get('/api/tasks', passport.authenticate('jwt', { session: false }), task.getUserTasks);
+app.get('/api/tasks', task.getUserTasks);
 app.get('/api/tasks/:id', task.getTask);
-app.post('/api/tasks', passport.authenticate('jwt', { session: false }), task.addTask);
+app.post('/api/tasks', task.addTask);
 app.patch('/api/tasks/:id', task.updateTask);
 app.delete('/api/tasks/:id', task.deleteTask);
 

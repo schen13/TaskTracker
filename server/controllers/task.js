@@ -1,10 +1,8 @@
 const Task = require('../models/task');
 
-
 exports.getUserTasks = [
   function (req, res, next) {
     Task.find({
-      userId: req.user._id
     }).then((tasks) => {
       res.send({
         tasks

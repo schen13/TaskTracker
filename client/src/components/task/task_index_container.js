@@ -4,7 +4,7 @@ import { fetchTasks, deleteTask } from '../../actions/task_actions';
 import TaskIndex from './task_index';
 
 const mapStateToProps = (state) => ({
-   tasks: Object.values(state.entities.tasks)
+   tasks: Object.values(state.entities.tasks).filter(task => task.userId === state.session.id)
 });
 
 const mapDispatchToProps = dispatch => ({
