@@ -22,7 +22,7 @@ class SessionForm extends React.Component {
         e.preventDefault();
         const user = Object.assign({}, this.state);
         this.props.processForm(user);
-    } 
+    }
 
     renderErrors() {
         return (
@@ -40,33 +40,34 @@ class SessionForm extends React.Component {
         if (this.props.formType === "signup") {
             return (
                 <div>
-                <label>Username:
+                    <label>Username:
                     <input type="text"
-                    value={this.state.username}
-                    onChange={this.update('username')}
-                    className="login-input"
-                    />
-                </label>
-                    </div>
-                )};
+                            value={this.state.username}
+                            onChange={this.update('username')}
+                            className="login-input"
+                        />
+                    </label>
+                </div>
+            )
+        };
     }
 
     render() {
-        console.log(this.props)
-        const pass2 = this.props.formType === "signup" ? 
+        console.log(this.props);
+        const pass2 = this.props.formType === "signup" ?
             (
-            < label > Confirm Password:
+                < label > Confirm Password:
                 <input type="password"
-                    value={this.state.password2}
-                    onChange={this.update('password2')}
-                    className="login-input"
-                />
-            </label >
-                    ) : (null)
+                        value={this.state.password2}
+                        onChange={this.update('password2')}
+                        className="login-input"
+                    />
+                </label >
+            ) : (null);
         return (
             <div className="login-form-container">
                 <form onSubmit={this.handleSubmit} className="login-form-box">
-                    Welcome to TASKS_APP_NAME!
+                    Welcome to TaskTracker!
                     <br />
                     Please {this.props.formType} or {this.props.navLink}
                     {this.renderErrors()}

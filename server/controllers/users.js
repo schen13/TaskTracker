@@ -49,10 +49,10 @@ router.post('/register', (req, res) => {
             newUser
               .save()
               .then(user => {
-                const payload = { 
-                  id: user.id, 
+                const payload = {
+                  id: user.id,
                   username: user.username,
-                  
+
                 };
 
                 jsonwebtoken.sign(
@@ -103,7 +103,8 @@ router.post('/login', (req, res) => {
               (err, token) => {
                 res.json({
                   success: true,
-                  token: 'Bearer ' + token
+                  token: 'Bearer ' + token,
+                  user
                 });
               });
           } else {
