@@ -8,14 +8,14 @@ const passport = require('passport');
 const validateRegisterInput = require('../validation/register');
 const validateLoginInput = require('../validation/login');
 
-router.get('/test', (req, res) => res.json({ msg: 'This is the users route' }));
+router.get('/:id', (req, res) => {
 
-router.get('/current', passport.authenticate('jwt', { session: false }), (req, res) => {
-  res.json({
-    id: req.user.id,
-    username: req.user.username,
-    email: req.user.email
-  });
+  User.findOne({ _id: req.params.id }).then( user => {
+    if (user) {
+      console.log(user)
+      res.send(user)
+    }
+  })
 });
 
 router.post('/register', (req, res) => {
@@ -105,7 +105,8 @@ router.post('/login', (req, res) => {
               (err, token) => {
                 res.json({
                   success: true,
-                  token: 'Bearer ' + token
+                  token: 'Bearer ' + token,
+                  user_id: user.id
                 });
               });
           } else {
@@ -114,5 +115,6 @@ router.post('/login', (req, res) => {
         });
     });
 });
+
 
 module.exports = router;
