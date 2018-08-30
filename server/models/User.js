@@ -26,6 +26,18 @@ const UserSchema = new Schema({
     type: String,
     required: true
   },
+  groups: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Group'
+  }],
+  chores: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Chore'
+  }],
+  chats: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Chat'
+  }],
   date: {
     type: Date,
     default: Date.now
