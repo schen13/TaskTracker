@@ -1,89 +1,50 @@
-import * as APIUtil from '../util/chat_api_util';
-import jwt_decode from 'jwt-decode';
+import * as ChatApiUtil from '../util/chat_api_util';
 
 export const RECEIVE_CHATS = 'RECEIVE_CHATS';
 export const RECEIVE_CHAT = 'RECEIVE_CHAT';
-export const RECEIVE_MESSAGE = 'RECEIVE_MESSAGE';
-export const GET_ERRORS = 'GET_ERRORS';
-export const CLEAR_ERRORS = 'CLEAR_ERRORS';
+export const REMOVE_CHAT = 'REMOVE_CHAT';
 
-export const receiveChats = userId => ({
+export const receiveChats = payload => ({
   type: RECEIVE_CHATS,
-  userId
+  chats: payload.data.chats
 });
 
-export const receiveChat = userId => ({
+export const receiveChat = payload => ({
   type: RECEIVE_CHAT,
-  userId
+  chat: payload.data.chat
 });
 
-export const receiveMessage = message => ({
-  type: RECEIVE_MESSAGE,
-  message
+export const removeChat = payload => ({
+  type: REMOVE_CHAT,
+  chat: payload.data.chat
 });
 
-export const signup = user => dispatch => (
-  APIUtil.registerUser(user).then(res => {
-    // Save to localStorage
-    const { token } = res.data;
-    // Set token to ls
-    localStorage.setItem('jwtToken', token);
-    // Set token to Auth header
-    APIUtil.setAuthToken(token);
-    // Decode token to get user data
-    const decoded = jwt_decode(token);
-    // Set current user
-    dispatch(setCurrentUser(decoded));
-  }, err => {
-    console.log(err, "hello");
-    dispatch({
-      type: GET_ERRORS,
-      payload: err.response.data
-    })
+export const fetchChats = () => dispatch => (
+  ChatApiUtil.fetchChats().then(chats => {
+    dispatch(receiveChats(chats))
   })
 );
 
-export const login = user => dispatch => (
-  APIUtil.loginUser(user).then(res => {
-    // Save to localStorage
-    const { token } = res.data;
-    // Set token to ls
-    localStorage.setItem('jwtToken', token);
-    // Set token to Auth header
-    APIUtil.setAuthToken(token);
-    // Decode token to get user data
-    const decoded = jwt_decode(token);
-    console.log(decoded, "decoded")
-    // Set current user
-    dispatch(setCurrentUser(decoded));
-  }, err =>
-      dispatch({
-        type: GET_ERRORS,
-        payload: err.response.data
-      })
-  )
+export const fetchChat = id => dispatch => (
+  ChatApiUtil.fetchChat(id).then(chat => {
+    dispatch(receiveChat(chat))
+  })
 );
 
-// Log user out
-export const logoutUser = () => dispatch => {
-  // Remove token from localStorage
-  localStorage.removeItem('jwtToken');
-  // Remove auth header for future requests
-  APIUtil.setAuthToken(false);
-  // Set current user to {} which will set isAuthenticated to false
-  dispatch(setCurrentUser({}));
-};
+export const createChat = chat => dispatch => (
+  ChatApiUtil.createChat(chat).then(newChat => {
+    dispatch(receiveChat(newChat))
+  })
+);
 
-// export const logoutUser = () => dispatch => (
-//   APIUtil.logoutUser().then(() => (
-//     dispatch(logoutCurrentUser())
-//   ))
-// );
+export const replyToChat = chat => dispatch => (
+  ChatApiUtil.replyToChat(chat).then(newMessage => {
+    dispatch(receiveChat(newMessage))
+  })
+);
 
-// Set logged in user
-export const setCurrentUser = decoded => {
-  return {
-    type: RECEIVE_CHATS,
-    payload: decoded
-  };
-};
+export const deleteChat = id => dispatch => (
+  ChatApiUtil.deleteChat(id).then(chat => {
+    dispatch(removeChat(chat))
+  })
+);
