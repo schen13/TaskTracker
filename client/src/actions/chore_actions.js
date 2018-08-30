@@ -1,40 +1,40 @@
-import * as ChoreApiUtil from '../util/chore_api_util';
+import * as TaskApiUtil from '../util/task_api_util';
 
-export const RECEIVE_CHORE = 'RECEIVE_CHORE';
-export const RECEIVE_CHORES = 'RECEIVE_CHORES'; 
-export const REMOVE_CHORE = 'REMOVE_CHORE';
+export const RECEIVE_TASK = 'RECEIVE_TASK';
+export const RECEIVE_TASKS = 'RECEIVE_TASKS'; 
+export const REMOVE_TASK = 'REMOVE_TASK';
 
-export const receiveChore = payload => ({
-  type: RECEIVE_CHORE,
-  chore: payload.data
+export const receiveTask = payload => ({
+  type: RECEIVE_TASK,
+  task: payload.data
 });
 
-export const receiveChores = payload => ({
-  type: RECEIVE_CHORES,
-  chores: payload.data.chores
+export const receiveTasks = payload => ({
+  type: RECEIVE_TASKS,
+  tasks: payload.data.tasks
 });
 
-export const removeChore = payload => ({
-  type: REMOVE_CHORE,
-  chore: payload.data.chore
+export const removeTask = payload => ({
+  type: REMOVE_TASK,
+  task: payload.data.task
 });
 
-export const fetchChores = () => dispatch => (
-  ChoreApiUtil.fetchChores().then(chores => dispatch(receiveChores(chores)))
+export const fetchTasks = () => dispatch => (
+  TaskApiUtil.fetchTasks().then(tasks => dispatch(receiveTasks(tasks)))
 );
 
-export const fetchChore = id => dispatch => (
-  ChoreApiUtil.fetchChore(id).then(chore => dispatch(receiveChore(chore)))
+export const fetchTask = id => dispatch => (
+  TaskApiUtil.fetchTask(id).then(task => dispatch(receiveTask(task)))
 );
 
-export const createChore = chore => dispatch => (
-  ChoreApiUtil.createChore(chore).then(newChore => dispatch(receiveChore(newChore)))
+export const createTask = task => dispatch => (
+  TaskApiUtil.createtask(task).then(newTask => dispatch(receiveTask(newTask)))
 );
 
-export const updateChore = chore => dispatch => (
-  ChoreApiUtil.updateChore(chore).then(updatedChore => dispatch(receiveChore(updatedChore)))
+export const updateTask = task => dispatch => (
+  TaskApiUtil.updateTask(task).then(updatedTask => dispatch(receiveTask(updatedTask)))
 );
 
-export const deleteChore = id => dispatch => (
-  ChoreApiUtil.deleteChore(id).then(chore => dispatch(removeChore(chore)))
+export const deleteTask = id => dispatch => (
+  TaskApiUtil.deleteTask(id).then(task => dispatch(removeTask(task)))
 );

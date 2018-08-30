@@ -1,30 +1,30 @@
 import {
-  RECEIVE_CHORE,
-  RECEIVE_CHORES,
-  REMOVE_CHORE
-} from '../../actions/chore_actions';
+  RECEIVE_TASK,
+  RECEIVE_TASKS,
+  REMOVE_TASK
+} from '../../actions/task_actions';
 
 import merge from 'lodash/merge';
 
-const choreReducer = (state = {}, action) => {
+const taskReducer = (state = {}, action) => {
   Object.freeze(state);
   let nextState = merge({}, merge);
 
   switch (action.type) {
-    case RECEIVE_CHORE:
-      const newChore = {
-        [action.chore._id]: action.chore
+    case RECEIVE_TASK:
+      const newTask = {
+        [action.task._id]: action.task
       };
-      return merge(nextState, newChore);
+      return merge(nextState, newTask);
 
-    case RECEIVE_CHORES:
-      action.chores.forEach(chore => {
-        nextState[chore._id] = chore;
+    case RECEIVE_TASKS:
+      action.tasks.forEach(task => {
+        nextState[task._id] = task;
       });
       return nextState;
 
-    case REMOVE_CHORE:
-      delete nextState[action.chore._id];
+    case REMOVE_TASK:
+      delete nextState[action.task._id];
       return nextState;
 
     default:
@@ -32,5 +32,5 @@ const choreReducer = (state = {}, action) => {
   }
 };
 
-export default choreReducer;
+export default taskReducer;
 

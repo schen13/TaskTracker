@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const ChoreSchema = new Schema({
+const TaskSchema = new Schema({
   name: {
     type: String,
-    default: 'Chore'
+    default: 'Task'
   },
   description: {
     type: String
@@ -31,6 +31,6 @@ const ChoreSchema = new Schema({
   }
 });
 
-const Chore = mongoose.model('chores', ChoreSchema);
+const Task = mongoose.model('tasks', TaskSchema);
 
-module.exports = Chore;
+module.exports = Task;

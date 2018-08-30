@@ -30,9 +30,9 @@ const UserSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Group'
   }],
-  chores: [{
+  tasks: [{
     type: Schema.Types.ObjectId,
-    ref: 'Chore'
+    ref: 'Task'
   }],
   chats: [{
     type: Schema.Types.ObjectId,

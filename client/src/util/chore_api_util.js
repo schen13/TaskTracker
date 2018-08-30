@@ -10,22 +10,22 @@ export const setAuthToken = token => {
   }
 };
 
-export const fetchChores = () => (
-  axios.get('/chores')
+export const fetchTasks = () => (
+  axios.get('/api/tasks')
 );
 
-export const fetchChore = id => (
-  axios.get(`/chores/${id}`)
+export const fetchTask = id => (
+  axios.get(`/api/tasks/${id}`)
 );
 
-export const createChore = data => (
-  axios.post('/chores', data)
+export const createTask = data => (
+  axios.post('/api/tasks', data)
 );
 
-export const updateChore = data => (
-  axios.post('/chores', data)
+export const updateTask = data => (
+  axios.post('/api/tasks', data)
 );
 
-export const deleteChore = id => (
-  axios.delete(`/chores/${id}`)
+export const deleteTask = id => (
+  axios.delete(`/api/tasks/${id}`)
 );
