@@ -68,11 +68,11 @@ router.post('/register', (req, res) => {
                 );
               })
               .catch(err => console.log(err));
-          })
-        })
+          });
+        });
       }
-    })
-})
+    });
+});
 
 router.post('/login', (req, res) => {
   const { errors, isValid } = validateLoginInput(req.body);
@@ -109,8 +109,8 @@ router.post('/login', (req, res) => {
           } else {
             return res.status(400).json({ password: 'Incorrect password' });
           }
-        })
-    })
-})
+        });
+    });
+});
 
 module.exports = router;

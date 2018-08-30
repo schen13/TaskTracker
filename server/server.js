@@ -9,6 +9,10 @@ const users = require('./controllers/users');
 const chore = require('./controllers/chore');
 const chat = require('./controllers/chat');
 const message = require('./controllers/message');
+const jsonwebtoken = require('jsonwebtoken');
+
+require('./config/passport')(passport);
+
 import {
   getGroups,
   getGroup,
@@ -20,7 +24,7 @@ import {
 mongoose
   .connect(db)
   .then(() => console.log('Connected to MongoDB successfully'))
-  .catch(err => console.log(err))
+  .catch(err => console.log(err));
 
 //Routes
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -30,7 +34,7 @@ app.use('/api/users', users);
 app.use('/api/users', users);
 
 app.post('/chores', chore.addChore);
-app.get('/chores', chore.getUserChores);
+app.get('/chores', passport.authenticate('jwt', { session: false }), chore.getUserChores);
 
 app.get('/chores/:id', chore.getChore);
 app.post('/chores', chore.addChore);
