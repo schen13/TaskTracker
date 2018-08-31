@@ -1,0 +1,30 @@
+$lightestest-gray: #f7f7f7; //(247, 247, 247)
+$lightest-gray: #efefef; //(239, 239, 239)
+$lighter-gray: #dedede; //(222, 222, 222)
+$light-gray: #e2e2e2; //(226, 226, 226)
+$lightish-gray: #cccccc; //(204, 204, 204)
+$medium-gray: #aaaaaa; //(170, 170, 170)
+$gray: #8e8e8e; //(142, 142, 142)
+$dark-gray: #717171; //(113, 113, 113)
+$black: #333333; //(51, 51, 51)
+
+$white: #fff;
+$transparent: #eee;
+
+$light-red: #bd081d;
+$red: #ad081b;
+$dark-red: #a3081a;
+
+$yellow: #ffff00;
+$orange: #fab904;
+$olive: #808000;
+$dark-olive: #364a4c;
+
+$blue: #0084ff;
+
+$shadow: rgb(0, 132, 255);
+$bshadow: rgb(0, 0, 0);
+$alpha: 0.5;
+$balpha: 0.45;
+$shadow-alpha: rgba($shadow, $alpha);
+$bshadow-alpha: rgba($bshadow, $balpha);
