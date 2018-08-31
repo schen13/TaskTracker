@@ -16,8 +16,24 @@ class ChatIndex extends React.Component {
 
     return (
       <div className="chat-bar">
-        <h1>CHAT BAR FOOLZ</h1>
-        <ul>
+        <div className="chat-header">
+          <div></div>
+          <h1>CHAT BAR FOOLZ</h1>
+          <div></div>
+          {/* <img src={require('../../public/images/new_message.png')} /> */}
+        </div>
+        <ul className="conversations">
+          <li className="chats">
+            <div className="user-pictures"></div>
+            <div className="chat">
+              <div className="chat-content">
+                <h2>participants</h2>
+                <p>Temp Chat</p>
+              </div>
+              <p className="date">date</p>
+            </div>
+          </li>
+
           {this.props.chats.map(chat => {
             return <li id={chat.id}>
               {chat.chatName}
