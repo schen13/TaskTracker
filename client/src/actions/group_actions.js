@@ -8,42 +8,42 @@ export const REMOVE_GROUP_ERRORS = 'REMOVE_GROUP_ERRORS';
 
 export const fetchAllGroups = () => dispatch => (
   GroupAPIUtil.fetchAllGroups()
-    .then(res => dispatch(receiveGroups(res)))
+    .then(groups => dispatch(receiveGroups(groups)))
 );
 
 export const fetchSingleGroup = id => dispatch => (
   GroupAPIUtil.fetchSingleGroup(id)
-    .then(res => dispatch(receiveGroup(res)))
+    .then(group => dispatch(receiveGroup(group)))
 );
 
 export const createGroup = group => dispatch => (
   GroupAPIUtil.createGroup(group)
-    .then(res => dispatch(receiveGroup(res)))
+    .then(createdGroup => dispatch(receiveGroup(createdGroup)))
 );
 
 export const updateGroup = group => dispatch => (
   GroupAPIUtil.updateGroup(group)
-    .then(res => dispatch(receiveGroup(res)))
+    .then(updatedGroup => dispatch(receiveGroup(updatedGroup)))
 );
 
 export const deleteGroup = groupId => dispatch => (
   GroupAPIUtil.deleteGroup(groupId)
-    .then(res => dispatch(removeGroup(res)))
+    .then(group => dispatch(removeGroup(group)))
 );
 
 const receiveGroups = groups => ({
   type: RECEIVE_ALL_GROUPS,
-  groups
+  groups: groups.data.groups
 });
 
 const receiveGroup = group => ({
   type: RECEIVE_SINGLE_GROUP,
-  group
+  group: group.data.group
 });
 
 const removeGroup = group => ({
   type: REMOVE_GROUP,
-  group
+  group: group.data.group
 });
 
 export const receiveGroupErrors = errors => ({
