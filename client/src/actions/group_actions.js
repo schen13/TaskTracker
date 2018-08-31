@@ -38,12 +38,12 @@ const receiveGroups = groups => ({
 
 const receiveGroup = group => ({
   type: RECEIVE_SINGLE_GROUP,
-  group: group.data.group
+  group: group.data
 });
 
 const removeGroup = group => ({
   type: REMOVE_GROUP,
-  group: group.data.group
+  group: group.data
 });
 
 export const receiveGroupErrors = errors => ({

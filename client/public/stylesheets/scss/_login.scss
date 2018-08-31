@@ -1,0 +1,37 @@
+$session-width: 350px;
+
+.session-form-container {
+  width: $session-width;
+  margin: 100px auto;
+  background-color: white;
+  border-radius: 10px;
+  border: 1px solid $light-gray;
+  font-family: HelveticaNeue;
+  text-align: center;
+  font-size: 16px;
+  padding: 20px;
+  box-sizing: border-box;
+  h3 {
+    font-size: 24px;
+  }
+  h4 {
+    font-size: 18px;
+  }
+}
+
+.session-submit,
+.other-session-link {
+  width: 310px;
+  margin: 10px 0;
+  height: 40px;
+  border-radius: 5px;
+  background-color: $light-red;
+  color: white;
+  display: table-cell;
+  vertical-align: middle;
+  font-weight: 700;
+  &:hover {
+    opacity: 0.7;
+    cursor: pointer;
+  }
+}

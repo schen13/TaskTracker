@@ -7,19 +7,14 @@ const bodyParser = require('body-parser');
 const passport = require('passport');
 const users = require('./controllers/users');
 const task = require('./controllers/task');
+const group = require('./controllers/group');
 const chat = require('./controllers/chat');
 const message = require('./controllers/message');
 const jsonwebtoken = require('jsonwebtoken');
 
 require('./config/passport')(passport);
 
-import {
-  getGroups,
-  getGroup,
-  createGroup,
-  updateGroup,
-  deleteGroup
-} from './controllers/group';
+
 
 mongoose
   .connect(db)
@@ -39,11 +34,11 @@ app.post('/api/tasks', task.addTask);
 app.patch('/api/tasks/:id', task.updateTask);
 app.delete('/api/tasks/:id', task.deleteTask);
 
-app.get('/api/groups/', passport.authenticate('jwt', { session: false }), getGroups);
-app.get('/api/groups/:groupId', getGroup);
-app.post('/api/groups', createGroup);
-app.patch('/api/groups/:groupId', updateGroup);
-app.delete('/api/groups/:groupId', deleteGroup);
+app.get('/api/groups/', group.getGroups);
+app.get('/api/groups/:groupId', group.getGroup);
+app.post('/api/groups', group.createGroup);
+app.patch('/api/groups/:groupId', group.updateGroup);
+app.delete('/api/groups/:groupId', group.deleteGroup);
 
 app.get('/api/chats', passport.authenticate('jwt', { session: false }), chat.getChats);
 app.get('/api/chats/:chatId', chat.getChat);

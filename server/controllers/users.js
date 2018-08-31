@@ -8,9 +8,28 @@ const passport = require('passport');
 const validateRegisterInput = require('../validation/register');
 const validateLoginInput = require('../validation/login');
 
+router.get('/', (req, res) => {
+  User.find({}).then(users => {
+    const usersInfo = {};
+    users.forEach(user => {
+      usersInfo[user._id] = {
+        id: user._id,
+        username: user.username,
+        fName: user.fName,
+        lName: user.lName,
+        email: user.email,
+        groups: user.groups,
+        tasks: user.tasks,
+        chats: user.chats
+      };
+    });
+    return res.json(usersInfo);
+  });
+});
+
 router.get('/:id', (req, res) => {
 
-  User.findOne({ _id: req.params.id }).then( user => {
+  User.findOne({ _id: req.params.id }).then(user => {
     if (user) {
       res.send({
         id: user._id,
@@ -57,8 +76,8 @@ router.post('/register', (req, res) => {
             newUser
               .save()
               .then(user => {
-                const payload = { 
-                  id: user.id, 
+                const payload = {
+                  id: user.id,
                   username: user.username,
                   fName: req.body.fName,
                   lName: req.body.lName,

@@ -1,0 +1,148 @@
+$light-blue: #d9f2fb;
+$blue: #00a9e0;
+$dark-blue: #007da6;
+
+
+.group-create-container {
+  box-sizing: border-box;
+  margin: 10px;
+  font: 400 13px/20px 'Helvetica Neue', sans-serif;
+}
+
+.group-index-container {
+  // width: 25%;
+  background: white;
+  .group-index {
+    font-size: 20px;
+    .group-index-item {
+      font-size: 16px;
+      width: 25%;
+      padding: 10px;
+      border: 1px solid $lighter-gray;
+      &:hover {
+        background-color: $lighter-gray;
+        cursor: zoom-in;
+        filter: brightness(95%);
+      }
+    }
+  }
+  
+}
+
+svg {
+  display: block;
+  width: 1em;
+  height: 1em;
+  fill: currentColor;
+}
+
+.select {
+  position: relative;
+  display: inline-block;
+  width: 320px;
+  
+  &:focus {
+    outline: 0;
+    
+    & .selection {
+      box-shadow: 0 0 1px 1px $blue;
+    }
+  }
+}
+
+.label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+.selection {
+  position: relative;
+  padding: 5px;
+  border: 1px solid $lighter-gray;
+  background: #fff;
+}
+
+.value {
+  position: relative;
+  display: inline-block;
+  padding: 5px 10px;
+}
+
+.multiple {
+  padding-right: 30px;
+  margin-right: 5px;
+  background: $light-blue;
+  color: $blue;
+}
+
+.delete {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: block;
+  padding: 10px;
+  font-size: 10px;
+  cursor: pointer;
+}
+
+.placeholder {
+  padding: 5px 10px;
+  color: $gray;
+}
+
+.arrow {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  display: block;
+  padding: 10px;
+  font-size: 10px;
+  color: $gray;
+}
+
+.usernames {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  border: solid $lighter-gray;
+  border-width: 0 1px;
+  background: #fff;
+}
+
+.username {
+  padding: 10px 15px;
+  border-bottom: 1px solid $lighter-gray;
+  cursor: pointer;
+
+  &.selected {
+    border: 1px solid $blue;
+    margin: -1px -1px 0;
+    background: $light-blue;
+  }
+  
+  &.focused {
+    background: $lightest-gray;
+  }
+}
+
+.checkbox {
+  content: '';
+  vertical-align: top;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  padding: 2px;
+  border: 1px solid $lighter-gray;
+  border-radius: 2px;
+  margin: 2px 12px 0 0;
+  color: #fff;
+  font-size: 10px;
+  
+  .selected & {
+    border-color: $dark-blue;
+    background: $blue;
+  }
+}
+

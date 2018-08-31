@@ -1,10 +1,14 @@
-export const selectUserGroups = (groupIds, groups) => {
+export const selectUserGroups = (user, groups) => {
   const selectedGroups = [];
-  groupIds.forEach(groupId => {
-    selectedGroups.push(groups[groupId]);
+  Object.values(groups).forEach(group => {
+    if (group.users.includes(user.id)) selectedGroups.push(group);
   });
   return selectedGroups;
 };
+
+export const selectUsernamesFromUsers = users => (
+  Object.values(users).map(user => ({ value: user.username }))
+);
 
 export const selectChatMessages = ({ entities }, chatId) => {
   const messages = Object.values(entities.messages).filter(message => message.chatId === chatId);
