@@ -3,6 +3,7 @@ import { createTask } from '../../actions/task_actions';
 import TaskCreate from './task_create';
 
 const mapStateToProps = (state) => ({
+  // users: Object.values(state.entities.users)
 });
 
 const mapDispatchToProps = dispatch => ({
