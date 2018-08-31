@@ -1,5 +1,5 @@
 import React from 'react';
-import Select from 'react-select'
+import Select from 'react-select';
 
 import { withRouter } from 'react-router-dom';
 
@@ -17,9 +17,10 @@ class TaskCreate extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.fetchUsers();
   }
+
 
   handleSubmit(e) {
     e.preventDefault();
@@ -28,14 +29,23 @@ class TaskCreate extends React.Component {
   }
 
   update(field) {
+    console.log(this.state);
     return e => this.setState({
       [field]: e.currentTarget.value
     });
   }
 
   render() {
-    if (!this.props.users > 2) return null;
+    if (!this.props.users) return null;
     let { users } = this.props;
+
+    let options = [];
+    users.forEach(user => {
+      options.push({
+        value: user._id,
+        label: user.username
+      });
+    });
 
     return(
       <div className="task-create-container">
@@ -61,7 +71,7 @@ class TaskCreate extends React.Component {
           <div className="input-field col s6">
             <i className="fas fa-user prefix"></i>
             <select id="userId" value="" onChange={this.update("userId")}>
-              <option value="" key="0" disabled>Assign To?</option>
+              <option value="">The number of users is {users.length}</option>
               {users.map(user => (
                 <UserItem key={user._id} user={user}/>
               ))}
@@ -69,19 +79,17 @@ class TaskCreate extends React.Component {
           </div>
           <div className="input-field col s6">
             <i className="far fa-folder-open prefix"></i>
-            <select id="groupId" value="" onChange={this.update("groupId")}>
+            <Select id="groupId" options={options} onChange={this.update("groupId")}>
               {/* <option value="" disabled>Group?</option> */}
-            </select>
+            </Select>
           </div>
           <div className="input-field">
             <i className="far fa-calendar-alt prefix"></i>
-            <input type="text" id="deadline "className="datepicker"/>
+            <input type="text" id="deadline "className="datepicker" onChange={this.update("deadline")}/>
             <label htmlFor="deadline">Complete By?</label>
           </div>
-          <button className="btn waves-effect waves-light" type="submit"> Create Task </button>
-          
+          <button className="btn waves-effect waves-light" type="submit"> Create Task </button>     
         </form>
-
       </div>
     );
   }
