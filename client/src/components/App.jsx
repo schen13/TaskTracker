@@ -20,12 +20,13 @@ const App = () => (
     <GroupModal />
     <header>
     </header>
+    {/* <Route exact path ="/" component={SplashPage} /> */}
     <ProtectedRoute path="/" component={NavBarContainer} />
     <ProtectedRoute path="/" component={TaskIndexContainer} />
-    <AuthRoute exact path='/login' component={LogInFormContainer} />
-    <AuthRoute exact path='/signup' component={SignUpFormContainer} />
-    <Route exact path='/chats/:chatId' component={ChatShowContainer} />
-    {/* <Route exact path='/tasks' component={TaskIndexContainer} /> */}
+    <AuthRoute exact path="/login" component={LogInFormContainer} />
+    <AuthRoute exact path="/signup" component={SignUpFormContainer} />
+    <Route exact path="/chats/:chatId" component={ChatShowContainer} />
+    {/* <Route exact path="/tasks" component={TaskIndexContainer} /> */}
     <ProtectedRoute exact path="/" component={HomePageContainer} />
   </div>
 );
