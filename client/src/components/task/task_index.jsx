@@ -16,7 +16,7 @@ class TaskIndex extends React.Component {
 
     return(
       <ul className="task-index-container">
-        <button data-target="modal1" className="btn modal-trigger">Modal</button>
+        <a class="btn-floating btn waves-effect waves-light red modal-trigger" href="#modal1"><i class="fas fa-plus"></i></a>
         <div id="modal1" class="modal">
           <div className="modal-content">
             <TaskCreateContainer/>

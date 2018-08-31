@@ -36,23 +36,23 @@ class TaskCreate extends React.Component {
           <h1>Create New Task</h1>
         </div>
         <form onSubmit={this.handleSubmit}>
-          <div class="input-field col s6">
-            <i class="fas fa-tasks prefix"></i>
+          <div className="input-field col s6">
+            <i className="fas fa-tasks prefix"></i>
             <input autocomplete="off" id="name" type="text" class="validate"/>
             <label for="name">Name of Task</label>
           </div>
-          <div class="input-field col s6">
-            <i class="fas fa-comment prefix"></i>
+          <div className="input-field col s6">
+            <i className="fas fa-comment prefix"></i>
             <input autocomplete="off" id="description" type="text" class="validate" />
             <label for="description">Additional Info</label>
           </div>
-          <div class="input-field col s6">
-            <i class="far fa-clock prefix"></i>
+          <div className="input-field col s6">
+            <i className="far fa-clock prefix"></i>
             <input autocomplete="off" id="estTime" type="number" class="validate" />
             <label for="estTime">Estimated Time</label>
           </div>
-          <div class="input-field col s6">
-            <i class="fas fa-user prefix"></i>
+          <div className="input-field col s6">
+            <i className="fas fa-user prefix"></i>
             <select id="userId">
               <option value="" disabled selected>Assign To?</option>
               <option value="1">Option 1</option>
@@ -62,11 +62,12 @@ class TaskCreate extends React.Component {
             {/* <label for="userId">Assign To?</label> */}
           </div>
           <div className="input-field">
-            <i class="far fa-calendar-alt prefix"></i>
+            <i className="far fa-calendar-alt prefix"></i>
             <input type="text" id="deadline "class="datepicker"/>
             <label for="deadline">Complete By?</label>
           </div>
-          <button type="submit"> Create Task </button>
+          <button className="btn waves-effect waves-light" type="submit"> Create Task </button>
+          
         </form>
 
       </div>
