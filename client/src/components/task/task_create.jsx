@@ -60,6 +60,15 @@ class TaskCreate extends React.Component {
               <option value="3">Option 3</option>
             </select>
           </div>
+          <div className="input-field col s6">
+            <i class="far fa-folder-open prefix"></i>
+            <select id="groupId" value="">
+              <option value="" disabled>Group?</option>
+              <option value="1">Option 1</option>
+              <option value="2">Option 2</option>
+              <option value="3">Option 3</option>
+            </select>
+          </div>
           <div className="input-field">
             <i className="far fa-calendar-alt prefix"></i>
             <input type="text" id="deadline "className="datepicker"/>

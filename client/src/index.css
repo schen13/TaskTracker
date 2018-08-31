@@ -310,6 +310,8 @@ body {
   color: #484848; }
 .task-create-container form {
   color: #484848; }
+.task-create-container label {
+  z-index: -1; }
 
 body {
   background-color: whitesmoke; }
