@@ -8,6 +8,15 @@ const passport = require('passport');
 const validateRegisterInput = require('../validation/register');
 const validateLoginInput = require('../validation/login');
 
+router.get('/', [(req, res) => {
+  User.find({})
+    .then(user => {
+      res.send({user});
+    }, e => {
+      res.status(400).send(e);
+    });
+}]);
+
 router.get('/:id', (req, res) => {
 
   User.findOne({ _id: req.params.id }).then( user => {
