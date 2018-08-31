@@ -6,7 +6,7 @@ export const LOGOUT_CURRENT_USER = 'LOGOUT_CURRENT_USER';
 export const RECEIVE_SESSION_ERRORS = 'RECEIVE_SESSION_ERRORS';
 // export const SET_CURRENT_USER = 'SET_CURRENT_USER';
 export const GET_ERRORS = 'GET_ERRORS';
-// export const CLEAR_ERRORS = 'CLEAR_ERRORS';
+export const REMOVE_SESSION_ERRORS = 'REMOVE_SESSION_ERRORS';
 
 export const receiveCurrentUser = currentUser => ({
     type: RECEIVE_CURRENT_USER,
@@ -80,3 +80,7 @@ export const setCurrentUser = decoded => {
         payload: decoded
     };
 };
+
+export const removeSessionErrors = () => ({
+    type: REMOVE_SESSION_ERRORS
+});

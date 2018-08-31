@@ -1,11 +1,9 @@
 import React from 'react';
 import GroupIndexContainer from '../group/group_index_container';
 import ChatIndexContainer from '../chat/chat_index_container';
+import TaskIndexContainer from '../task/task_index_container';
 
 class HomePage extends React.Component {
-  constructor(props) {
-    super(props);
-  }
 
   componentDidMount() {
     this.props.fetchSingleUser(this.props.userId);
@@ -18,6 +16,7 @@ class HomePage extends React.Component {
 
       <div className="home-page">
         <GroupIndexContainer user={user} />
+        <TaskIndexContainer />
         <ChatIndexContainer />
       </div>
     );

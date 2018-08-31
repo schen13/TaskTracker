@@ -41,7 +41,7 @@ class SessionForm extends React.Component {
   }
 
   additionalParams() {
-    if (this.props.formType === "signup") {
+    if (this.props.formType === "Signup") {
       return (
         <div>
           <label>Username:
@@ -71,44 +71,44 @@ class SessionForm extends React.Component {
   }
 
   render() {
-    const pass2 = this.props.formType === "signup" ?
+    const pass2 = this.props.formType === "Signup" ?
       (
         < label > Confirm Password:
                 <input type="password"
             value={this.state.password2}
             onChange={this.update('password2')}
-            className="login-input"
+            className="session-input"
           />
         </label >
       ) : (null)
     return (
-      <div className="login-form-container">
-        <form onSubmit={this.handleSubmit} className="login-form-box">
-          Welcome to TASKS_APP_NAME!
-                    <br />
-          Please {this.props.formType} or {this.props.navLink}
+      <div className="session-form-container">
+        <form onSubmit={this.handleSubmit} className="session-form-box">
+          <h3>Welcome to TaskTracker!</h3>
+          <h4>Please {this.props.formType}!</h4>
           {this.renderErrors()}
-          <div className="login-form">
+          <div className="session-form">
             <br />
             <label>Email:
-                            <input type="text"
+              <input type="text"
                 value={this.state.email}
                 onChange={this.update('email')}
-                className="login-input"
+                className="session-input"
               />
             </label>
             {this.additionalParams()}
-            <br />
             <label>Password:
-                            <input type="password"
+              <input type="password"
                 value={this.state.password}
                 onChange={this.update('password')}
-                className="login-input"
+                className="session-input"
               />
             </label>
-            <br />
             {pass2}
             <input className="session-submit" type="submit" value={this.props.formType} />
+            <div onClick={this.props.clearErrors}>
+              {this.props.navLink}
+            </div>
           </div>
         </form>
       </div>

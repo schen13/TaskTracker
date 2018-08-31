@@ -1,12 +1,13 @@
 import React from 'react';
 
 class GroupIndexItem extends React.Component {
-  constructor(props) {
-    super(props);
-  }
 
   render() {
-    return (<div>{this.props.group.name}</div>);
+    return (
+      <div className="group-index-item" onClick={this.props.openGroupModal}>
+        {this.props.group.name}
+      </div>
+    );
   }
 }
 
