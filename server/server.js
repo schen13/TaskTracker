@@ -39,7 +39,7 @@ app.post('/api/tasks', task.addTask);
 app.patch('/api/tasks/:id', task.updateTask);
 app.delete('/api/tasks/:id', task.deleteTask);
 
-app.get('/api/groups/', getGroups);
+app.get('/api/groups/', passport.authenticate('jwt', { session: false }), getGroups);
 app.get('/api/groups/:groupId', getGroup);
 app.post('/api/groups', createGroup);
 app.patch('/api/groups/:groupId', updateGroup);
