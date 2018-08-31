@@ -7,7 +7,7 @@ export default (state = {}, action) => {
     case RECEIVE_ALL_USERS:
       return merge({}, state, action.payload);
     case RECEIVE_SINGLE_USER:
-      return merge(nextState, { [action.payload.id]: action.payload });
+      return merge({}, state, { [action.payload.id]: action.payload });
     default:
       return state;
   }

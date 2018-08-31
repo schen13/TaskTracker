@@ -31,8 +31,3 @@ const receiveAllUsers = payload => ({
   type: RECEIVE_ALL_USERS,
   payload: payload.data
 });
-
-const receiveSingleUser = payload => ({
-  type: RECEIVE_SINGLE_USER,
-  payload: payload.data
-});
