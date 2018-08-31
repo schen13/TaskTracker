@@ -10,6 +10,10 @@ class TaskIndex extends React.Component {
     this.props.fetchTasks();
   }
 
+  componentWillMount() {
+    this.props.fetchUsers();
+  }
+
   render() {
     if (!this.props.tasks) return null;
     let { tasks } = this.props;
@@ -19,7 +23,9 @@ class TaskIndex extends React.Component {
         <a className="btn-floating btn waves-effect waves-light red modal-trigger" href="#modal1"><i className="fas fa-plus"></i></a>
         <div id="modal1" className="modal">
           <div className="modal-content">
-            <TaskCreateContainer/>
+            <TaskCreateContainer
+              users={this.props.users}
+            />
           </div>
         </div>
         {tasks.map(task => (

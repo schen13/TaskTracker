@@ -29,8 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
             window.location.href = '/login';
         }
     }
-
-    window.fetchChats = store.dispatch(fetchChats());
+    // window.fetchChats = store.dispatch(fetchChats());
 
     // window.fetchAllGroups = store.dispatch(fetchAllGroups());
     const root = document.getElementById('root');

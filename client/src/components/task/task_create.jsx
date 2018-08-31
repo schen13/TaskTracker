@@ -1,4 +1,6 @@
 import React from 'react';
+import Select from 'react-select'
+
 import { withRouter } from 'react-router-dom';
 
 class TaskCreate extends React.Component {
@@ -15,6 +17,10 @@ class TaskCreate extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentWillMount() {
+    this.props.fetchUsers();
+  }
+
   handleSubmit(e) {
     e.preventDefault();
     const task = this.state;
@@ -28,7 +34,8 @@ class TaskCreate extends React.Component {
   }
 
   render() {
-
+    if (!this.props.users > 2) return null;
+    let { users } = this.props;
 
     return(
       <div className="task-create-container">
@@ -38,35 +45,32 @@ class TaskCreate extends React.Component {
         <form onSubmit={this.handleSubmit}>
           <div className="input-field col s6">
             <i className="fas fa-tasks prefix"></i>
-            <input autoComplete="off" id="name" type="text" className="validate"/>
+            <input autoComplete="off" id="name" type="text" className="validate" onChange={this.update("name")}/>
             <label htmlFor="name">Name of Task</label>
           </div>
           <div className="input-field col s6">
             <i className="fas fa-comment prefix"></i>
-            <input autoComplete="off" id="description" type="text" className="validate" />
+            <input autoComplete="off" id="description" type="text" className="validate" onChange={this.update("description")}/>
             <label htmlFor="description">Additional Info</label>
           </div>
           <div className="input-field col s6">
             <i className="far fa-clock prefix"></i>
-            <input autoComplete="off" id="estTime" type="number" className="validate" />
+            <input autoComplete="off" id="estTime" type="number" className="validate" onChange={this.update("estTime")}/>
             <label htmlFor="estTime">Estimated Time</label>
           </div>
           <div className="input-field col s6">
             <i className="fas fa-user prefix"></i>
-            <select id="userId" value="">
-              <option value="" disabled>Assign To?</option>
-              <option value="1">Option 1</option>
-              <option value="2">Option 2</option>
-              <option value="3">Option 3</option>
+            <select id="userId" value="" onChange={this.update("userId")}>
+              <option value="" key="0" disabled>Assign To?</option>
+              {users.map(user => (
+                <UserItem key={user._id} user={user}/>
+              ))}
             </select>
           </div>
           <div className="input-field col s6">
-            <i class="far fa-folder-open prefix"></i>
-            <select id="groupId" value="">
-              <option value="" disabled>Group?</option>
-              <option value="1">Option 1</option>
-              <option value="2">Option 2</option>
-              <option value="3">Option 3</option>
+            <i className="far fa-folder-open prefix"></i>
+            <select id="groupId" value="" onChange={this.update("groupId")}>
+              {/* <option value="" disabled>Group?</option> */}
             </select>
           </div>
           <div className="input-field">
@@ -82,5 +86,9 @@ class TaskCreate extends React.Component {
     );
   }
 }
+
+const UserItem = (props) => (
+  <option value={props.user._id}>{props.user.username}</option>
+);
 
 export default withRouter(TaskCreate);
