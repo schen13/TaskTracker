@@ -3,9 +3,6 @@ import GroupIndexContainer from '../group/group_index_container';
 import ChatIndexContainer from '../chat/chat_index_container';
 
 class HomePage extends React.Component {
-  constructor(props) {
-    super(props);
-  }
 
   componentDidMount() {
     this.props.fetchSingleUser(this.props.userId);

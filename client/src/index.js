@@ -30,8 +30,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    window.fetchChats = store.dispatch(fetchChats());
-
     // window.fetchAllGroups = store.dispatch(fetchAllGroups());
     const root = document.getElementById('root');
     ReactDOM.render(<Root store={store} />, root);

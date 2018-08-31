@@ -19,9 +19,6 @@ const App = () => (
   <div>
     <GroupModal />
     <header>
-      <Link to="/" className="header-link">
-        <h1>TaskTracker</h1>
-      </Link>
       <NavBarContainer />
       <ChatIndexContainer />
       <TaskIndexContainer />
@@ -30,7 +27,7 @@ const App = () => (
     <AuthRoute exact path='/signup' component={SignUpFormContainer} />
     <Route exact path='/chats/:chatId' component={ChatShowContainer} />
     {/* <Route exact path='/tasks' component={TaskIndexContainer} /> */}
-    <Route path="/" component={HomePageContainer} />
+    <ProtectedRoute exact path="/" component={HomePageContainer} />
   </div>
 );
 

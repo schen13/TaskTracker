@@ -27,6 +27,7 @@
   },
   "homepage": "https://github.com/schen13/TaskTracker#readme",
   "dependencies": {
-    "concurrently": "^4.0.1"
+    "concurrently": "^4.0.1",
+    "mongoose-unique-validator": "^2.0.1"
   }
 }
