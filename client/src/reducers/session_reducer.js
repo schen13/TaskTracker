@@ -11,9 +11,8 @@ const sessionReducer = (state = _nullUser, action) => {
     Object.freeze(state);
     switch (action.type) {
         case RECEIVE_CURRENT_USER:
-            console.log(action.payload, "hello")
             return {
-                id: action.payload.user._id,
+                id: action.payload.user.id,
                 username: action.payload.user.username,
                 fName: action.payload.user.fName,
                 lName: action.payload.user.lName,
