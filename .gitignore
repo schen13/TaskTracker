@@ -2,4 +2,4 @@ keys.js
 node_modules/
 .DS_Store
 .vscode/*
-.sass-cache
+.sass-cache/
