@@ -10,6 +10,10 @@ class TaskIndex extends React.Component {
     this.props.fetchTasks();
   }
 
+  componentWillMount() {
+    this.props.fetchUsers();
+  }
+
   render() {
     if (!this.props.tasks) return null;
     let { tasks } = this.props;

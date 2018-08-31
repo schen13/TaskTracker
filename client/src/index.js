@@ -29,9 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
             window.location.href = '/login';
         }
     }
-
-    // window.fetchAllGroups = store.dispatch(fetchAllGroups());
-    const root = document.getElementById('root');
-    ReactDOM.render(<Root store={store} />, root);
-    registerServiceWorker();
+   const root = document.getElementById('root');
+   ReactDOM.render(<Root store={store} />, root);
+   registerServiceWorker();
 });
