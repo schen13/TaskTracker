@@ -12,11 +12,11 @@ const sessionReducer = (state = _nullUser, action) => {
     switch (action.type) {
         case RECEIVE_CURRENT_USER:
             return {
-                id: action.payload.user.id,
-                username: action.payload.user.username,
-                fName: action.payload.user.fName,
-                lName: action.payload.user.lName,
-                email: action.payload.user.email
+                id: action.payloadid,
+                username: action.payload.username,
+                fName: action.payload.fName,
+                lName: action.payload.lName,
+                email: action.payload.email
             };
         case LOGOUT_CURRENT_USER:
             return _nullUser;
