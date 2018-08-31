@@ -106,7 +106,9 @@ class SessionForm extends React.Component {
             </label>
             {pass2}
             <input className="session-submit" type="submit" value={this.props.formType} />
-            {this.props.navLink}
+            <div onClick={this.props.clearErrors}>
+              {this.props.navLink}
+            </div>
           </div>
         </form>
       </div>
