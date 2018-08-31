@@ -122,7 +122,13 @@ router.post('/login', (req, res) => {
       bcrypt.compare(password, user.password)
         .then(isMatch => {
           if (isMatch) {
-            const payload = { user };
+            const payload = {
+              id: user.id,
+              username: user.username,
+              fName: req.body.fName,
+              lName: req.body.lName,
+              email: req.body.email
+            };
 
             jsonwebtoken.sign(
               payload,
