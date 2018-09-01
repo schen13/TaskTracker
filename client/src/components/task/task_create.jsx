@@ -25,8 +25,8 @@ class TaskCreate extends React.Component {
     const task = {
       name: this.state.name,
       description: this.state.description,
-      estTIme: this.state.estTime,
-      deadline: "2016-05-18T16:00:00Z",
+      estTime: this.state.estTime,
+      deadline: this.date.value,
       userId: this.state.userId,
       groupId: this.state.groupId
     };
