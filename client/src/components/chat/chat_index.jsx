@@ -1,15 +1,28 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 
-// const socket = actions.socket;
-
+const io = require('socket.io-client');
+const socket = io.connect('http://localhost:5000');
 class ChatIndex extends React.Component {
   constructor(props) {
     super(props);
+
+    this.getChats = this.getChats.bind(this);
   }
+  // registerHandler(onMessageReceived) {
+  //   socket.on('message', onMessageReceived)
+  // }
+
+  // unregisterHandler() {
+  //   socket.off('message')
+  // }
+
+  // getChats(userId, cb) {
+  //   socket.emit('chats', userId, cb)
+  // }
 
   componentDidMount() {
-    this.props.fetchChats();
+    this.props.fetChats();
   }
 
   render() {

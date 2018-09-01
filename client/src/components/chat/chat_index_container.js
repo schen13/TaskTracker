@@ -4,7 +4,8 @@ import { fetchChats, deleteChat } from '../../actions/chat_actions';
 import ChatIndex from './chat_index';
 
 const mapStateToProps = (state) => ({
-  chats: Object.values(state.entities.chats)
+  chats: Object.values(state.entities.chats),
+  user: state.session
 });
 
 const mapDispatchToProps = dispatch => ({

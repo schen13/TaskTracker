@@ -11,8 +11,7 @@ const chatsReducer = (state = {}, action) => {
 
   switch (action.type) {
     case RECEIVE_CHATS:
-      debugger
-      return merge({}, action.chats);
+    return merge({}, action.chats);
     case RECEIVE_CHAT:
       return merge({}, state, { [action.chat._id]: action.chat });
     case REMOVE_CHAT:
