@@ -32,6 +32,20 @@ class TaskCreate extends React.Component {
     };
 
     this.props.createTask(task);
+    this.clearInput();
+  }
+
+  clearInput() {
+    this.setState({
+      name: "",
+      description: "",
+      estTime: "",
+      deadline: "",
+      userId: "",
+      groupId: "",
+      validGroups: [],
+      validUsers: []
+    });
   }
 
   update(field) {
@@ -88,34 +102,73 @@ class TaskCreate extends React.Component {
           <div className="row">
             <div className="input-field col s6">
               <i className="fas fa-tasks prefix"></i>
-              <input autoComplete="off" id="name" type="text" className="validate" onChange={this.update("name")} />
+              <input 
+                autoComplete="off"
+                value={this.state.name} 
+                id="name" type="text"
+                className="validate"
+                onChange={this.update("name")} 
+              />
               <label htmlFor="name">Name of Task</label>
             </div>
             <div className="input-field col s6">
               <i className="fas fa-comment prefix"></i>
-              <input autoComplete="off" id="description" type="text" className="validate" onChange={this.update("description")} />
+              <input 
+                autoComplete="off" 
+                value={this.state.description}
+                id="description" 
+                type="text" 
+                className="validate" 
+                onChange={this.update("description")} 
+              />
               <label htmlFor="description">Additional Info</label>
             </div>
             <div className="input-field col s6">
               <i className="far fa-clock prefix"></i>
-              <input autoComplete="off" id="estTime" type="number" className="validate" onChange={this.update("estTime")} />
+              <input
+                autoComplete="off"
+                value={this.state.estTime}
+                id="estTime"
+                type="number"
+                className="validate"
+                onChange={this.update("estTime")}
+              />
               <label htmlFor="estTime">Estimated Time</label>
             </div>
             <div className="input-field col s6">
               <i className="far fa-calendar-alt prefix"></i>
-              <input type="text" id="deadline " className="datepicker" onChange={this.update("deadline")} ref={(date) => { this.date = date; }} />
+              <input
+                type="text"
+                value={this.state.deadline}
+                id="deadline"
+                className="datepicker"
+                onChange={this.update("deadline")}
+                ref={(date) => { this.date = date; }}
+              />
               <label htmlFor="deadline">Complete By?</label>
             </div>
             <div className="input-field col s6">
               <i className="fas fa-user prefix"></i>
-              <Select id="userId" options={userOptions} isSearchable="true" placeholder="Assign To?" onChange={user => this.updateUser(user)}/>
+              <Select
+                id="userId"
+                options={userOptions}
+                isSearchable="true"
+                placeholder="Assign To?"
+                onChange={user => this.updateUser(user)}
+              />
             </div>
             <div className="input-field col s6">
               <i className="far fa-folder-open prefix"></i>
-              <Select id="groupId" options={groupOptions} isSearchable="true" placeholder="Which Group?" onChange={group => this.updateGroup(group)}/>
+              <Select
+                id="groupId"
+                options={groupOptions}
+                isSearchable="true"
+                placeholder="Which Group?"
+                onChange={group => this.updateGroup(group)}
+              />
             </div>
           </div>
-          <button className="btn waves-effect waves-light" type="submit"> Create Task </button>     
+          <button className="btn waves-effect waves-light modal-close" type="submit"> Create Task </button>     
         </form>
       </div>
     );

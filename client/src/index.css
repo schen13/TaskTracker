@@ -308,6 +308,9 @@ body {
   height: auto;
   width: 60%; }
 
+.task-parent-container {
+  width: 100%; }
+
 .task-create-container h1 {
   padding: 0 0 15px 0;
   font-size: 30px;
@@ -420,7 +423,14 @@ body {
 .home-page {
   position: absolute;
   top: 80px;
-  display: flex; }
+  display: flex;
+  width: 100%; }
+  .home-page .home-page-container {
+    width: 25%;
+    border: 1px solid red; }
+  .home-page .home-page-middle-container {
+    width: 50%;
+    border: 1px solid green; }
 
 .group-create-container {
   box-sizing: border-box;

@@ -18,13 +18,9 @@ export const fetchTask = id => (
   axios.get(`/api/tasks/${id}`)
 );
 
-export const createTask = data => {
-  console.log("I'm in the apiUtil");
-  console.log(data);
-  return (
+export const createTask = data => (
     axios.post('/api/tasks', data)
-  );
-};
+);
 
 export const updateTask = data => (
   axios.post('/api/tasks', data)

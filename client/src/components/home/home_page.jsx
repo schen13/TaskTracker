@@ -15,9 +15,15 @@ class HomePage extends React.Component {
     return (
 
       <div className="home-page">
-        <GroupIndexContainer user={user} />
-        <TaskIndexContainer />
-        <ChatIndexContainer />
+        <div className="home-page-container">
+          <GroupIndexContainer user={user} />
+        </div>
+        <div className="home-page-middle-container">
+          <TaskIndexContainer />
+        </div>
+        <div className="home-page-container">
+          <ChatIndexContainer />
+        </div>
       </div>
     );
   }
