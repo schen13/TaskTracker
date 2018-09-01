@@ -16,15 +16,16 @@ class TaskIndex extends React.Component {
 
     return (
       <div className="task-parent-container">
-        <ul className="task-index-container collection">
-          <a className="btn-floating btn waves-effect waves-light red modal-trigger" href="#modal1"><i className="fas fa-plus"></i></a>
-          <div id="modal1" className="modal">
-            <div className="modal-content">
-              <TaskCreateContainer/>
-            </div>
+        <button className="btn-floating btn waves-effect waves-light red modal-trigger" data-target="modal1"><i className="fas fa-plus"></i></button>
+        <div id="modal1" className="modal">
+          <div className="modal-content">
+            <TaskCreateContainer/>
           </div>
+        </div>
+        <ul className="task-index-container collection">
           {tasks.map(task => (
-            <li class="collection-item" key={task._id}>
+            <li className="collection-item avatar" key={task._id}>
+              <i className="fas fa-star-of-life circle green"></i>
               {task.name}
             </li>
           ))}
