@@ -10,6 +10,12 @@ body {
   height: auto;
 }
 
+.modal {
+  overflow-y: visible;
+  height: auto;
+  width: 60%;
+}
+
 .task-create-container {
   h1 {
     padding: 0 0 15px 0;
@@ -25,4 +31,8 @@ body {
   label {
     z-index: -1;
   }
+}
+
+.waves-effect {
+  z-index: 0;
 }
