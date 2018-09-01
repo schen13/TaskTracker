@@ -58,8 +58,7 @@ exports.addTask = [
     const task = new Task({
       name: req.body.name,
       description: req.body.description,
-      // groupId: req.params.id,
-      groupId: 1,
+      groupId: req.body.groupId,
       userId: req.body.userId,
       deadline: req.body.deadline,
       estTime: req.body.estTime,
