@@ -10,8 +10,19 @@ body {
   height: auto;
 }
 
+<<<<<<< HEAD
 .task-index-container {
   grid-area: main;
+=======
+.modal {
+  overflow-y: visible;
+  height: auto;
+  width: 60%;
+}
+
+.task-parent-container {
+  width: 100%;
+>>>>>>> fc707da87a574cd5f86dbe692a3a108f51081e20
 }
 
 .task-create-container {
@@ -29,4 +40,8 @@ body {
   label {
     z-index: -1;
   }
+}
+
+.waves-effect {
+  z-index: 0;
 }

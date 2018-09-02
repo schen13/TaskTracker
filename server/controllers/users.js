@@ -40,9 +40,9 @@ router.get('/:id', (req, res) => {
         groups: user.groups,
         tasks: user.tasks,
         chats: user.chats
-      })
+      });
     }
-  })
+  });
 });
 
 router.post('/register', (req, res) => {
