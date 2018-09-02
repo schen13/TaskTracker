@@ -3,26 +3,34 @@
   width: 20vw;
   height: 100vh;
   right: 0px;
+  top: 45px;
 }
 
 .chat-header{
   height: 50px;
-  border: 1px solid gray;
+  border: 1px solid $medium-gray;
   border-top: 0px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-flow: row nowrap;
+  padding: 0 10px;
+
+  h1 {
+    font-size: 20px;
+    margin-right: -10px;
+  }
 }
 
 .conversations {
-  border: 1px solid gray;
+  border: 1px solid $medium-gray;
   border-top: 0px;
   height: 100vh;
   
   .chats {
     padding: 10px;
     height: 60px;
+    width: 100%;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -33,13 +41,14 @@
       width: 50px;
       height: 50px;
       border-radius: 999px;
-      border: 1px solid black;
+      border: 1px solid $light-gray;
       margin-right: 9px;
     }
 
     .chat {
       display: flex;
       flex: 1 1 auto;
+      width: 184px;
       justify-content: space-between;
       align-items: center;
       flex-flow: row nowrap;
@@ -50,14 +59,18 @@
         justify-content: flex-start;
         flex-direction: column;
 
-        h2 {
+        .participants {
+          max-width: 100px;
           font-weight: bold;
-          font-size: 16px;
-          margin-bottom: 5px; 
+          white-space: nowrap;
+          font-size: 14px;
+          margin: 0px 5px 5px 0px;
+          overflow: hidden;
         }
 
         p {
           font-size: 12px;
+          margin: none;
         }
       }
 

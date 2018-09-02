@@ -11,9 +11,14 @@ export const setAuthToken = token => {
 };
 
 // Chats Index (only returns 1 message per chat)
-export const fetchChats = () => (
-  axios.get('/api/chats')
-);
+export const fetchChats = (userId) => {
+  return(
+  axios.get('/api/chats', {
+    params: {
+      userId
+    }
+  })
+)};
 
 // Chats Show
 export const fetchChat = id => (

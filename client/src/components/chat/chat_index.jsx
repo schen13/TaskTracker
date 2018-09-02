@@ -1,5 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import ChatIndexItem from './chat_index_item';
 
 const io = require('socket.io-client');
 const socket = io.connect('http://localhost:5000');
@@ -7,7 +8,7 @@ class ChatIndex extends React.Component {
   constructor(props) {
     super(props);
 
-    this.getChats = this.getChats.bind(this);
+    // this.getChats = this.getChats.bind(this);
   }
   // registerHandler(onMessageReceived) {
   //   socket.on('message', onMessageReceived)
@@ -22,7 +23,8 @@ class ChatIndex extends React.Component {
   // }
 
   componentDidMount() {
-    this.props.fetChats();
+    const userId = this.props.currentUser.id
+    this.props.fetchChats(userId);
   }
 
   render() {
@@ -31,26 +33,16 @@ class ChatIndex extends React.Component {
       <div className="chat-bar">
         <div className="chat-header">
           <div></div>
-          <h1>CHAT BAR FOOLZ</h1>
-          <div></div>
-          {/* <img src={require('../../public/images/new_message.png')} /> */}
+          <h1>Messages</h1>
+          <i className="far fa-edit"></i>
         </div>
         <ul className="conversations">
-          <li className="chats">
-            <div className="user-pictures"></div>
-            <div className="chat">
-              <div className="chat-content">
-                <h2>participants</h2>
-                <p>Temp Chat</p>
-              </div>
-              <p className="date">date</p>
-            </div>
-          </li>
-
           {this.props.chats.map(chat => {
-            return <li id={chat.id}>
-              {chat.chatName}
-            </li>
+            return <ChatIndexItem 
+            id={chat.id} 
+            chat={chat}
+            users={this.props.users}
+            currentUser={this.props.currentUser.id} />
           })}
         </ul>
       </div>

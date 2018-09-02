@@ -19,8 +19,8 @@ export const removeChat = payload => ({
   chat: payload.data.chat
 });
 
-export const fetchChats = () => dispatch => (
-  ChatApiUtil.fetchChats().then(chats => {
+export const fetchChats = (userId) => dispatch => (
+  ChatApiUtil.fetchChats(userId).then(chats => {
     dispatch(receiveChats(chats))
   })
 );

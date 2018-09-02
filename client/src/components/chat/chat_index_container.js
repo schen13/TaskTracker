@@ -3,13 +3,14 @@ import { connect } from 'react-redux';
 import { fetchChats, deleteChat } from '../../actions/chat_actions';
 import ChatIndex from './chat_index';
 
-const mapStateToProps = (state) => ({
-  chats: Object.values(state.entities.chats),
-  user: state.session
+const mapStateToProps = ({ entities, session}) => ({
+  chats: Object.values(entities.chats),
+  users: entities.users,
+  currentUser: session
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchChats: () => dispatch(fetchChats()),
+  fetchChats: (userId) => dispatch(fetchChats(userId)),
   deleteChat: id => dispatch(deleteChat(id))
 });
 
