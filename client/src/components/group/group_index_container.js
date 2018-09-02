@@ -17,7 +17,7 @@ const mapStateToProps = ({ entities: { users, groups }, session }, ownProps) => 
 const mapDispatchToProps = dispatch => ({
   fetchAllUsers: () => dispatch(fetchAllUsers()),
   fetchAllGroups: () => dispatch(fetchAllGroups()),
-  openGroupModal: () => dispatch(openGroupModal('true'))
+  openGroupModal: groupId => dispatch(openGroupModal(groupId))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(GroupIndex);

@@ -10,6 +10,10 @@ body {
   height: auto;
 }
 
+.task-index-container {
+  grid-area: main;
+}
+
 .task-create-container {
   h1 {
     padding: 0 0 15px 0;

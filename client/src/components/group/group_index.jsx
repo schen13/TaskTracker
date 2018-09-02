@@ -28,9 +28,9 @@ class GroupIndex extends React.Component {
             />
           ))}
         </ul>
-        {/* <a className="btn-floating btn waves-effect waves-light red modal-trigger" href="#modal2"><i className="fas fa-plus"></i></a>
-        <div id="modal2" className="modal">
-          <div className="modal-content"> */}
+        <a className="btn-floating btn waves-effect waves-light red modal-trigger" href="#modal2"><i className="fas fa-plus"></i></a>
+        {/* <div id="modal2" className="modal"> */}
+        {/* <div className="modal-content"> */}
         <GroupCreateContainer />
         {/* </div>
         </div> */}

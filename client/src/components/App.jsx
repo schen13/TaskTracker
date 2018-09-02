@@ -13,11 +13,9 @@ import ChatIndexContainer from './chat/chat_index_container';
 import ChatShowContainer from './chat/chat_show_container';
 import TaskIndexContainer from './task/task_index_container';
 import HomePageContainer from './home/home_page_container';
-import GroupModal from './modal/group_modal';
 
 const App = () => (
   <div>
-    <GroupModal />
     <header>
     </header>
     <ProtectedRoute path="/" component={NavBarContainer} />

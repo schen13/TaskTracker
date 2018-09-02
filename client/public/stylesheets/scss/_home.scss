@@ -55,6 +55,10 @@ body {
 
 .home-page {
   position: absolute;
-  top: 80px;
-  display: flex;
+  top: 64px;
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-areas: "groups main chats";
+  justify-items: stretch;
+  align-items: start;
 }
