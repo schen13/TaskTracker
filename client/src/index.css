@@ -348,6 +348,8 @@ body {
   border: 1px solid #aaaaaa;
   border-top: 0px;
   height: 100vh; }
+  .conversations .chats:hover {
+    background-color: #efefef; }
   .conversations .chats {
     padding: 10px;
     height: 60px;

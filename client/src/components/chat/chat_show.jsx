@@ -7,40 +7,35 @@ const socket = io.connect('http://localhost:5000');
 class ChatShow extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       name: '',
-      chatId: '',
+      chatId: this.props.chatId,
       body: '',
-      author: '',
+      author: this.props.currentUser.id,
       anon: false
-    }
+    };
 
     this.submitMessage = this.submitMessage.bind(this);
     this.handleInput = this.handleInput.bind(this);
   }
 
   // componentDidMount() {
-    
+  //   this.props.fetchChat(this.props.chatId);
   // }
-
-  registerHandler(onMessageReceived) {
-    socket.on('message', onMessageReceived)
-  }
-
-  unregisterHandler() {
-    socket.off('message')
-  }
 
   login(userId, cb) {
     socket.emit('login', userId, cb)
   }
 
-  submitMessage(e, cb) {
+  submitMessage(e) {
     e.preventDefault();
-    this.setState({ author: this.props.userId })
-    console.log("sending message", this.state.body);
-    socket.emit('message', { body: this.state.body }, cb)
+    const { chatId, body, author, anon } = this.state;
+    
+    // Send chat to database 
+    this.props.replyToChat({ chatId, body, author, anon });
+
+    // Send chat to everyone in message
+    // socket.emit('newMessage', { body, author, anon });
     this.setState({ body: ''})
   }
 
@@ -55,7 +50,6 @@ class ChatShow extends React.Component {
       <div className="chat-show">
         <h1>CHAT SHOW WORKS FOOLZ</h1>
         
-
         <form onSubmit={this.submitMessage} className="chat-input">
           <input 
             type="text"

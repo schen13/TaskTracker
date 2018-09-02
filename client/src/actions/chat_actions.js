@@ -25,8 +25,8 @@ export const fetchChats = (userId) => dispatch => (
   })
 );
 
-export const fetchChat = id => dispatch => (
-  ChatApiUtil.fetchChat(id).then(chat => {
+export const fetchChat = chatId => dispatch => (
+  ChatApiUtil.fetchChat(chatId).then(chat => {
     dispatch(receiveChat(chat))
   })
 );
@@ -34,12 +34,6 @@ export const fetchChat = id => dispatch => (
 export const createChat = chat => dispatch => (
   ChatApiUtil.createChat(chat).then(newChat => {
     dispatch(receiveChat(newChat))
-  })
-);
-
-export const replyToChat = chat => dispatch => (
-  ChatApiUtil.replyToChat(chat).then(newMessage => {
-    dispatch(receiveChat(newMessage))
   })
 );
 

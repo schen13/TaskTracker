@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-
 import { fetchChats, deleteChat } from '../../actions/chat_actions';
+import { openChatModal } from "../../actions/modal_actions";
 import ChatIndex from './chat_index';
 
 const mapStateToProps = ({ entities, session}) => ({
@@ -10,8 +10,9 @@ const mapStateToProps = ({ entities, session}) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchChats: (userId) => dispatch(fetchChats(userId)),
-  deleteChat: id => dispatch(deleteChat(id))
+  fetchChats: userId => dispatch(fetchChats(userId)),
+  deleteChat: id => dispatch(deleteChat(id)),
+  openChatModal: () => dispatch(openChatModal("true"))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChatIndex);

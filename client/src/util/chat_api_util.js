@@ -11,26 +11,21 @@ export const setAuthToken = token => {
 };
 
 // Chats Index (only returns 1 message per chat)
-export const fetchChats = (userId) => {
-  return(
+export const fetchChats = (userId) => (
   axios.get('/api/chats', {
-    params: {
-      userId
-    }
+    params: { userId }
   })
-)};
+);
 
 // Chats Show
-export const fetchChat = id => (
-  axios.get(`/api/chats/${id}`)
+export const fetchChat = (chatId) => (
+  axios.get('/api/chat', {
+    params: { chatId }
+  })
 );
 
 export const createChat = chatData => (
   axios.post('/api/chats', chatData)
-);
-
-export const replyToChat = messageData => (
-  axios.post(`/api/chats/${messageData.chatId}`, messageData)
 );
 
 export const deleteChat = id => (

@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 class ChatIndexItem extends React.Component {
@@ -15,7 +15,7 @@ class ChatIndexItem extends React.Component {
     participants.map(user => {
       let username;
       if (user !== this.props.currentUser) username = this.props.users[user].username;
-      usernames.push(username)
+      return usernames.push(username)
     });
 
     return (
@@ -26,16 +26,22 @@ class ChatIndexItem extends React.Component {
   }
 
   render() {
-    return <li className="chats">
-        <div className="user-pictures" />
-        <div className="chat">
-          <div className="chat-content">
-            {this.renderParticipants()}
-            <p>Temp Chat</p>
+    const { chat } = this.props;
+
+    return (
+      <Link to={`/chats/${chat._id}`}>
+        <li className="chats">
+          <div className="user-pictures" />
+          <div className="chat">
+            <div className="chat-content">
+              {this.renderParticipants()}
+              <p>Temp Chat</p>
+            </div>
+            <p className="date">date</p>
           </div>
-          <p className="date">date</p>
-        </div>
-      </li>;
+        </li>
+      </Link>
+    );
   }
 }
 

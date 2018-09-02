@@ -28,6 +28,7 @@ class ChatIndex extends React.Component {
   }
 
   render() {
+    const { users, currentUser, openChatModal } = this.props;
 
     return (
       <div className="chat-bar">
@@ -38,11 +39,12 @@ class ChatIndex extends React.Component {
         </div>
         <ul className="conversations">
           {this.props.chats.map(chat => {
-            return <ChatIndexItem 
-            id={chat.id} 
+            return <ChatIndexItem
+            key={chat._id}
             chat={chat}
-            users={this.props.users}
-            currentUser={this.props.currentUser.id} />
+            users={users}
+            currentUser={currentUser.id}
+            openChatModal={openChatModal} />
           })}
         </ul>
       </div>

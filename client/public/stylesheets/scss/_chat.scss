@@ -1,3 +1,4 @@
+// Chat Index
 .chat-bar {
   position: fixed;
   width: 20vw;
@@ -26,6 +27,10 @@
   border: 1px solid $medium-gray;
   border-top: 0px;
   height: 100vh;
+
+  .chats:hover {
+    background-color: $lightest-gray;
+  }
   
   .chats {
     padding: 10px;
@@ -80,3 +85,5 @@
     }
   }
 }
+
+// Chat Show
