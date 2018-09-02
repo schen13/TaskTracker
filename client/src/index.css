@@ -303,6 +303,14 @@ body {
 .modal1 {
   height: auto; }
 
+.modal {
+  overflow-y: visible;
+  height: auto;
+  width: 60%; }
+
+.task-parent-container {
+  width: 100%; }
+
 .task-create-container h1 {
   padding: 0 0 15px 0;
   font-size: 30px;
@@ -312,6 +320,9 @@ body {
   color: #484848; }
 .task-create-container label {
   z-index: -1; }
+
+.waves-effect {
+  z-index: 0; }
 
 .chat-bar {
   position: fixed;
@@ -423,7 +434,14 @@ body {
 .home-page {
   position: absolute;
   top: 80px;
-  display: flex; }
+  display: flex;
+  width: 100%; }
+  .home-page .home-page-container {
+    width: 25%;
+    border: 1px solid red; }
+  .home-page .home-page-middle-container {
+    width: 50%;
+    border: 1px solid green; }
 
 .group-create-container {
   box-sizing: border-box;
