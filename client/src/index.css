@@ -586,4 +586,31 @@ svg {
     opacity: 0.7;
     cursor: pointer; }
 
+.splash-greeting-container {
+  max-width: 100vw;
+  height: auto;
+  justify-content: space-between; }
+  .splash-greeting-container .splash-greeting {
+    width: 90vw;
+    background-image: url(https://s15.postimg.cc/go49ot2y3/background.jpg);
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: auto; }
+    .splash-greeting-container .splash-greeting .greeting-text {
+      text-align: center;
+      vertical-align: middle;
+      line-height: 600px;
+      margin: auto;
+      color: white;
+      text-shadow: 2px 2px black; }
+    .splash-greeting-container .splash-greeting .splash-signup {
+      color: black;
+      text-decoration: none;
+      vertical-align: middle;
+      text-align: center;
+      line-height: 100px; }
+
 /*# sourceMappingURL=index.css.map */
