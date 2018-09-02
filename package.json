@@ -13,7 +13,8 @@
     "server-install": "npm install --prefix server",
     "server": "npm run server --prefix server",
     "css-watch": "sass --watch client/public/stylesheets/main.scss:client/src/index.css",
-    "dev": "concurrently \"npm run server\" \"npm run client\" \"npm run css-watch\""
+    "dev": "concurrently \"npm run server\" \"npm run client\" \"npm run css-watch\"",
+    "seed": "node scripts/seedDB.js"
   },
   "repository": {
     "type": "git",
@@ -21,7 +22,7 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/schen13/TaskTracker/issues"
   },
