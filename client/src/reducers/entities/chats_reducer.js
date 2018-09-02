@@ -13,7 +13,7 @@ const chatsReducer = (state = {}, action) => {
     case RECEIVE_CHATS:
       return merge({}, action.chats);
     case RECEIVE_CHAT:
-      return merge({}, state, {[action.chat._id]: action.chat});
+      return merge({}, state, {[action.chat[0]._id]: action.chat});
     case REMOVE_CHAT:
       const newState = merge({}, state);
       delete newState[action.chat._id];

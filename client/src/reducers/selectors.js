@@ -17,6 +17,13 @@ export const selectChatMessages = ({ entities }, chatId) => {
   );
 };
 
-export const selectChat = ({ entities }, chatId) => (
-  Object.values(entities.chats).filter(chat => chat._id === chatId)
+export const selectChat = ({ entities }, chatId) => {
+  const chat = Object.values(entities.chats).filter(chatMessage => chatMessage.chat._id === chatId)
+  return (
+    chat[0]
+  )
+};
+
+export const selectChatMessage = ({ entities }, chatId) => (
+  entities.chats.id === chatId
 );

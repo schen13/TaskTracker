@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { fetchChat, deleteChat } from '../../actions/chat_actions';
 import { replyToChat, fetchMessages } from "../../actions/message_actions";
-import { selectChat } from '../../reducers/selectors';
+import { selectChat, selectChatMessage } from '../../reducers/selectors';
 import ChatShow from './chat_show';
 
 const mapStateToProps = ({ entities, session }, ownProps) => ({

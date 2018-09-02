@@ -2,8 +2,6 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import ChatIndexItem from './chat_index_item';
 
-const io = require('socket.io-client');
-const socket = io.connect('http://localhost:5000');
 class ChatIndex extends React.Component {
   constructor(props) {
     super(props);
@@ -28,7 +26,7 @@ class ChatIndex extends React.Component {
   }
 
   render() {
-    const { users, currentUser, openChatModal } = this.props;
+    const { users, currentUser, fetchChat, openChatModal } = this.props;
 
     return (
       <div className="chat-bar">
@@ -38,13 +36,14 @@ class ChatIndex extends React.Component {
           <i className="far fa-edit"></i>
         </div>
         <ul className="conversations">
-          {this.props.chats.map(chat => {
+          {this.props.chats.map(chatData => {
             return <ChatIndexItem
-            key={chat._id}
-            chat={chat}
-            users={users}
-            currentUser={currentUser.id}
-            openChatModal={openChatModal} />
+              key={chatData.chat._id}
+              chatData={chatData}
+              users={users}
+              currentUser={currentUser.id}
+              fetchChat={fetchChat}
+              openChatModal={openChatModal} />
           })}
         </ul>
       </div>

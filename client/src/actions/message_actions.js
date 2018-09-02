@@ -5,7 +5,7 @@ export const RECEIVE_MESSAGE = 'RECEIVE_MESSAGE';
 
 export const receiveMessages = payload => ({
   type: RECEIVE_MESSAGES,
-  message: payload.data.messages
+  messages: payload.data.messages
 })
 
 export const receiveMessage = payload => ({
