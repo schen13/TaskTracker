@@ -9,7 +9,8 @@ html {
   line-height: 1.15;
   /* 1 */
   -webkit-text-size-adjust: 100%;
-  /* 2 */ }
+  /* 2 */
+  height: 100%; }
 
 /* Sections
    ========================================================================== */
@@ -17,7 +18,8 @@ html {
  * Remove the margin in all browsers.
  */
 body {
-  margin: 0; }
+  margin: 0;
+  height: 100%; }
 
 /**
  * Correct the font size and margin on `h1` elements within `section` and
@@ -409,30 +411,38 @@ body {
   font-size: 18px; }
   .nav-bar a {
     text-decoration: none;
-    color: #8e8e8e; }
+    color: white; }
 
 .left-nav {
+  margin-left: 10px;
+  position: fixed;
   background-color: white;
   width: 50px;
   height: 50px;
-  border-radius: 50%;
+  border-radius: 25%;
   display: flex;
   justify-content: center; }
   .left-nav img {
     width: 60px;
     height: 50px;
-    padding: 5px; }
+    padding: 5px;
+    padding-right: 8px; }
   .left-nav:hover {
     background-color: #dedede; }
 
 .right-nav ul {
   height: 100%;
-  background-color: white;
+  background-color: #755298;
   display: flex;
   align-items: center;
   justify-content: flex-end;
   color: #8e8e8e;
   list-style: none; }
+  .right-nav ul .nav-title {
+    margin-right: 300px; }
+  .right-nav ul li {
+    margin-right: 10px;
+    color: white; }
 
 .home-page {
   position: absolute;
@@ -593,5 +603,40 @@ svg {
   .other-session-link:hover {
     opacity: 0.7;
     cursor: pointer; }
+
+#root {
+  height: 100%; }
+  #root .app {
+    height: inherit; }
+
+.splash-greeting-container {
+  height: 100%; }
+  .splash-greeting-container .splash-greeting {
+    background-image: url(https://s15.postimg.cc/go49ot2y3/background.jpg);
+    height: 75%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: center;
+    position: relative; }
+    .splash-greeting-container .splash-greeting .welcome-message {
+      margin-top: 15%;
+      display: inline-block;
+      position: relative;
+      color: white;
+      text-shadow: 2px 2px black;
+      font-size: 25px; }
+      .splash-greeting-container .splash-greeting .welcome-message .splash-signup-button {
+        text-decoration: none;
+        background-color: #EEEEEE;
+        color: black;
+        text-shadow: none;
+        padding: 2px 6px 2px 6px;
+        border-top: 1px solid #CCCCCC;
+        border-right: 1px solid #333333;
+        border-bottom: 1px solid #333333;
+        border-left: 1px solid #CCCCCC; }
+        .splash-greeting-container .splash-greeting .welcome-message .splash-signup-button:hover {
+          background-color: gray; }
 
 /*# sourceMappingURL=index.css.map */
