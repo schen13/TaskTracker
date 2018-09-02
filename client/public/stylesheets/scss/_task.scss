@@ -17,7 +17,8 @@ body {
 }
 
 .task-parent-container {
-  width: 100%;
+  // width: 100%;
+  grid-area: main;
 }
 
 .task-create-container {

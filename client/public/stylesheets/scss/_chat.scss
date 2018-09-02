@@ -1,15 +1,16 @@
 // Chat Index
 .chat-bar {
-  position: fixed;
-  width: 20vw;
-  height: 100vh;
-  right: 0px;
-  top: 45px;
+  // position: fixed;
+  // width: 20vw;
+  // height: 100vh;
+  // right: 0px;
+  grid-area: chats;
 }
 
 .chat-header{
   height: 50px;
-  border: 1px solid $medium-gray;
+  border-left: 1px solid gray;
+  border-bottom: 1px solid gray;
   border-top: 0px;
   display: flex;
   justify-content: space-between;
@@ -24,9 +25,9 @@
 }
 
 .conversations {
-  border: 1px solid $medium-gray;
-  border-top: 0px;
-  height: 100vh;
+  border-left: 1px solid gray;
+  border-bottom: 1px solid gray;
+  // height: 100vh;
 
   .chats:hover {
     background-color: $lightest-gray;

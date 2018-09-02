@@ -2,7 +2,8 @@ import React from 'react';
 import GroupIndexContainer from '../group/group_index_container';
 import ChatIndexContainer from '../chat/chat_index_container';
 import TaskIndexContainer from '../task/task_index_container';
-
+import GroupModal from '../modal/group_modal';
+import NavBarContainer from '../navbar/navbar_container';
 class HomePage extends React.Component {
 
   componentDidMount() {
@@ -15,15 +16,11 @@ class HomePage extends React.Component {
     return (
 
       <div className="home-page">
-        <div className="home-page-container">
-          <GroupIndexContainer user={user} />
-        </div>
-        <div className="home-page-middle-container">
-          <TaskIndexContainer />
-        </div>
-        <div className="home-page-container">
-          <ChatIndexContainer />
-        </div>
+        {/* <NavBarContainer /> */}
+        <GroupIndexContainer user={user} />
+        <TaskIndexContainer />
+        <ChatIndexContainer />
+        <GroupModal />
       </div>
     );
   }

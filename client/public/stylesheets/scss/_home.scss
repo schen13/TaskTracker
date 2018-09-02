@@ -66,16 +66,22 @@ body {
 .home-page {
   position: absolute;
   top: 80px;
-  display: flex;
+  display: grid;
+  grid-template-rows: 5% auto;
+  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-areas: "groups main chats";
+  justify-items: stretch;
+  align-items: start;
   width: 100%;
+  height: 100%;
 
-  .home-page-container {
-    width: 25%;
-    border: 1px solid red;
-  }
+  // .home-page-container {
+  //   width: 25%;
+  //   border: 1px solid red;
+  // }
 
-  .home-page-middle-container {
-    width: 50%;
-    border: 1px solid green;
-  }
+  // .home-page-middle-container {
+  //   width: 50%;
+  //   border: 1px solid green;
+  // }
 }

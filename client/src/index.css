@@ -299,6 +299,28 @@ template {
 [hidden] {
   display: none; }
 
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline; }
+
 body {
   font-family: Circular, "Helvetica Neue", Helvetica, Arial, sans-serif; }
 
@@ -311,7 +333,7 @@ body {
   width: 60%; }
 
 .task-parent-container {
-  width: 100%; }
+  grid-area: main; }
 
 .task-create-container h1 {
   padding: 0 0 15px 0;
@@ -327,15 +349,12 @@ body {
   z-index: 0; }
 
 .chat-bar {
-  position: fixed;
-  width: 20vw;
-  height: 100vh;
-  right: 0px;
-  top: 45px; }
+  grid-area: chats; }
 
 .chat-header {
   height: 50px;
-  border: 1px solid #aaaaaa;
+  border-left: 1px solid gray;
+  border-bottom: 1px solid gray;
   border-top: 0px;
   display: flex;
   justify-content: space-between;
@@ -347,9 +366,8 @@ body {
     margin-right: -10px; }
 
 .conversations {
-  border: 1px solid #aaaaaa;
-  border-top: 0px;
-  height: 100vh; }
+  border-left: 1px solid gray;
+  border-bottom: 1px solid gray; }
   .conversations .chats:hover {
     background-color: #efefef; }
   .conversations .chats {
@@ -446,33 +464,119 @@ body {
 .home-page {
   position: absolute;
   top: 80px;
-  display: flex;
-  width: 100%; }
-  .home-page .home-page-container {
-    width: 25%;
-    border: 1px solid red; }
-  .home-page .home-page-middle-container {
-    width: 50%;
-    border: 1px solid green; }
-
-.group-create-container {
-  box-sizing: border-box;
-  margin: 10px;
-  font: 400 13px/20px 'Helvetica Neue', sans-serif; }
+  display: grid;
+  grid-template-rows: 5% auto;
+  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-areas: "groups main chats";
+  justify-items: stretch;
+  align-items: start;
+  width: 100%;
+  height: 100%; }
 
 .group-index-container {
-  background: white; }
+  grid-area: groups;
+  background: white;
+  border-right: 1px solid #dedede;
+  box-sizing: border-box;
+  height: 100%; }
   .group-index-container .group-index {
     font-size: 20px; }
     .group-index-container .group-index .group-index-item {
       font-size: 16px;
-      width: 25%;
       padding: 10px;
-      border: 1px solid #dedede; }
+      border-top: 1px solid #dedede; }
+      .group-index-container .group-index .group-index-item:last-child {
+        border-bottom: 1px solid #dedede; }
       .group-index-container .group-index .group-index-item:hover {
         background-color: #dedede;
         cursor: zoom-in;
         filter: brightness(95%); }
+  .group-index-container .group-index-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 10px; }
+  .group-index-container .open-group-create-button {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #00a9e0;
+    color: white; }
+    .group-index-container .open-group-create-button:hover {
+      opacity: 0.6;
+      cursor: pointer; }
+    .group-index-container .open-group-create-button i {
+      font-size: 18px; }
+
+.group-modal-background {
+  grid-area: main;
+  height: 100%;
+  background-color: white;
+  z-index: 5;
+  transform: translateX(-30%); }
+
+.group-open {
+  animation: slide-right 0.2s forwards; }
+
+.group-closed {
+  animation: slide-left 0.2s forwards; }
+
+@keyframes slide-right {
+  100% {
+    transform: translateX(0%); } }
+@keyframes slide-left {
+  0% {
+    transform: translateX(0%); }
+  100% {
+    transform: translateX(-100%); } }
+.group-form-background {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 10; }
+
+.group-create-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: auto;
+  padding: 20px;
+  box-sizing: border-box;
+  font: 400 13px/20px 'Helvetica Neue', sans-serif;
+  width: 600px;
+  z-index: 7;
+  background-color: white; }
+  .group-create-container .input-field input[type=text]:focus {
+    border-bottom: 1px solid #00a9e0;
+    box-shadow: 0 1px 0 0 #00a9e0; }
+  .group-create-container .group-select {
+    display: flex;
+    justify-content: space-between; }
+    .group-create-container .group-select .group-create-button {
+      height: 45px;
+      border-radius: 5px;
+      align-self: flex-end;
+      background-color: #00a9e0;
+      color: white;
+      letter-spacing: 1px;
+      padding: 0 10px; }
+      .group-create-container .group-select .group-create-button:hover {
+        cursor: pointer;
+        opacity: 0.8; }
+      .group-create-container .group-select .group-create-button:disabled {
+        background-color: #e2e2e2; }
+        .group-create-container .group-select .group-create-button:disabled:hover {
+          opacity: 1;
+          cursor: not-allowed; }
 
 svg {
   display: block;
@@ -568,6 +672,27 @@ svg {
   .selected .checkbox {
     border-color: #007da6;
     background: #00a9e0; }
+
+.group-detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px; }
+  .group-detail-header .close-group-modal-button {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #00a9e0;
+    color: white; }
+    .group-detail-header .close-group-modal-button:hover {
+      opacity: 0.6;
+      cursor: pointer; }
+    .group-detail-header .close-group-modal-button i {
+      font-size: 18px; }
 
 .session-form-container {
   width: 350px;

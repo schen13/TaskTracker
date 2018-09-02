@@ -12,17 +12,14 @@ import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import ChatShowContainer from './chat/chat_show_container';
 import TaskIndexContainer from './task/task_index_container';
 import HomePageContainer from './home/home_page_container';
-import GroupModal from './modal/group_modal';
+import GroupForm from './group/group_form';
 import SplashPage from './splash/splash_page';
 
 const App = () => (
   <div className="app">
-    <GroupModal />
-    <header>
-    </header>
-
+    <GroupForm />
     <Switch>
-      <Route exact path="/" component={SplashPage} />
+      <AuthRoute exact path="/" component={SplashPage} />
       <AuthRoute exact path="/login" component={LogInFormContainer} />
       <AuthRoute exact path="/signup" component={SignUpFormContainer} />
     </Switch>
