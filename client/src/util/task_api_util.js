@@ -19,7 +19,7 @@ export const fetchTask = id => (
 );
 
 export const createTask = data => (
-  axios.post('/api/tasks', data)
+    axios.post('/api/tasks', data)
 );
 
 export const updateTask = data => (

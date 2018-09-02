@@ -67,4 +67,15 @@ body {
   position: absolute;
   top: 80px;
   display: flex;
+  width: 100%;
+
+  .home-page-container {
+    width: 25%;
+    border: 1px solid red;
+  }
+
+  .home-page-middle-container {
+    width: 50%;
+    border: 1px solid green;
+  }
 }
