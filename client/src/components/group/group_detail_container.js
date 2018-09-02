@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import GroupDetail from './group_detail';
+import { closeGroupModal } from '../../actions/modal_actions';
 
 const mapStateToProps = ({ entities: { tasks, groups }, session }, ownProps) => ({
   tasks: Object.values(tasks)
@@ -9,6 +10,8 @@ const mapStateToProps = ({ entities: { tasks, groups }, session }, ownProps) => 
   group: groups[ownProps.groupId]
 });
 
-const mapDispatchToProps = dispatch => ({});
+const mapDispatchToProps = dispatch => ({
+  closeGroupModal: () => dispatch(closeGroupModal())
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(GroupDetail);

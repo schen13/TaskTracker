@@ -327,6 +327,11 @@ body {
 .modal1 {
   height: auto; }
 
+.modal {
+  overflow-y: visible;
+  height: auto;
+  width: 60%; }
+
 .task-parent-container {
   grid-area: main; }
 
@@ -446,32 +451,120 @@ body {
 
 .home-page {
   position: absolute;
-  top: 64px;
+  top: 80px;
   display: grid;
+  grid-template-rows: 5% auto;
   grid-template-columns: 1fr 3fr 1fr;
   grid-template-areas: "groups main chats";
   justify-items: stretch;
   align-items: start;
-  width: 100%; }
-
-.group-create-container {
-  box-sizing: border-box;
-  margin: 10px;
-  font: 400 13px/20px 'Helvetica Neue', sans-serif; }
+  width: 100%;
+  height: 100%; }
 
 .group-index-container {
   grid-area: groups;
-  background: white; }
+  background: white;
+  border-right: 1px solid #dedede;
+  box-sizing: border-box;
+  height: 100%; }
   .group-index-container .group-index {
     font-size: 20px; }
     .group-index-container .group-index .group-index-item {
       font-size: 16px;
       padding: 10px;
-      border: 1px solid #dedede; }
+      border-top: 1px solid #dedede; }
+      .group-index-container .group-index .group-index-item:last-child {
+        border-bottom: 1px solid #dedede; }
       .group-index-container .group-index .group-index-item:hover {
         background-color: #dedede;
         cursor: zoom-in;
         filter: brightness(95%); }
+  .group-index-container .group-index-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 10px; }
+  .group-index-container .open-group-create-button {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #00a9e0;
+    color: white; }
+    .group-index-container .open-group-create-button:hover {
+      opacity: 0.6;
+      cursor: pointer; }
+    .group-index-container .open-group-create-button i {
+      font-size: 18px; }
+
+.group-modal-background {
+  grid-area: main;
+  height: 100%;
+  background-color: white;
+  z-index: 5;
+  transform: translateX(-30%); }
+
+.group-open {
+  animation: slide-right 0.2s forwards; }
+
+.group-closed {
+  animation: slide-left 0.2s forwards; }
+
+@keyframes slide-right {
+  100% {
+    transform: translateX(0%); } }
+@keyframes slide-left {
+  0% {
+    transform: translateX(0%); }
+  100% {
+    transform: translateX(-100%); } }
+.group-form-background {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 10; }
+
+.group-create-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: auto;
+  padding: 20px;
+  box-sizing: border-box;
+  font: 400 13px/20px 'Helvetica Neue', sans-serif;
+  width: 600px;
+  z-index: 7;
+  background-color: white; }
+  .group-create-container .input-field input[type=text]:focus {
+    border-bottom: 1px solid #00a9e0;
+    box-shadow: 0 1px 0 0 #00a9e0; }
+  .group-create-container .group-select {
+    display: flex;
+    justify-content: space-between; }
+    .group-create-container .group-select .group-create-button {
+      height: 45px;
+      border-radius: 5px;
+      align-self: flex-end;
+      background-color: #00a9e0;
+      color: white;
+      letter-spacing: 1px;
+      padding: 0 10px; }
+      .group-create-container .group-select .group-create-button:hover {
+        cursor: pointer;
+        opacity: 0.8; }
+      .group-create-container .group-select .group-create-button:disabled {
+        background-color: #e2e2e2; }
+        .group-create-container .group-select .group-create-button:disabled:hover {
+          opacity: 1;
+          cursor: not-allowed; }
 
 svg {
   display: block;
@@ -568,9 +661,26 @@ svg {
     border-color: #007da6;
     background: #00a9e0; }
 
-.group-modal-background {
-  grid-area: main;
-  z-index: 5; }
+.group-detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px; }
+  .group-detail-header .close-group-modal-button {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #00a9e0;
+    color: white; }
+    .group-detail-header .close-group-modal-button:hover {
+      opacity: 0.6;
+      cursor: pointer; }
+    .group-detail-header .close-group-modal-button i {
+      font-size: 18px; }
 
 .session-form-container {
   width: 350px;

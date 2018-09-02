@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-// import GroupDetailContainer from '../group/group_detail_container';
 import { closeGroupModal } from '../../actions/modal_actions';
 import GroupDetailContainer from '../group/group_detail_container';
 
@@ -13,8 +12,9 @@ const mapDispatchToProps = dispatch => ({
 
 const GroupModal = ({ groupModal }) => {
   if (!groupModal) return null;
+  const groupModalClass = groupModal ? "group-modal-background group-open" : "group-modal-background group-closed";
   return (
-    <div className="group-modal-background">
+    <div className={groupModalClass}>
       <GroupDetailContainer
         groupId={groupModal}
       />

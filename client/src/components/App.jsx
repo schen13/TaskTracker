@@ -13,15 +13,12 @@ import ChatIndexContainer from './chat/chat_index_container';
 import ChatShowContainer from './chat/chat_show_container';
 import TaskIndexContainer from './task/task_index_container';
 import HomePageContainer from './home/home_page_container';
-import GroupModal from './modal/group_modal';
+import GroupForm from './group/group_form';
 import SplashPage from './splash/splash_page';
 
 const App = () => (
   <div className="app">
-    <GroupModal />
-    <header>
-    </header>
-
+    <GroupForm />
     <Switch>
       <AuthRoute exact path="/" component={SplashPage} />
       <AuthRoute exact path="/login" component={LogInFormContainer} />
