@@ -1,12 +1,14 @@
 import { connect } from 'react-redux';
 import { createChat } from '../../actions/chat_actions';
-import TaskCreate from './task_create';
+import ChatCreate from './chat_create_form';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = ({ entities, session }) => ({
+  users: Object.values(entities.users),
+  currentUser: session
 });
 
 const mapDispatchToProps = dispatch => ({
-  formAction: chat => dispatch(createChat(chat))
+  createChat: chat => dispatch(createChat(chat))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(TaskCreate);
+export default connect(mapStateToProps, mapDispatchToProps)(ChatCreate);

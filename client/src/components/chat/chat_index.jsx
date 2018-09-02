@@ -1,43 +1,33 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-
-// const socket = actions.socket;
+import ChatIndexItem from './chat_index_item';
 
 class ChatIndex extends React.Component {
-  constructor(props) {
-    super(props);
-  }
 
   componentDidMount() {
-    this.props.fetchChats();
+    const userId = this.props.currentUser.id
+    this.props.fetchChats(userId);
   }
 
   render() {
+    const { users, currentUser, fetchChat, openChatModal } = this.props;
 
     return (
       <div className="chat-bar">
         <div className="chat-header">
           <div></div>
-          <h1>CHAT BAR FOOLZ</h1>
-          <div></div>
-          {/* <img src={require('../../public/images/new_message.png')} /> */}
+          <h1>Messages</h1>
+          <i className="far fa-edit"></i>
         </div>
         <ul className="conversations">
-          <li className="chats">
-            <div className="user-pictures"></div>
-            <div className="chat">
-              <div className="chat-content">
-                <h2>participants</h2>
-                <p>Temp Chat</p>
-              </div>
-              <p className="date">date</p>
-            </div>
-          </li>
-
-          {this.props.chats.map(chat => {
-            return <li id={chat.id}>
-              {chat.chatName}
-            </li>
+          {this.props.chats.map(chatData => {
+            return <ChatIndexItem
+              key={chatData.chat._id}
+              chatData={chatData}
+              users={users}
+              currentUser={currentUser.id}
+              fetchChat={fetchChat}
+              openChatModal={openChatModal} />
           })}
         </ul>
       </div>

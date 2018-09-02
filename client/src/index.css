@@ -359,14 +359,21 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-flow: row nowrap; }
+  flex-flow: row nowrap;
+  padding: 0 10px; }
+  .chat-header h1 {
+    font-size: 20px;
+    margin-right: -10px; }
 
 .conversations {
   border-left: 1px solid gray;
   border-bottom: 1px solid gray; }
+  .conversations .chats:hover {
+    background-color: #efefef; }
   .conversations .chats {
     padding: 10px;
     height: 60px;
+    width: 100%;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -375,28 +382,66 @@ body {
     .conversations .chats .user-pictures {
       width: 50px;
       height: 50px;
-      border-radius: 999px;
-      border: 1px solid black;
-      margin-right: 9px; }
+      margin-right: 9px;
+      display: flex;
+      justify-content: center;
+      align-items: center; }
+      .conversations .chats .user-pictures #pf-pic {
+        width: 40px;
+        height: 40px;
+        border-radius: 999px;
+        border: 1px solid #e2e2e2; }
     .conversations .chats .chat {
       display: flex;
       flex: 1 1 auto;
+      width: 184px;
       justify-content: space-between;
       align-items: center;
       flex-flow: row nowrap;
       padding-left: 12px; }
       .conversations .chats .chat .chat-content {
         display: flex;
+        color: black;
         justify-content: flex-start;
         flex-direction: column; }
-        .conversations .chats .chat .chat-content h2 {
+        .conversations .chats .chat .chat-content .participants {
+          max-width: 100px;
           font-weight: bold;
-          font-size: 16px;
-          margin-bottom: 5px; }
+          white-space: nowrap;
+          font-size: 14px;
+          margin: 0px 5px 5px 0px;
+          overflow: hidden; }
         .conversations .chats .chat .chat-content p {
-          font-size: 12px; }
+          font-size: 12px;
+          margin: none;
+          color: black; }
       .conversations .chats .chat .date {
+        color: black;
         font-size: 12px; }
+
+.chat-modal-background {
+  grid-area: main;
+  height: 100%;
+  background-color: white;
+  z-index: 5;
+  transform: translateX(0%); }
+
+.chat-open {
+  animation: slide-left 0.2s forwards; }
+
+.chat-closed {
+  animation: slide-right 0.2s forwards; }
+
+@keyframes slide-right {
+  100% {
+    transform: translateX(0%); } }
+@keyframes slide-left {
+  0% {
+    transform: translateX(0%); }
+  100% {
+    transform: translateX(-100%); } }
+.chat-show {
+  background-color: white; }
 
 body {
   background-color: white;

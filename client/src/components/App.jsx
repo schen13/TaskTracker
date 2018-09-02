@@ -9,7 +9,6 @@ import SignUpFormContainer from "./session_form/signup_form_container";
 import LogInFormContainer from "./session_form/login_form_container";
 // import GroupIndexContainer from './group/group_index_container';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
-import ChatIndexContainer from './chat/chat_index_container';
 import ChatShowContainer from './chat/chat_show_container';
 import TaskIndexContainer from './task/task_index_container';
 import HomePageContainer from './home/home_page_container';
@@ -30,6 +29,7 @@ const App = () => (
     <Route exact path="/chats/:chatId" component={ChatShowContainer} />
     {/* <Route exact path="/tasks" component={TaskIndexContainer} /> */}
     <ProtectedRoute exact path="/" component={HomePageContainer} />
+    <ProtectedRoute exact path="/chats/:chatId" component={ChatShowContainer} />
   </div>
 );
 

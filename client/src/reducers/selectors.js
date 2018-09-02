@@ -16,3 +16,14 @@ export const selectChatMessages = ({ entities }, chatId) => {
     messages
   );
 };
+
+export const selectChat = ({ entities }, chatId) => {
+  const chat = Object.values(entities.chats).filter(chatMessage => chatMessage.chat._id === chatId)
+  return (
+    chat[0]
+  )
+};
+
+export const selectChatMessage = ({ entities }, chatId) => (
+  entities.chats.id === chatId
+);
