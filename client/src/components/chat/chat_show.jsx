@@ -6,10 +6,10 @@ class ChatShow extends React.Component {
   constructor(props) {
     super(props);
     this.socket = io.connect();
-    const { chatId, chat, currentUser } = this.props;
+    const { chat, currentUser } = this.props;
 
     this.state = {
-      chatId: chatId,
+      chatId: chat.chat._id,
       name: chat.chat.name,
       body: '',
       author: currentUser.id,
@@ -22,10 +22,6 @@ class ChatShow extends React.Component {
     this.chatOnEmit = this.chatOnEmit.bind(this)
     this.renderMessages = this.renderMessages.bind(this)
     this.chatOnEmit();
-  }
-
-  componentDidMount() {
-    // this.props.fetchChat(this.props.chatId);
   }
 
   handleInput(e) {
@@ -48,7 +44,6 @@ class ChatShow extends React.Component {
 
   chatOnEmit() {
     this.socket.on('newMessage', (message) => {
-      debugger
       this.setState(
         {
           messages: [...this.state.messages, message]

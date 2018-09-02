@@ -1,14 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 class ChatIndexItem extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      message: {}
-    };
 
     this.renderParticipants = this.renderParticipants.bind(this);
+    this.renderTime = this.renderTime.bind(this);
+    this.handleClick = this.handleClick.bind(this)
   }
 
   renderParticipants() {
@@ -25,23 +23,41 @@ class ChatIndexItem extends React.Component {
     return <div className="participants">{usernames.join(", ")}</div>;
   }
 
+  renderTime() {
+    const time = this.props.chatData.message[0].timestamp;
+    const month = time.slice(5, 8);
+    const year = time.slice(0, 4);
+
+    return (
+      <p className="date">
+        {month}{year}
+      </p>
+    );
+  }
+
+  handleClick(e) {
+    e.preventDefault();
+    const chatId = this.props.chatData.chat._id;
+    this.props.openChatModal(chatId);
+  }
+
   render() {
     const { chatData } = this.props;
     const message = chatData.message[0];
 
     return (
-      <Link to={`/chats/${chatData.chat._id}`}>
-        <li className="chats">
-          <div className="user-pictures" />
-          <div className="chat">
-            <div className="chat-content">
-              {this.renderParticipants()}
-              <p>{message.body}</p>
-            </div>
-            <p className="date">{message.timestamp}</p>
+      <li className="chats" onClick={this.handleClick}>
+        <div className="user-pictures">
+          <i id="pf-pic" className="fas fa-user-circle"></i>
+        </div>
+        <div className="chat">
+          <div className="chat-content">
+            {this.renderParticipants()}
+            <p>{message.body}</p>
           </div>
-        </li>
-      </Link>
+          {this.renderTime()}
+        </div>
+      </li>
     );
   }
 }

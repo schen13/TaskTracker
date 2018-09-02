@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import { closeChatModal } from "../../actions/modal_actions";
 import ChatShowContainer from '../chat/chat_show_container';
 
 const mapStateToProps = state => ({
@@ -8,15 +7,15 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  closeChatModal: () => dispatch(closeChatModal())
 });
 
-const ChatModal = ({ chatModal, closeChatModal }) => {
+const ChatModal = ({ chatModal }) => {
   if (!chatModal) return null;
   return (
-    <div className="group-modal-background">
-      <div className="group-modal-child">
-        <ChatShowContainer closeChatModal={closeChatModal} />
+    <div className="chat-modal-background">
+      <div className="chat-modal-child">
+        <ChatShowContainer 
+          chatId={chatModal} />
       </div>
     </div>
   );

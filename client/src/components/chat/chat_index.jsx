@@ -3,22 +3,6 @@ import { withRouter } from 'react-router-dom';
 import ChatIndexItem from './chat_index_item';
 
 class ChatIndex extends React.Component {
-  constructor(props) {
-    super(props);
-
-    // this.getChats = this.getChats.bind(this);
-  }
-  // registerHandler(onMessageReceived) {
-  //   socket.on('message', onMessageReceived)
-  // }
-
-  // unregisterHandler() {
-  //   socket.off('message')
-  // }
-
-  // getChats(userId, cb) {
-  //   socket.emit('chats', userId, cb)
-  // }
 
   componentDidMount() {
     const userId = this.props.currentUser.id

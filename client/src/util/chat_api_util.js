@@ -1,16 +1,6 @@
 import axios from 'axios';
 
-export const setAuthToken = token => {
-  if (token) {
-    // Apply to every request
-    axios.defaults.headers.common['Authorization'] = token;
-  } else {
-    // Delete auth header
-    delete axios.defaults.headers.common['Authorization'];
-  }
-};
-
-// Chats Index (only returns 1 message per chat)
+// Chats Index
 export const fetchChats = (userId) => (
   axios.get('/api/chats', {
     params: { userId }
