@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import SplashPage from './splage_page';
+import SplashPage from './splash_page';
 
 const mapStateToProps = ({ entities: { users }, session }) => ({
     userId: session.id,

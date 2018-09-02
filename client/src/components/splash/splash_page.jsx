@@ -11,13 +11,13 @@ class SplashPage extends React.Component {
                     <h1 className="greeting-text">
                         Welcome to Task Tracker
                     </h1>
-                    <Link className='splash-signup' to="/signup">
-                        Sign Up Now!
+                    <Link className='splash-signup-button' to="/signup">
+                        Join Now!
                     </Link>
                 </div>
             </div>
         </div>
-        )
+        );
     }
 }
 

@@ -17,13 +17,13 @@ import GroupModal from './modal/group_modal';
 import SplashPage from './splash/splash_page';
 
 const App = () => (
-  <div>
+  <div className="app">
     <GroupModal />
     <header>
     </header>
 
     <Switch>
-      <AuthRoute exact path="/" component={SplashPage} />
+      <Route exact path="/" component={SplashPage} />
       <AuthRoute exact path="/login" component={LogInFormContainer} />
       <AuthRoute exact path="/signup" component={SignUpFormContainer} />
     </Switch>
