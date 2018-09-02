@@ -19,7 +19,7 @@ const App = () => (
     <header>
     </header>
     <ProtectedRoute path="/" component={NavBarContainer} />
-    <ProtectedRoute path="/" component={TaskIndexContainer} />
+    {/* <ProtectedRoute path="/" component={TaskIndexContainer} /> */}
     <AuthRoute exact path='/login' component={LogInFormContainer} />
     <AuthRoute exact path='/signup' component={SignUpFormContainer} />
     <Route exact path='/chats/:chatId' component={ChatShowContainer} />

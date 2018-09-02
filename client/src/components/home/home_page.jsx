@@ -18,7 +18,7 @@ class HomePage extends React.Component {
         <GroupIndexContainer user={user} />
         <TaskIndexContainer />
         <ChatIndexContainer />
-        <GroupModal />
+        {/* <GroupModal /> */}
       </div>
     );
   }
