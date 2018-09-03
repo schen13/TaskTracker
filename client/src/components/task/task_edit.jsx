@@ -66,7 +66,7 @@ class TaskEdit extends React.Component {
     });
 
     return (
-      <Modal trigger={<IconButton><i className="fas fa-pencil-alt edit-task"></i></IconButton>}>
+      <Modal className="edit-task" trigger={<IconButton><i className="fas fa-pencil-alt"></i></IconButton>}>
         <div className="task-modal-container">
           <div className="label">
             <h1>Edit - {task.name}</h1>
@@ -113,7 +113,7 @@ class TaskEdit extends React.Component {
                 <input 
                   type="date"
                   onChange={this.update("deadline")}
-                  value={Moment(this.state.deadline).format("YYYY-MM-DD")}
+                  value={Moment(this.state.deadline).utc().format("YYYY-MM-DD")}
                 />
               </div>
               <div className="input-field col s12">

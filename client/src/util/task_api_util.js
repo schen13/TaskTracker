@@ -22,12 +22,9 @@ export const createTask = data => (
   axios.post('/api/tasks', data)
 );
 
-export const updateTask = data => {
-console.log(data);
-return (
+export const updateTask = data => (
   axios.patch(`/api/tasks/${data._id}`, data)
 );
-};
 
 export const deleteTask = id => (
   axios.delete(`/api/tasks/${id}`)

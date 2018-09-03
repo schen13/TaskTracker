@@ -4,6 +4,7 @@ import TaskCreateContainer from './task_create_container';
 import TaskShowContainer from './task_show_container';
 import TaskEdit from './task_edit';
 import Snack from './snack';
+import Moment from 'moment';
 
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -30,12 +31,6 @@ class TaskIndex extends React.Component {
 
   componentDidMount() {
     this.props.fetchTasks();
-  }
-
-  formatDate(stringDate) {
-    const date = new Date(stringDate);
-
-    return date.toDateString();
   }
 
   handleClick() {
@@ -76,7 +71,7 @@ class TaskIndex extends React.Component {
                 </ListItemAvatar>
                 <ListItemText
                   primary={task.name}
-                  secondary={`Finish by: ${this.formatDate(task.deadline)}`}
+                  secondary={`Finish by: ${Moment(task.deadline).utc().format("MMMM Do, YYYY")}`}
                 />
                 <ListItemSecondaryAction>
                   <TaskEdit
