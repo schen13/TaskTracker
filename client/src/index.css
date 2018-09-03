@@ -1178,6 +1178,9 @@ body {
 .task-parent-container {
   grid-area: main; }
 
+#task-index-list {
+  padding-bottom: 0px; }
+
 .task-create-container h1 {
   padding: 0 0 15px 0;
   font-size: 30px;
@@ -1577,11 +1580,17 @@ svg {
     border-color: #007da6;
     background: #00a9e0; }
 
-.group-detail-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px; }
+.group-detail-container {
+  list-style: none; }
+  .group-detail-container .group-detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px; }
+    .group-detail-container .group-detail-header .group-detail-buttons {
+      display: flex;
+      justify-content: space-between;
+      width: 120px; }
 
 .edit-group-button,
 .close-group-modal-button {

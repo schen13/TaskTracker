@@ -36,7 +36,7 @@ class TaskIndex extends React.Component {
 
     return (
       <div className="task-parent-container">
-        <List className="task-index-container collection with-header">
+        <List id="task-index-list" className="task-index-container collection with-header">
           <li className="collection-header" id="task-header">
             <h4>My Tasks</h4>
             <Modal id="create-task-modal" trigger={<Button floating><i className="fas fa-plus"></i></Button>} >
@@ -46,7 +46,7 @@ class TaskIndex extends React.Component {
             </Modal>
           </li>
           {tasks.map(task => (
-            <Modal id="task-show" trigger={
+            <Modal id="task-show" key={task._id} trigger={
               <ListItem className="collection-item hvr-fade" key={task._id}>
                 <ListItemAvatar>
                   <Avatar>
@@ -59,7 +59,7 @@ class TaskIndex extends React.Component {
                 />
                 <ListItemSecondaryAction>
                   <IconButton aria-label="Delete">
-                    <i class="fas fa-trash"></i>
+                    <i className="fas fa-trash"></i>
                   </IconButton>
                 </ListItemSecondaryAction>
               </ListItem>

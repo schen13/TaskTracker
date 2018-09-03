@@ -24,12 +24,14 @@ $dark-blue: #007da6;
       }
     }
   }
+
   .group-index-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px;
   }
+
   .open-group-create-button {
     width: 25px;
     height: 25px;
@@ -258,12 +260,21 @@ svg {
   }
 }
 
-.group-detail-header {
+.group-detail-container {
+  list-style: none;
+  .group-detail-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px;
+  .group-detail-buttons {
+      display: flex;
+      justify-content: space-between;
+      width: 120px;
+    }
 }
+}
+
 
 .edit-group-button,
 .close-group-modal-button {

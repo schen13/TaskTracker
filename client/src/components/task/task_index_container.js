@@ -7,16 +7,19 @@ import TaskIndex from './task_index';
 const mapStateToProps = (state) => {
   let tasks = Object.values(state.entities.tasks)
     .filter(task => task.userId === state.session.id
-  );
+    );
+  if (state.ui.groupModal) {
+    tasks = tasks.filter(task => task.groupId === state.ui.groupModal);
+  }
   //Sort the tasks by the deadline. Oldest ones first
-  tasks.sort((a,b) => {
-    if(a.deadline <= b.deadline)
+  tasks.sort((a, b) => {
+    if (a.deadline <= b.deadline)
       return -1;
     else
-    return 1;
+      return 1;
   });
 
-  return({
+  return ({
     tasks: tasks,
     users: Object.values(state.entities.users)
   });

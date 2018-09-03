@@ -1,41 +1,44 @@
 import React from 'react';
-import TaskCreateContainer from '../task/task_create_container';
+import TaskIndexContainer from '../task/task_index_container';
 class GroupDetail extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.handleDelete = this.handleDelete.bind(this);
+  }
+
+  handleDelete(e) {
+    e.preventDefault();
+    this.props.deleteGroup(this.props.group._id)
+      .then(this.props.closeGroupModal());
+  }
 
   render() {
     const { tasks, group, closeGroupModal, openGroupForm } = this.props;
     return (
       <div className="group-detail-container">
         <div className="group-detail-header">
-          <p>{group.name}</p>
-          <button
-            className="close-group-modal-button"
-            onClick={closeGroupModal}>
-            <i className="fas fa-times"></i>
-          </button>
+          <h5>{group.name}</h5>
+          <div className="group-detail-buttons">
+            <button
+              className="edit-group-button"
+              onClick={openGroupForm}>
+              <i className="far fa-edit"></i>
+            </button>
+            <button
+              className="edit-group-button"
+              onClick={this.handleDelete}>
+              <i className="fas fa-trash"></i>
+            </button>
+            <button
+              className="close-group-modal-button"
+              onClick={closeGroupModal}>
+              <i className="fas fa-times"></i>
+            </button>
+          </div>
         </div>
 
-        {tasks.map(task => (
-          <div className="task-info">
-            <div className="task-name">
-              {task.name}
-            </div>
-            <div className="task-description">
-              {task.description}
-            </div>
-          </div>
-        ))}
-        {/* <a className="btn-floating btn waves-effect waves-light red modal-trigger" href="#modal1"><i className="fas fa-plus"></i></a>
-        <div id="modal1" className="modal">
-          <div className="modal-content">
-            <TaskCreateContainer />
-          </div>
-        </div> */}
-        <button
-          className="edit-group-button"
-          onClick={openGroupForm}>
-          <i className="far fa-edit"></i>
-        </button>
+        <TaskIndexContainer />
       </div>
     );
   }

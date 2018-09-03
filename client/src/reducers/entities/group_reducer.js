@@ -16,7 +16,6 @@ export default (state = {}, action) => {
       });
       return newState;
     case RECEIVE_SINGLE_GROUP:
-      console.log(action);
       return merge({}, state, { [action.group._id]: action.group });
     case REMOVE_GROUP:
       delete newState[action.group._id];
