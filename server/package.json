@@ -1,8 +1,8 @@
 {
-  "name": "flex_project",
+  "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "server.js",
   "engines": {
     "node": "8.9.0",
     "npm": "6.4.1"

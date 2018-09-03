@@ -2002,7 +2002,7 @@ svg {
       background-position: center;
       background-repeat: no-repeat;
       background-size: cover;
-      animation: fadein 2s;
+      animation: fadein 1.5s;
       opacity: 0.7; }
 
 .splash-greeting-bottom {
@@ -2015,7 +2015,7 @@ svg {
   grid-template-areas: "pic pic msg"; }
   .splash-greeting-bottom .splash-greeting-bottom-image {
     grid-area: pic;
-    animation: fadein 2s;
+    animation: fadein 1.5s;
     opacity: 0.7; }
     .splash-greeting-bottom .splash-greeting-bottom-image img {
       height: 100%;
@@ -2035,7 +2035,7 @@ svg {
 
 @keyframes fadein {
   from {
-    opacity: 0; }
+    opacity: 0.2; }
   to {
     opacity: 0.7; } }
 
