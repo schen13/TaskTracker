@@ -10,7 +10,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "server": "babel-node server.js"
+    "server": "babel-node server.js",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "author": "",
   "license": "MIT",
