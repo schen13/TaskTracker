@@ -1,5 +1,7 @@
 import { connect } from 'react-redux';
-import { createChat } from '../../actions/chat_actions';
+import { fetchChats, createChat } from "../../actions/chat_actions";
+import { replyToChat } from "../../actions/message_actions";
+import { closeChatForm, openChatModal } from '../../actions/modal_actions';
 import ChatCreate from './chat_create_form';
 
 const mapStateToProps = ({ entities, session }) => ({
@@ -8,7 +10,11 @@ const mapStateToProps = ({ entities, session }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  createChat: chat => dispatch(createChat(chat))
+  fetchChats: (userId) => dispatch(fetchChats(userId)),
+  createChat: chat => dispatch(createChat(chat)),
+  replyToChat: message => dispatch(replyToChat(message)),
+  closeChatForm: () => dispatch(closeChatForm()),
+  openChatModal: (chatId) => dispatch(openChatModal(chatId))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChatCreate);

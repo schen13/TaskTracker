@@ -1,4 +1,5 @@
 import * as GroupAPIUtil from '../util/group_api_util';
+import { receiveGroupUsers } from './user_actions';
 
 export const RECEIVE_ALL_GROUPS = 'RECEIVE_ALL_GROUPS';
 export const RECEIVE_SINGLE_GROUP = 'RECEIVE_SINGLE_GROUP';
@@ -29,6 +30,13 @@ export const updateGroup = group => dispatch => (
 export const deleteGroup = groupId => dispatch => (
   GroupAPIUtil.deleteGroup(groupId)
     .then(group => dispatch(removeGroup(group)))
+);
+
+export const fetchGroupUsers = userId => dispatch => (
+  GroupAPIUtil.fetchGroupUsers(userId)
+    .then(groupUsers => {
+      dispatch(receiveGroupUsers(groupUsers))
+    })
 );
 
 const receiveGroups = groups => ({

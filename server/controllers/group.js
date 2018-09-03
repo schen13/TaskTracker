@@ -92,3 +92,18 @@ exports.deleteGroup = [
     });
   }
 ];
+
+exports.getGroupUsers = (req, res, next) => {
+  // returns users from groups they are in
+  const userId = req.query.userId;
+  Group.find({ _id: { '$elemMatch': {'$all': userId } }}).exec((err, users) => {
+    if (err) {
+      res.status(400).send({ error: err });
+      return next(err);
+    }
+    let groupUsers = [];
+
+    res.status(200).json({ users });
+    return next();
+  });
+};

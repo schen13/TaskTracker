@@ -3,20 +3,32 @@ import React from 'react';
 class ChatIndexItem extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      currentUser: this.props.currentUser
+    };
 
     this.renderParticipants = this.renderParticipants.bind(this);
     this.renderTime = this.renderTime.bind(this);
-    this.handleClick = this.handleClick.bind(this)
+    this.renderMessage = this.renderMessage.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   renderParticipants() {
     let usernames = [];
     const { participants } = this.props.chatData.chat;
+    const { users } = this.props;
 
     participants.map(user => {
       let username;
-      if (user !== this.props.currentUser)
-        username = this.props.users[user].username;
+      if (user === this.state.currentUser) return usernames;
+
+      if (users[user].username) {
+        username = users[user].username;
+      } else if (users[user].fName) {
+        username = `${users[user].fName} ${users[user].lName}`;
+      } else {
+        username = 'No Name'
+      }
       return usernames.push(username);
     });
 
@@ -25,14 +37,27 @@ class ChatIndexItem extends React.Component {
 
   renderTime() {
     const time = this.props.chatData.message[0].timestamp;
-    const month = time.slice(5, 8);
-    const year = time.slice(0, 4);
+    const month = time.slice(5, 7);
+    const date = time.slice(8, 10);
+    const year = time.slice(2, 4);
 
     return (
       <p className="date">
-        {month}{year}
+        {month}-{date}-{year}
       </p>
     );
+  }
+
+  renderMessage() {
+    let message;
+    if (this.props.chatData.message[0].body) {
+      message = this.props.chatData.message[0].body;
+    } else {
+      message = ''
+    }
+    return (
+      <p>{message}</p>
+    )
   }
 
   handleClick(e) {
@@ -42,9 +67,6 @@ class ChatIndexItem extends React.Component {
   }
 
   render() {
-    const { chatData } = this.props;
-    const message = chatData.message[0];
-
     return (
       <li className="chats" onClick={this.handleClick}>
         <div className="user-pictures">
@@ -53,7 +75,7 @@ class ChatIndexItem extends React.Component {
         <div className="chat">
           <div className="chat-content">
             {this.renderParticipants()}
-            <p>{message.body}</p>
+            {this.renderMessage()}
           </div>
           {this.renderTime()}
         </div>

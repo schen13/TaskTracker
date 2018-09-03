@@ -2,6 +2,7 @@ import * as UserAPIUtil from '../util/user_api_util';
 
 export const RECEIVE_ALL_USERS = 'RECEIVE_ALL_USERS';
 export const RECEIVE_SINGLE_USER = 'RECEIVE_SINGLE_USER';
+export const RECEIVE_GROUP_USERS = 'RECEIVE_GROUP_USERS';
 // export const RECEIVE_USERS = 'RECEIVE_USERS';
 
 const receiveSingleUser = payload => ({
@@ -30,4 +31,9 @@ export const fetchSingleUser = id => dispatch => (
 const receiveAllUsers = payload => ({
   type: RECEIVE_ALL_USERS,
   payload: payload.data
+});
+
+export const receiveGroupUsers = payload => ({
+  type: RECEIVE_GROUP_USERS,
+  groupUsers: payload.data.groups
 });

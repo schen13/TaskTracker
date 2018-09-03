@@ -11,3 +11,9 @@ export const fetchSingleUser = id => (
 export const fetchUsers = () => (
   axios.get('/api/users')
 );
+
+// export const fetchUserQuery = (userData) => {
+//   axios.get('/api/users', {
+//     params: { userData }
+//   })
+// };
