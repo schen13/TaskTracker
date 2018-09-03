@@ -52,7 +52,6 @@ export const login = user => dispatch => (
         APIUtil.setAuthToken(token);
         // Decode token to get user data
         const decoded = jwt_decode(token);
-        console.log(decoded, "decoded")
         // Set current user
         dispatch(setCurrentUser(decoded));
     }, err =>

@@ -2,12 +2,16 @@ import React from 'react';
 
 // inspired by https://codepen.io/CrocoDillon/pen/MpMoZe
 
-class GroupCreate extends React.Component {
+class GroupEdit extends React.Component {
   constructor(props) {
     super(props);
+    const { users, group } = this.props;
+    const currentUsernames = group.users.map(userId => (
+      users[userId].username
+    ));
     this.state = {
-      name: '',
-      currentUsernames: [],
+      name: group.name,
+      currentUsernames,
       focusedValue: -1,
       isFocused: false,
       isOpen: false,
@@ -34,11 +38,13 @@ class GroupCreate extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const newGroup = {
-      name: this.state.name,
-      users: this.state.currentUsernames.map(username => this.props.usernameMapping[username])
-    };
-    this.props.createGroup(newGroup)
+    const updatedGroup = this.props.group;
+    updatedGroup.name = this.state.name;
+    const currentUserIds = this.state.currentUsernames.map(username => (
+      this.props.usernameMapping[username]
+    ));
+    updatedGroup.users = currentUserIds;
+    this.props.updateGroup(updatedGroup)
       .then(this.props.closeGroupForm());
   }
 
@@ -182,7 +188,7 @@ class GroupCreate extends React.Component {
 
       <div className="group-create-container">
         <div className="label">
-          <h1>Create New Group</h1>
+          <h1>Edit Group</h1>
         </div>
         <form onSubmit={this.handleSubmit}>
           <div className="input-field col s6">
@@ -217,7 +223,7 @@ class GroupCreate extends React.Component {
               className="group-create-button"
               type="submit"
               disabled={disabled}
-            >CREATE GROUP</button>
+            >EDIT GROUP</button>
           </div>
         </form>
 
@@ -250,4 +256,4 @@ const CheckMark = () => (
   </svg>
 );
 
-export default GroupCreate;
+export default GroupEdit;
