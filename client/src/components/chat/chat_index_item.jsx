@@ -62,6 +62,8 @@ class ChatIndexItem extends React.Component {
 
   handleClick(e) {
     e.preventDefault();
+    this.props.closeChatModal();
+    this.props.closeGroupModal();
     const chatId = this.props.chatData.chat._id;
     this.props.openChatModal(chatId);
   }

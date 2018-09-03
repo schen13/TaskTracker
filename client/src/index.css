@@ -1378,20 +1378,24 @@ body {
   z-index: 10; }
 
 .chat-create-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 700px;
   overflow-y: visible;
   height: auto;
   padding: 24px;
-  -webkit-transform: perspective(1px) translateZ(0);
-  transform: perspective(1px) translateZ(0);
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-  overflow: hidden;
-  -webkit-transition-duration: 0.3s;
-  transition-duration: 0.2s;
-  -webkit-transition-property: color, background-color;
-  transition-property: color, background-color; }
+  z-index: 7;
+  background-color: #fff;
+  border-radius: 4px; }
 
 .chat-modal-content {
   padding: 24px; }
+
+#chat-input {
+  padding-left: 10px;
+  box-sizing: border-box; }
 
 .chat-show {
   background-color: white;

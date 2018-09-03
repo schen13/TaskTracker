@@ -34,8 +34,9 @@ export const closeGroupForm = () => ({
   type: CLOSE_GROUP_FORM
 });
 
-export const openChatForm = () => ({
-  type: OPEN_CHAT_FORM
+export const openChatForm = (modal) => ({
+  type: OPEN_CHAT_FORM,
+  modal
 });
 
 export const closeChatForm = () => ({
