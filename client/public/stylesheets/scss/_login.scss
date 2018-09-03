@@ -1,5 +1,16 @@
 $session-width: 350px;
 
+.session-form-background {
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url(https://s15.postimg.cc/go49ot2y3/background.jpg);
+  height: 100vh;
+  width: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin: 0px auto;
+  overflow: hidden;
+}
+
 .session-form-container {
   width: $session-width;
   margin: 100px auto;
@@ -9,23 +20,35 @@ $session-width: 350px;
   font-family: HelveticaNeue;
   text-align: center;
   font-size: 16px;
-  padding: 20px;
   box-sizing: border-box;
+  padding-top: 20px;
+  img {
+    width: 40px;
+    height: 40px;
+    margin: 0 auto;
+  }
   h3 {
     font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 5px;
   }
   h4 {
     font-size: 18px;
+    color: $gray;
+  }
+  .session-form-box {
+    padding: 10px 20px;
   }
 }
 
 .session-submit,
+.demo-login,
 .other-session-link {
   width: 310px;
   margin: 10px 0;
   height: 40px;
   border-radius: 5px;
-  background-color: $light-red;
+  background-color: $light-violet;
   color: white;
   display: table-cell;
   vertical-align: middle;
@@ -34,4 +57,11 @@ $session-width: 350px;
     opacity: 0.7;
     cursor: pointer;
   }
+}
+
+.demo-login-container {
+  width: 100%;
+  border-top: 1px solid $light-gray;
+  background-color: $lighter-gray;
+  border-radius: 0 0 10px 10px;
 }

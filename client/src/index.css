@@ -1470,7 +1470,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #755298;
+    background-color: #ac98c2;
     color: white; }
     .group-index-container .open-group-create-button:hover {
       opacity: 0.6;
@@ -1581,8 +1581,8 @@ svg {
 .multiple {
   padding-right: 30px;
   margin-right: 5px;
-  background: #d9f2fb;
-  color: #00a9e0; }
+  background: #ac98c2;
+  color: white; }
 
 .delete {
   position: absolute;
@@ -1621,9 +1621,9 @@ svg {
   border-bottom: 1px solid #dedede;
   cursor: pointer; }
   .username.selected {
-    border: 1px solid #00a9e0;
+    border: 1px solid #755298;
     margin: -1px -1px 0;
-    background: #d9f2fb; }
+    background: #ac98c2; }
   .username.focused {
     background: #efefef; }
 
@@ -1640,8 +1640,8 @@ svg {
   color: #fff;
   font-size: 10px; }
   .selected .checkbox {
-    border-color: #007da6;
-    background: #00a9e0; }
+    border-color: #755298;
+    background: #755298; }
 
 .group-detail-container {
   list-style: none; }
@@ -1664,7 +1664,7 @@ svg {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #755298;
+  background-color: #ac98c2;
   color: white; }
   .edit-group-button:hover,
   .close-group-modal-button:hover {
@@ -1677,6 +1677,15 @@ svg {
 .edit-group-button i {
   font-size: 16px; }
 
+.session-form-background {
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(https://s15.postimg.cc/go49ot2y3/background.jpg);
+  height: 100vh;
+  width: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin: 0px auto;
+  overflow: hidden; }
+
 .session-form-container {
   width: 350px;
   margin: 100px auto;
@@ -1686,28 +1695,45 @@ svg {
   font-family: HelveticaNeue;
   text-align: center;
   font-size: 16px;
-  padding: 20px;
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  padding-top: 20px; }
+  .session-form-container img {
+    width: 40px;
+    height: 40px;
+    margin: 0 auto; }
   .session-form-container h3 {
-    font-size: 24px; }
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 5px; }
   .session-form-container h4 {
-    font-size: 18px; }
+    font-size: 18px;
+    color: #8e8e8e; }
+  .session-form-container .session-form-box {
+    padding: 10px 20px; }
 
 .session-submit,
+.demo-login,
 .other-session-link {
   width: 310px;
   margin: 10px 0;
   height: 40px;
   border-radius: 5px;
-  background-color: #bd081d;
+  background-color: #ac98c2;
   color: white;
   display: table-cell;
   vertical-align: middle;
   font-weight: 700; }
   .session-submit:hover,
+  .demo-login:hover,
   .other-session-link:hover {
     opacity: 0.7;
     cursor: pointer; }
+
+.demo-login-container {
+  width: 100%;
+  border-top: 1px solid #e2e2e2;
+  background-color: #dedede;
+  border-radius: 0 0 10px 10px; }
 
 #root {
   height: 100%; }
@@ -1723,7 +1749,8 @@ svg {
     background-repeat: no-repeat;
     background-size: cover;
     text-align: center;
-    position: relative; }
+    position: relative;
+    opacity: 0.7; }
     .splash-greeting-container .splash-greeting .welcome-message {
       margin-top: 15%;
       display: inline-block;

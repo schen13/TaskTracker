@@ -1,7 +1,3 @@
-$light-blue: #d9f2fb;
-$blue: #00a9e0;
-$dark-blue: #007da6;
-
 .group-index-container {
   grid-area: groups;
   background: white;
@@ -40,7 +36,7 @@ $dark-blue: #007da6;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: $ultra-violet;
+    background-color: $light-violet;
     color: white;
     &:hover {
       opacity: 0.6;
@@ -184,8 +180,8 @@ svg {
 .multiple {
   padding-right: 30px;
   margin-right: 5px;
-  background: $light-blue;
-  color: $blue;
+  background: $light-violet;
+  color: white;
 }
 
 .delete {
@@ -231,9 +227,9 @@ svg {
   cursor: pointer;
 
   &.selected {
-    border: 1px solid $blue;
+    border: 1px solid $ultra-violet;
     margin: -1px -1px 0;
-    background: $light-blue;
+    background: $light-violet;
   }
   
   &.focused {
@@ -255,8 +251,8 @@ svg {
   font-size: 10px;
   
   .selected & {
-    border-color: $dark-blue;
-    background: $blue;
+    border-color: $ultra-violet;
+    background: $ultra-violet;
   }
 }
 
@@ -285,7 +281,7 @@ svg {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: $ultra-violet;
+  background-color: $light-violet;
   color: white;
   &:hover {
     opacity: 0.6;

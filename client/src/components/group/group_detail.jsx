@@ -14,7 +14,7 @@ class GroupDetail extends React.Component {
   }
 
   render() {
-    const { tasks, group, closeGroupModal, openGroupForm } = this.props;
+    const { group, closeGroupModal, openGroupForm } = this.props;
     return (
       <div className="group-detail-container">
         <div className="group-detail-header">
@@ -23,7 +23,7 @@ class GroupDetail extends React.Component {
             <button
               className="edit-group-button"
               onClick={openGroupForm}>
-              <i className="far fa-edit"></i>
+              <i className="fas fa-pencil-alt"></i>
             </button>
             <button
               className="edit-group-button"
