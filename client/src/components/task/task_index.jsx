@@ -15,7 +15,7 @@ import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import FolderIcon from '@material-ui/icons/Folder';
 
-const $ = window.$;
+// const $ = window.$;
 
 class TaskIndex extends React.Component {
   constructor(props) {
@@ -46,7 +46,7 @@ class TaskIndex extends React.Component {
   }
 
   renderComplete(complete) {
-    if(complete) {
+    if (complete) {
       return "complete";
     } else {
       return "incomplete";
@@ -60,12 +60,12 @@ class TaskIndex extends React.Component {
 
     return (
       <div className="task-parent-container">
-        <List className="task-index-container collection with-header">
+        <List id="task-index-list" className="task-index-container collection with-header">
           <ListItem className="collection-header" id="task-header">
             <h4>My Tasks</h4>
             <Modal id="create-task-modal" trigger={createTaskButton} >
               <div className="modal-content">
-                <TaskCreateContainer snack={this.handleClick}/>
+                <TaskCreateContainer snack={this.handleClick} />
               </div>
             </Modal>
           </ListItem>
@@ -73,10 +73,8 @@ class TaskIndex extends React.Component {
             <Modal key={task._id} trigger={
               <ListItem className={`collection-item hvr-fade`} key={task._id}>
                 <ListItemAvatar>
-                  <Avatar 
-                    className={`folder-icon ${task.completed ? "complete" : "incomplete"}`}
-                  >
-                    {task.completed ? <i className="fas fa-check"></i> : <FolderIcon/>}
+                  <Avatar className={`folder-icon ${task.completed ? "complete" : "incomplete"}`}>
+                    {task.completed ? <i className="fas fa-check"></i> : <FolderIcon />}
                   </Avatar>
                 </ListItemAvatar>
                 <ListItemText
@@ -105,7 +103,7 @@ class TaskIndex extends React.Component {
           ))}
         </List>
 
-        <Snack 
+        <Snack
           open={this.state.snackOpen}
           onClose={this.handleClose}
         />

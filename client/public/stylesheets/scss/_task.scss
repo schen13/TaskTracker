@@ -37,6 +37,11 @@ body {
   grid-area: main;
 }
 
+#task-index-list {
+  padding-bottom: 0px;
+}
+
+.task-create-container,
 .task-modal-container {
   h1 {
     padding: 0 0 5px 0;
@@ -87,6 +92,8 @@ body {
 #task-header {
   display: flex;
   justify-content: space-between;
+  border-left: none;
+  border-right: none;
 }
 
 #create-task-button {

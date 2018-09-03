@@ -6,7 +6,7 @@ class ChatShow extends React.Component {
   constructor(props) {
     super(props);
     this.socket = io.connect();
-    const { chat, currentUser } = this.props;
+    const { chat, users, currentUser } = this.props;
 
     this.state = {
       chatId: chat.chat._id,
@@ -15,7 +15,8 @@ class ChatShow extends React.Component {
       author: currentUser.id,
       participants: chat.chat.participants,
       anon: false,
-      messages: chat.message
+      messages: chat.message,
+      users: users
     };
     this.handleInput = this.handleInput.bind(this);
     this.handleSubmitMessage = this.handleSubmitMessage.bind(this);
@@ -53,24 +54,41 @@ class ChatShow extends React.Component {
   }
 
   renderMessages(){
-    let messages = this.state.messages;
+    let { messages, users } = this.state;
     if (!messages) return;
 
     let conversation = [];
-    for (let i = 0; i < messages.length; i++) {
-      if (messages[i].authorId !== this.props.currentUser.id) {
+    let authorName;
+    for (let i = messages.length - 1; i > 0; i--) {
+      if (messages[i].author !== this.props.currentUser.id) {
+        let author = users.filter(user => user.id === messages[i].author) 
+        if (author.username) {
+          authorName = author.username;
+        } else {
+          authorName = 'anonymous';
+        }
+        
         conversation.push(
-          <li key={messages[i]._id}>
+          <li className="other-message" key={messages[i]._id}>
             <div>
-              <i className="fas fa-user-circle" />
+              <i id="pf" className="fas fa-user-circle" />
             </div>
-            <div className="other-message">{messages[i].body}</div>
+            <div className="message-box">
+              <div className="message">
+                <span>{messages[i].body}</span>
+              </div>
+              <div className="author">{authorName}</div>
+            </div>
           </li>
         );
       } else {
         conversation.push(
-          <li>
-            <div className="own-message">{messages[i].body}</div>
+          <li className="own-message" key={messages[i]._id}>
+            <div className="message">
+              <span>
+                {messages[i].body}
+              </span>
+            </div>
           </li>
         );
       };
@@ -81,19 +99,21 @@ class ChatShow extends React.Component {
   render() {
     
     return (
-      <div className="chat-show">
-        <h1>{this.state.name}</h1>
-        <ul>
-          {this.renderMessages()}
-        </ul>
-        
+      <div>
+        <div className="chat-show">
+          <h1 className="chat-name">{this.state.name}</h1>
+          <ul className="chat-show-messages">
+            {this.renderMessages()}
+          </ul>
+        </div>
+          
         <form onSubmit={this.handleSubmitMessage} className="chat-input">
           <input 
             type="text"
+            id="message-input-body"
             onChange={this.handleInput}
             placeholder="Type a message"
             value={this.state.body} />
-          <button>Send</button>
         </form>
       </div>
     );

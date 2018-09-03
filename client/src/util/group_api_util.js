@@ -19,3 +19,9 @@ export const updateGroup = group => (
 export const deleteGroup = groupId => (
   axios.delete(`/api/groups/${groupId}`)
 );
+
+export const fetchGroupUsers = (userId) => (
+  axios.get('/api/groups', {
+    params: { userId }
+  })
+);

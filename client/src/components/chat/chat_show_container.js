@@ -7,6 +7,7 @@ import ChatShow from './chat_show';
 
 const mapStateToProps = ({ entities, session }, ownProps) => ({
   chat: selectChat({ entities }, ownProps.chatId),
+  users: Object.values(entities.users),
   currentUser: session
 });
 
