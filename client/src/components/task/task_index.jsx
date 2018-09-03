@@ -73,7 +73,9 @@ class TaskIndex extends React.Component {
             <Modal key={task._id} trigger={
               <ListItem className={`collection-item hvr-fade`} key={task._id}>
                 <ListItemAvatar>
-                  <Avatar className={`folder-icon ${task.completed ? "complete" : "incomplete"}`}>
+                  <Avatar 
+                    className={`folder-icon ${task.completed ? "complete" : "incomplete"}`}
+                  >
                     {task.completed ? <i className="fas fa-check"></i> : <FolderIcon/>}
                   </Avatar>
                 </ListItemAvatar>
