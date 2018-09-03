@@ -75,7 +75,6 @@ class TaskIndex extends React.Component {
                 <ListItemAvatar>
                   <Avatar className={`folder-icon ${task.completed ? "complete" : "incomplete"}`}>
                     {task.completed ? <i class="fas fa-check"></i> : <FolderIcon/>}
-                    {/* <FolderIcon/> */}
                   </Avatar>
                 </ListItemAvatar>
                 <ListItemText

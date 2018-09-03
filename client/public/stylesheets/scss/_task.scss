@@ -28,7 +28,7 @@ body {
 .hvr-fade:hover,
 .hvr-fade:focus,
 .hvr-fade:active {
-  background-color: #f0e5f0;
+  background-color: #ebe6f0;
   color: white;
 }
 
@@ -62,13 +62,13 @@ body {
 }
 
 .modal-close {
-  background-color: $ember;
+  background-color: #8c6faa;
   font-weight: 500;
   font-size: 15px;
 }
 
 .modal-close:hover {
-  background-color: $ember;
+  background-color: #8c6faa;
   opacity: .7;
 }
 
@@ -90,7 +90,7 @@ body {
 }
 
 #create-task-button {
-  background-color: $ember;
+  background-color: #ac98c2;
 }
 
 #close-button {
@@ -126,6 +126,21 @@ body {
   background-color: #a5c67a !important;
 }
 
-.incomplete {
-  // background-color: red !important;
+.task-title {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .fa-check {
+    color: #a5c67a;
+  }
+
+  .fa-times {
+    color: #da6fa0;
+  }
+}
+
+.complete-show {
+  background-color: white;
 }

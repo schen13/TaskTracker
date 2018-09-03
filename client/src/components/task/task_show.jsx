@@ -1,6 +1,9 @@
 import React from 'react';
 import Moment from 'moment';
 
+import Avatar from '@material-ui/core/Avatar';
+import FolderIcon from '@material-ui/icons/Folder';
+
 class TaskShow extends React.Component {
   constructor(props) {
     super(props);
@@ -49,7 +52,10 @@ class TaskShow extends React.Component {
     return(
       <div className="task-modal-container">
         <div className="label">
-          <h1>{task.name}</h1>
+          <div className="task-title">
+            <h1>{task.name}</h1>
+            {this.state.completed ? <i className="fas fa-check fa-2x"></i> : <i className="fas fa-times fa-2x"></i>}
+          </div>
           <h2>{this.props.group[task.groupId].name}</h2>
         </div>
         <div>
