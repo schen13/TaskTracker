@@ -14,7 +14,7 @@ const mapDispatchToProps = dispatch => ({
   fetchChat: chatId => dispatch(fetchChat(chatId)),
   deleteChat: id => dispatch(deleteChat(id)),
   openChatModal: chatId => dispatch(openChatModal(chatId)),
-  openChatForm: () => dispatch(openChatForm('chatForm'))
+  openChatForm: () => dispatch(openChatForm('create'))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChatIndex);

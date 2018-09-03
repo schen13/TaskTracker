@@ -99,23 +99,42 @@ class ChatCreate extends React.Component {
     const disabled = (participantNames && body) ? false : true;
 
     return (
-      <div>
-        <h2>Create A New Message</h2>
-        <form onSubmit={this.emitChatSubmit}>
-          <input 
-            type="text"
-            value={this.state.name}
-            placeholder="Add a name to your chat"
-            onChange={this.handleName} />
+      <div className="chat-create-container">
+        <div className="chat-modal-content">
+          <h2 className="chat-name">Create A New Message</h2>
+          <form onSubmit={this.emitChatSubmit}>
+            <input 
+              type="text"
+              value={this.state.name}
+              placeholder="Add a name to your chat"
+              onChange={this.handleName} />
 
-          <div>
+            <div>
+              <ul>
+                <li>To: </li>
+                {this.state.participantNames.map(participant => {
+                  return(
+                    <li key={participant.username}>
+                      {participant.username}
+                      <div onClick={() => this.removeParticipant(participant.id)}>x</div>
+                    </li>
+                  );
+                })}
+              </ul>
+
+              <input
+                type="text"
+                value={this.state.query}
+                placeholder="Type the name or username of a person"
+                onChange={this.handleInput} />
+            </div>
+
             <ul>
-              <li>To: </li>
-              {this.state.participantNames.map(participant => {
-                return(
-                  <li key={participant.username}>
-                    {participant.username}
-                    <div onClick={() => this.removeParticipant(participant.id)}>x</div>
+              {queryResults.map(user => {
+                return (
+                  <li key={user.id} onClick={() => this.handleClickParticipants(user)}>
+                    <div>{user.username}</div>
+                    <div>{user.fName} {user.lName}</div>
                   </li>
                 );
               })}
@@ -123,34 +142,17 @@ class ChatCreate extends React.Component {
 
             <input
               type="text"
-              value={this.state.query}
-              placeholder="Type the name or username of a person"
-              onChange={this.handleInput} />
-          </div>
+              onChange={this.handleMessage}
+              placeholder="Type a message"
+              value={this.state.body} />
 
-          <ul>
-            {queryResults.map(user => {
-              return (
-                <li key={user.id} onClick={() => this.handleClickParticipants(user)}>
-                  <div>{user.username}</div>
-                  <div>{user.fName} {user.lName}</div>
-                </li>
-              );
-            })}
-          </ul>
-
-          <input
-            type="text"
-            onChange={this.handleMessage}
-            placeholder="Type a message"
-            value={this.state.body} />
-
-          <button 
-            className="chat-create-button"
-            type="submit"
-            disabled={disabled}    
-            >Create Chat</button>
-        </form>
+            <button 
+              className="chat-create-button"
+              type="submit"
+              disabled={disabled}    
+              >Create Chat</button>
+          </form>
+        </div>
       </div>
     );
   }
