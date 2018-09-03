@@ -18,12 +18,16 @@ class HomePage extends React.Component {
     return (
 
       <div className="home-page">
-        {/* <NavBarContainer /> */}
-        <GroupIndexContainer user={user} />
-        <TaskIndexContainer />
-        <ChatIndexContainer />
-        <GroupModal />
-        <ChatModal />
+        <header className="home-page-header">
+          <NavBarContainer />
+        </header>
+        <main className="home-page-content">
+          <GroupIndexContainer user={user} />
+          <TaskIndexContainer />
+          <ChatIndexContainer />
+          <GroupModal />
+          <ChatModal />
+        </main>
       </div>
     );
   }

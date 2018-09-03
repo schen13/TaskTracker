@@ -1,9 +1,9 @@
 import React from 'react';
-
+import TaskCreateContainer from '../task/task_create_container';
 class GroupDetail extends React.Component {
 
   render() {
-    const { tasks, group, closeGroupModal } = this.props;
+    const { tasks, group, closeGroupModal, openGroupForm } = this.props;
     return (
       <div className="group-detail-container">
         <div className="group-detail-header">
@@ -11,7 +11,7 @@ class GroupDetail extends React.Component {
           <button
             className="close-group-modal-button"
             onClick={closeGroupModal}>
-            <i class="fas fa-times"></i>
+            <i className="fas fa-times"></i>
           </button>
         </div>
 
@@ -25,7 +25,17 @@ class GroupDetail extends React.Component {
             </div>
           </div>
         ))}
-
+        {/* <a className="btn-floating btn waves-effect waves-light red modal-trigger" href="#modal1"><i className="fas fa-plus"></i></a>
+        <div id="modal1" className="modal">
+          <div className="modal-content">
+            <TaskCreateContainer />
+          </div>
+        </div> */}
+        <button
+          className="edit-group-button"
+          onClick={openGroupForm}>
+          <i className="far fa-edit"></i>
+        </button>
       </div>
     );
   }

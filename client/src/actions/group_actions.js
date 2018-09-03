@@ -38,7 +38,7 @@ const receiveGroups = groups => ({
 
 const receiveGroup = group => ({
   type: RECEIVE_SINGLE_GROUP,
-  group: group.data
+  group: group.data.group
 });
 
 const removeGroup = group => ({

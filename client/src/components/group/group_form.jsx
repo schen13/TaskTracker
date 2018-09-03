@@ -1,5 +1,6 @@
 import React from 'react';
 import GroupCreateContainer from './group_create_container';
+import GroupEditContainer from './group_edit_container';
 import { connect } from 'react-redux';
 import { closeGroupForm } from '../../actions/modal_actions';
 
@@ -10,9 +11,9 @@ const GroupForm = ({ groupForm, closeGroupForm }) => {
     case 'create':
       component = <GroupCreateContainer />;
       break;
-    // case 'edit':
-    //   component = <GroupEditContainer />;
-    //   break;
+    case 'edit':
+      component = <GroupEditContainer />;
+      break;
     default:
       return null;
   }

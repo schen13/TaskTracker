@@ -28,7 +28,6 @@ $dark-blue: #007da6;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px;
     padding: 10px;
   }
   .open-group-create-button {
@@ -39,7 +38,7 @@ $dark-blue: #007da6;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: $blue;
+    background-color: $ultra-violet;
     color: white;
     &:hover {
       opacity: 0.6;
@@ -55,12 +54,13 @@ $dark-blue: #007da6;
   grid-area: main;
   height: 100%;
   background-color: white;
-  z-index: 5;
+  box-sizing: border-box;
+  z-index: 3;
   transform: translateX(-30%);
 }
 
 .group-open {
-  animation: slide-right 0.2s forwards;
+  animation: slide-right 0.2s forwards ease;
 }
 
 .group-closed {
@@ -68,12 +68,12 @@ $dark-blue: #007da6;
 }
 
 @keyframes slide-right {
-    100% { transform: translateX(0%); }
+  100% { transform: translateX(0%); }
 }
 
 @keyframes slide-left {
-    0% { transform: translateX(0%); }
-    100% { transform: translateX(-100%); }
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-100%); }
 }
 
 .group-form-background {
@@ -102,9 +102,14 @@ $dark-blue: #007da6;
   z-index: 7;
   background-color: white;
 
-  .input-field input[type=text]:focus {
-    border-bottom: 1px solid $blue;
-    box-shadow: 0 1px 0 0 $blue;
+  .input-field input[value=""] {
+    border-bottom: 1px solid $lighter-gray;
+  }
+
+  .input-field input[type=text]:focus,
+  .input-field input[type=text]:valid {
+    border-bottom: 1px solid $ultra-violet;
+    box-shadow: 0 1px 0 0 $ultra-violet;
   }
 
   .group-select {
@@ -114,7 +119,7 @@ $dark-blue: #007da6;
       height: 45px;
       border-radius: 5px;
       align-self: flex-end;
-      background-color: $blue;
+      background-color: $ultra-violet;
       color: white;
       letter-spacing: 1px;
       padding: 0 10px;
@@ -150,7 +155,7 @@ svg {
     outline: 0;
     
     & .selection {
-      box-shadow: 0 0 1px 1px $blue;
+      box-shadow: 0 0 1px 1px $ultra-violet;
     }
   }
 }
@@ -211,9 +216,11 @@ svg {
   top: 100%;
   left: 0;
   right: 0;
-  border: solid $lighter-gray;
-  border-width: 0 1px;
+  border: 1px solid $lighter-gray;
   background: #fff;
+
+  max-height: 300px;
+  overflow: auto;
 }
 
 .username {
@@ -256,22 +263,33 @@ svg {
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-  .close-group-modal-button {
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: $blue;
-    color: white;
-    &:hover {
-      opacity: 0.6;
-      cursor: pointer;
-    }
-    i {
-      font-size: 18px;
-    }
+}
+
+.edit-group-button,
+.close-group-modal-button {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $ultra-violet;
+  color: white;
+  &:hover {
+    opacity: 0.6;
+    cursor: pointer;
+  }
+}
+
+.close-group-modal-button {
+  i {
+    font-size: 20px;
+  }
+}
+
+.edit-group-button {
+  i {
+    font-size: 16px;
   }
 }

@@ -15,8 +15,8 @@ exports.getGroups = [
 
 exports.getGroup = [
   function (req, res) {
-    const { groupId } = req.params.id;
-    Group.findOne({ _id: groupId }, (group) => {
+    const { groupId } = req.params;
+    Group.findOne({ _id: groupId }, (err, group) => {
       if (!group) return res.status(404).send({
         success: false,
         error: 'Group not found'
@@ -42,7 +42,10 @@ exports.createGroup = [
       tasks: []
     });
     newGroup.save().then(group => {
-      res.send(group);
+      res.json({
+        success: true,
+        group
+      });
     }, err => {
       res.status(400).send(err);
     });
@@ -51,14 +54,14 @@ exports.createGroup = [
 
 exports.updateGroup = [
   function (req, res) {
-    const { errors, isValid } = validateGroupInput(req.body);
-    if (!isValid) {
-      return res.status(400).json(errors);
-    }
-    const { groupId } = req.params.id;
+    // const { errors, isValid } = validateGroupInput(req.body);
+    // if (!isValid) {
+    //   return res.status(400).json(errors);
+    // }
+    const { groupId } = req.params;
     if (!groupId) return res.json({ success: false, error: 'No group ID provided' });
     Group.findOneAndUpdate(
-      { _id: groupId }, req.body, { new: true }, (group) => {
+      { _id: groupId }, req.body, { new: true }, (err, group) => {
         if (!group) return res.status(404).send({
           success: false,
           error: 'Group not found'
@@ -69,14 +72,15 @@ exports.updateGroup = [
         });
       }
     );
+
   }
 ];
 
 exports.deleteGroup = [
   function (req, res) {
-    const { groupId } = req.params.id;
+    const { groupId } = req.params;
     if (!groupId) return res.json({ success: false, error: 'No group ID provided' });
-    Group.findOneAndDelete({ _id: groupId }, (group) => {
+    Group.findOneAndDelete({ _id: groupId }, (err, group) => {
       if (!group) return res.json({
         success: false,
         error: 'Group not found'
