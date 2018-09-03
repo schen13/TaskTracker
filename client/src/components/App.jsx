@@ -1,10 +1,6 @@
 import React from 'react';
-import {
-  Route,
-  Switch
-} from 'react-router-dom';
+import { Switch } from 'react-router-dom';
 
-import NavBarContainer from './navbar/navbar_container';
 import SignUpFormContainer from "./session_form/signup_form_container";
 import LogInFormContainer from "./session_form/login_form_container";
 import { AuthRoute, ProtectedRoute } from '../util/route_util';

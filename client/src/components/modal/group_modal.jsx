@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { closeGroupModal } from '../../actions/modal_actions';
 import GroupDetailContainer from '../group/group_detail_container';
 
 const mapStateToProps = state => ({
