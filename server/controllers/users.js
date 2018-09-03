@@ -149,16 +149,3 @@ router.post('/login', (req, res) => {
 });
 
 module.exports = router;
-
-// exports.getUserQuery = (req, res, next) => {
-//   // returns users from search query
-//   const userData = req.query.userData;
-//   Group.find({ users: userId }).exec((err, users) => {
-//     if (err) {
-//       res.status(400).send({ error: err });
-//       return next(err);
-//     }
-//     res.status(200).json({ users });
-//     return next();
-//   });
-// };
