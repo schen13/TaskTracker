@@ -6,14 +6,19 @@
   "directories": {
     "doc": "docs"
   },
+  "engines": {
+    "node": "8.9.0",
+    "npm": "6.4.1"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "client-install": "npm install --prefix client",
     "client": "npm start --prefix client",
     "server-install": "npm install --prefix server",
     "server": "npm run server --prefix server",
     "css-watch": "sass --watch client/public/stylesheets/main.scss:client/src/index.css",
-    "dev": "concurrently \"npm run server\" \"npm run client\" \"npm run css-watch\""
+    "dev": "concurrently \"npm run server\" \"npm run client\" \"npm run css-watch\"",
+    "start": "npm run server && npm run client",
+    "heroku-postbuild": "npm install --prefix client && npm run build --prefix client && npm install --prefix server && npm run build --prefix server"
   },
   "repository": {
     "type": "git",
@@ -35,6 +40,11 @@
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.1",
-    "eslint-plugin-react": "^7.11.1"
+    "eslint-plugin-react": "^7.11.1",
+    "html-webpack-plugin": "^3.2.0",
+    "webpack": "^4.17.1",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-middleware": "^3.2.0",
+    "webpack-dev-server": "^3.1.7"
   }
 }
