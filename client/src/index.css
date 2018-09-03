@@ -1178,15 +1178,22 @@ body {
 .task-parent-container {
   grid-area: main; }
 
-.task-create-container h1 {
+.task-modal-container h1 {
   padding: 0 0 15px 0;
   font-size: 30px;
   font-weight: 500;
   color: #484848; }
-.task-create-container form {
+.task-modal-container form {
   color: #484848; }
-.task-create-container label {
+.task-modal-container label {
   z-index: -1; }
+
+.modal-close {
+  background-color: #fc5a57; }
+
+.modal-close:hover {
+  background-color: #fc5a57;
+  opacity: .7; }
 
 .waves-effect {
   z-index: 0; }
@@ -1203,6 +1210,13 @@ body {
 
 #create-task-button {
   background-color: #fc5a57; }
+
+#close-button {
+  display: flex;
+  justify-content: flex-end; }
+
+.modal-footer {
+  display: none; }
 
 .chat-bar {
   grid-area: chats;

@@ -94,7 +94,7 @@ class TaskCreate extends React.Component {
 
 
     return (
-      <div className="task-create-container">
+      <div className="task-modal-container">
         <div className="label">
           <h1>Create New Task</h1>
         </div>
@@ -160,7 +160,9 @@ class TaskCreate extends React.Component {
               />
             </div>
           </div>
-          <button className="btn waves-effect waves-light modal-close" type="submit"> Create Task </button>     
+          <div id="close-button">
+            <button className="btn waves-effect waves-light modal-close" type="submit"> Create Task </button>     
+          </div>
         </form>
       </div>
     );

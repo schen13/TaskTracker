@@ -37,7 +37,7 @@ body {
   grid-area: main;
 }
 
-.task-create-container {
+.task-modal-container {
   h1 {
     padding: 0 0 15px 0;
     font-size: 30px;
@@ -52,6 +52,15 @@ body {
   label {
     z-index: -1;
   }
+}
+
+.modal-close {
+  background-color: $ember;
+}
+
+.modal-close:hover {
+  background-color: $ember;
+  opacity: .7;
 }
 
 .waves-effect {
@@ -73,4 +82,13 @@ body {
 
 #create-task-button {
   background-color: $ember;
+}
+
+#close-button {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.modal-footer {
+  display: none;
 }
