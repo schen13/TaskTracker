@@ -55,6 +55,7 @@ class SessionForm extends React.Component {
               value={this.state.username}
               onChange={this.update('username')}
               className="login-input"
+              required
             />
           </label>
           <label>First Name:
@@ -84,13 +85,14 @@ class SessionForm extends React.Component {
             value={this.state.password2}
             onChange={this.update('password2')}
             className="session-input"
+            required
           />
         </label >
       ) : (null);
     return (
       <div className="session-form-background">
         <div className="session-form-container">
-          <img src={logo} alt="logo" />
+          {/* <img src={logo} alt="logo" /> */}
           <form onSubmit={this.handleSubmit} className="session-form-box">
             <h3>Welcome to TaskTracker!</h3>
             <h4>{this.props.formType} to begin!</h4>
@@ -102,6 +104,7 @@ class SessionForm extends React.Component {
                   value={this.state.email}
                   onChange={this.update('email')}
                   className="session-input"
+                  required
                 />
               </label>
               {this.additionalParams()}
@@ -110,6 +113,7 @@ class SessionForm extends React.Component {
                   value={this.state.password}
                   onChange={this.update('password')}
                   className="session-input"
+                  required
                 />
               </label>
               {pass2}

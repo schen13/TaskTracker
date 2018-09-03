@@ -1865,7 +1865,7 @@ svg {
   border: 1px solid #e2e2e2;
   font-family: HelveticaNeue;
   text-align: center;
-  font-size: 16px;
+  font-size: 14px;
   box-sizing: border-box;
   padding-top: 20px; }
   .session-form-container img {
@@ -2007,7 +2007,7 @@ svg {
 
 .splash-greeting-bottom {
   position: absolute;
-  top: 950px;
+  top: 994px;
   height: 100%;
   width: 100%;
   display: grid;
