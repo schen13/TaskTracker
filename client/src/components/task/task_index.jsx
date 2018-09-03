@@ -31,6 +31,7 @@ class TaskIndex extends React.Component {
 
   componentDidMount() {
     this.props.fetchTasks();
+    this.props.fetchUsers();
   }
 
   handleClick() {
