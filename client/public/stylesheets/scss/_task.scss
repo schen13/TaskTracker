@@ -28,7 +28,7 @@ body {
 .hvr-fade:hover,
 .hvr-fade:focus,
 .hvr-fade:active {
-  background-color: rgb(59, 130, 163);
+  background-color: $citrus;
   color: white;
 }
 
@@ -60,6 +60,10 @@ body {
 
 .collection-item {
   cursor: pointer;
+}
+
+.collection-item:hover {
+  color: white;
 }
 
 #task-header {
