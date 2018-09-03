@@ -18,7 +18,8 @@
     "server": "npm run server --prefix server",
     "css-watch": "sass --watch client/public/stylesheets/main.scss:client/src/index.css",
     "dev": "concurrently \"npm run server\" \"npm run client\" \"npm run css-watch\"",
-    "start": "npm run server && npm run client"
+    "start": "npm run server && npm run client",
+    "postinstall": "npm run client-install && npm run server-install"
   },
   "repository": {
     "type": "git",
