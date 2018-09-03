@@ -11,11 +11,12 @@ const mapDispatchToProps = dispatch => ({
 
 const ChatModal = ({ chatModal }) => {
   if (!chatModal) return null;
+  let modal = <ChatShowContainer chatId={chatModal} />;
+
   return (
     <div className="chat-modal-background">
       <div className="chat-modal-child">
-        <ChatShowContainer 
-          chatId={chatModal} />
+        {modal}
       </div>
     </div>
   );

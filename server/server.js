@@ -8,6 +8,7 @@ const task = require('./controllers/task');
 const group = require('./controllers/group');
 const chat = require('./controllers/chat');
 const message = require('./controllers/message');
+const Chat = require('./models/chat');
 const jsonwebtoken = require('jsonwebtoken');
 const path = require('path');
 require('./config/passport')(passport);
@@ -47,13 +48,13 @@ app.get('/api/groups/:groupId', group.getGroup);
 app.post('/api/groups', group.createGroup);
 app.patch('/api/groups/:groupId', group.updateGroup);
 app.delete('/api/groups/:groupId', group.deleteGroup);
+app.get('/api/groups', group.getGroupUsers);
 
 app.get('/api/chats', chat.getChats);
 app.get('/api/chat', chat.getChat);
 app.post('/api/chats', chat.newChat);
 app.delete('/api/chats/:chatId', chat.deleteChat);
 app.post('/api/messages/:chatId', message.createMessage);
-
 
 const io = require('socket.io')(server);
 
@@ -63,7 +64,23 @@ io.on('connection', function(socket){
   //   console.log('a user disconnected');
   // });
 
+  socket.on('newChat', (chatData) => {
+    const newChat = {
+      name: chatData.name,
+      participants: chatData.participants,
+      timestamp: Date(Date.now())
+    };
+
+    Chat.create(newChat, (err, chat) => {
+      if (err) {
+        io.emit('error', err);
+      } else {
+        io.emit('newChatCreated', chat._id);
+      }
+    })
+  })
+
   socket.on('newMessage', (message) => {
-    io.emit('newMessage', message)
+    io.emit('newMessage', message);
   });
 });

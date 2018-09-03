@@ -8,6 +8,7 @@ class GroupIndexItem extends React.Component {
 
   handleClick(e) {
     e.preventDefault();
+    this.props.closeChatModal();
     this.props.openGroupModal(this.props.group._id);
   }
 

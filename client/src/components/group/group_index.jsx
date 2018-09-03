@@ -11,7 +11,7 @@ class GroupIndex extends React.Component {
   }
 
   render() {
-    const { user, groups, openGroupModal, openGroupForm } = this.props;
+    const { user, groups, openGroupModal, openGroupForm, closeChatModal } = this.props;
     const userGroups = selectUserGroups(user, groups);
     if (!userGroups) return null;
     return (
@@ -28,6 +28,7 @@ class GroupIndex extends React.Component {
             <GroupIndexItem
               key={group._id}
               group={group}
+              closeChatModal={closeChatModal}
               openGroupModal={openGroupModal}
             />
           ))}
