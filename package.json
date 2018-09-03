@@ -18,7 +18,7 @@
     "css-watch": "sass --watch client/public/stylesheets/main.scss:client/src/index.css",
     "dev": "concurrently \"npm run server\" \"npm run client\" \"npm run css-watch\"",
     "start": "npm run server && npm run client",
-    "heroku-postbuild": "run client-install && npm run build --prefix client"
+    "heroku-postbuild": "npm install --prefix client && npm run build --prefix client && npm install --prefix server && npm run build --prefix server"
   },
   "repository": {
     "type": "git",

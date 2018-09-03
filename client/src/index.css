@@ -1153,7 +1153,7 @@ time, mark, audio, video {
 body {
   font-family: Circular, "Helvetica Neue", Helvetica, Arial, sans-serif; }
 
-#create-task-modal {
+#create-task-modal, .edit-task {
   overflow-y: visible;
   height: auto;
   width: 60%; }
@@ -1172,7 +1172,7 @@ body {
 .hvr-fade:hover,
 .hvr-fade:focus,
 .hvr-fade:active {
-  background-color: #3b82a3;
+  background-color: #ebe6f0;
   color: white; }
 
 .task-parent-container {
@@ -1181,15 +1181,33 @@ body {
 #task-index-list {
   padding-bottom: 0px; }
 
-.task-create-container h1 {
-  padding: 0 0 15px 0;
+.task-create-container h1,
+.task-modal-container h1 {
+  padding: 0 0 5px 0;
   font-size: 30px;
   font-weight: 500;
   color: #484848; }
-.task-create-container form {
+.task-create-container h2,
+.task-modal-container h2 {
+  padding: 0 0 15px 0;
+  font-size: 16px;
+  font-weight: 400;
+  color: gray; }
+.task-create-container form,
+.task-modal-container form {
   color: #484848; }
-.task-create-container label {
+.task-create-container label,
+.task-modal-container label {
   z-index: -1; }
+
+.modal-close {
+  background-color: #8c6faa;
+  font-weight: 500;
+  font-size: 15px; }
+
+.modal-close:hover {
+  background-color: #8c6faa;
+  opacity: .7; }
 
 .waves-effect {
   z-index: 0; }
@@ -1197,9 +1215,54 @@ body {
 .collection-item {
   cursor: pointer; }
 
+.collection-item:hover {
+  color: white; }
+
 #task-header {
   display: flex;
   justify-content: space-between; }
+
+#create-task-button {
+  background-color: #ac98c2; }
+
+#close-button {
+  display: flex;
+  justify-content: flex-end; }
+
+.modal-footer {
+  display: none; }
+
+#message-id {
+  display: flex;
+  align-items: center;
+  font-size: 16px; }
+
+#check-icon {
+  margin-right: 15px; }
+
+.secondary-action-container {
+  display: flex;
+  justify-content: space-between; }
+
+.complete-button {
+  display: flex;
+  justify-content: center; }
+
+.complete {
+  background-color: #a5c67a !important; }
+
+.task-title {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; }
+  .task-title .fa-check {
+    color: #a5c67a; }
+  .task-title .fa-times {
+    color: #da6fa0; }
+
+.complete-show {
+  background-color: white; }
 
 .chat-bar {
   grid-area: chats;
