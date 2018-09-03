@@ -10,7 +10,6 @@ class HomePage extends React.Component {
 
   componentDidMount() {
     this.props.fetchSingleUser(this.props.userId);
-    this.props.fetchGroupUsers(this.props.userId);
   }
 
   render() {

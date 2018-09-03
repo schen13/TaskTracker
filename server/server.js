@@ -8,6 +8,7 @@ const task = require('./controllers/task');
 const group = require('./controllers/group');
 const chat = require('./controllers/chat');
 const message = require('./controllers/message');
+const Chat = require('./models/chat');
 const jsonwebtoken = require('jsonwebtoken');
 
 require('./config/passport')(passport);
@@ -55,6 +56,18 @@ io.on('connection', function(socket){
   // socket.on("disconnect", function(){
   //   console.log('a user disconnected');
   // });
+
+  socket.on('newChat', (chatData) => {
+    const newChat = {
+      name: chatData.name,
+      participants: chatData.participants,
+      timestamp: Date(Date.now())
+    };
+
+    Chat.create(newChat, (err, chat) => {
+      io.emit('newChatCreated', chat._id)
+    })
+  })
 
   socket.on('newMessage', (message) => {
     io.emit('newMessage', message)
