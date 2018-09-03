@@ -2,6 +2,8 @@ import React from 'react';
 import { Modal, Button } from 'react-materialize';
 import TaskCreateContainer from './task_create_container';
 import TaskShowContainer from './task_show_container';
+import TaskEdit from './task_edit';
+import Snack from './snack';
 
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -11,10 +13,6 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import FolderIcon from '@material-ui/icons/Folder';
-import Snackbar from '@material-ui/core/Snackbar';
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
-import { withStyles } from '@material-ui/core/styles';
-
 
 const $ = window.$;
 
@@ -81,35 +79,28 @@ class TaskIndex extends React.Component {
                   secondary={`Finish by: ${this.formatDate(task.deadline)}`}
                 />
                 <ListItemSecondaryAction>
+                  <TaskEdit
+                    snack={this.handleClick}
+                    updateTask={this.props.updateTask}
+                    users={this.props.users}
+                    task={task}
+                  />
                   <IconButton aria-label="Delete" onClick={() => this.props.deleteTask(task._id)}>
                     <i className="fas fa-trash"></i>
                   </IconButton>
                 </ListItemSecondaryAction>
               </ListItem>
-              
             }>
-              <TaskShowContainer task={task}/>
+              <TaskShowContainer
+                task={task}
+              />
             </Modal>
           ))}
         </List>
-          <button onClick={this.handleClick}>hhi</button>
-        <Snackbar id="success"
-          anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'right',
-          }}
+
+        <Snack 
           open={this.state.snackOpen}
-          autoHideDuration={4000}
           onClose={this.handleClose}
-          ContentProps={{
-            'aria-describedby': 'message-id',
-          }}
-          message={
-            <div id="message-id">
-              <CheckCircleIcon id="check-icon"/>
-              <div>Task Created</div>
-            </div>
-          }
         />
       </div>
     );
