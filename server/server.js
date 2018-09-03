@@ -1,5 +1,3 @@
-const express = require('express');
-const app = express();
 const port = process.env.PORT || 5000;
 const mongoose = require('mongoose');
 const db = require('./config/keys').mongoURI;
@@ -14,7 +12,11 @@ const jsonwebtoken = require('jsonwebtoken');
 
 require('./config/passport')(passport);
 
+const express = require('express');
+const app = express();
 
+const server = require('http').Server(app);
+server.listen(port, () => console.log(`websockets are running on ${port}`));
 
 mongoose
   .connect(db)
@@ -27,7 +29,6 @@ app.use(bodyParser.json());
 
 app.use('/api/users', users);
 
-app.post('/api/tasks', task.addTask);
 app.get('/api/tasks', task.getUserTasks);
 app.get('/api/tasks/:id', task.getTask);
 app.post('/api/tasks', task.addTask);
@@ -40,14 +41,22 @@ app.post('/api/groups', group.createGroup);
 app.patch('/api/groups/:groupId', group.updateGroup);
 app.delete('/api/groups/:groupId', group.deleteGroup);
 
-app.get('/api/chats', passport.authenticate('jwt', { session: false }), chat.getChats);
-app.get('/api/chats/:chatId', chat.getChat);
-app.post('/api/chats', passport.authenticate('jwt', { session: false }), chat.newChat);
-app.post('/api/chats/:chatId', passport.authenticate('jwt', { session: false }), message.createMessage);
-app.delete('/api/chats/:chatId', passport.authenticate('jwt', { session: false }), chat.deleteChat);
+app.get('/api/chats', chat.getChats);
+app.get('/api/chat', chat.getChat);
+app.post('/api/chats', chat.newChat);
+app.delete('/api/chats/:chatId', chat.deleteChat);
+app.post('/api/messages/:chatId', message.createMessage);
 
-// Socket.io for chat functionality
-// const server = require('http').createServer();
-// const io = require('socket.io')(server, {});
 
-app.listen(port, () => console.log(`Server is running on ${port}`));
+const io = require('socket.io')(server);
+
+io.on('connection', function(socket){
+  // console.log('a user connected');
+  // socket.on("disconnect", function(){
+  //   console.log('a user disconnected');
+  // });
+
+  socket.on('newMessage', (message) => {
+    io.emit('newMessage', message)
+  });
+});

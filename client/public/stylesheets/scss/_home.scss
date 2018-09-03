@@ -20,21 +20,24 @@ body {
   font-size: 18px;
   a {
     text-decoration: none;
-    color: $gray;
+    color: white;
   }
 }
 
 .left-nav {
+  margin-left: 10px;
+  position: fixed;
   background-color: white;
   width: 50px;
   height: 50px;
-  border-radius: 50%;
+  border-radius: 25%;
   display: flex;
   justify-content: center;
   img {
     width: 60px;
     height: 50px;
     padding: 5px;
+    padding-right: 8px;
   }
   &:hover {
     background-color: $lighter-gray;
@@ -44,28 +47,41 @@ body {
 .right-nav {
   ul {
     height: 100%;
-    background-color: white;
+    background-color: $ultra-violet;
     display: flex;
     align-items: center;
     justify-content: flex-end;
     color: $gray;
     list-style: none;
+    .nav-title {
+      margin-right: 300px;
+    }
+    li {
+      margin-right: 10px;
+      color: white;
+    }
   }
 }
 
 .home-page {
   position: absolute;
   top: 80px;
-  display: flex;
+  display: grid;
+  grid-template-rows: 5% auto;
+  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-areas: "groups main chats";
+  justify-items: stretch;
+  align-items: start;
   width: 100%;
+  height: 100%;
 
-  .home-page-container {
-    width: 25%;
-    border: 1px solid red;
-  }
+  // .home-page-container {
+  //   width: 25%;
+  //   border: 1px solid red;
+  // }
 
-  .home-page-middle-container {
-    width: 50%;
-    border: 1px solid green;
-  }
+  // .home-page-middle-container {
+  //   width: 50%;
+  //   border: 1px solid green;
+  // }
 }

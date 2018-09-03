@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import logo from '../../logo.png';
+import logo from '../../assets/logo.png';
 
 const Navbar = ({ currentUser, logout }) => {
     return (
@@ -9,9 +9,11 @@ const Navbar = ({ currentUser, logout }) => {
                 <Link to="/" className="header-link">
                     <img src={logo} alt="logo" />
                 </Link>
+
             </nav>
             <nav className="right-nav">
                 <ul>
+                    <li className="nav-title"> Task Tracker </li>
                     <li className="nav-home">
                         <Link to="/">Home</Link>
                     </li>

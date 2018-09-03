@@ -12,16 +12,24 @@ class GroupCreate extends React.Component {
       typed: ''
     };
 
-    this.onFocus = this.onFocus.bind(this);
-    this.onBlur = this.onBlur.bind(this);
-
-    this.onClick = this.onClick.bind(this);
-    this.onDeleteOption = this.onDeleteOption.bind(this);
-    this.onHoverOption = this.onHoverOption.bind(this);
-    this.onClickOption = this.onClickOption.bind(this);
-
-    this.renderUsername = this.renderUsername.bind(this);
+    this.handleClick = this.handleClick.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+
+    this.focus = this.focus.bind(this);
+    this.blur = this.blur.bind(this);
+
+    this.deleteOption = this.deleteOption.bind(this);
+    this.hoverOption = this.hoverOption.bind(this);
+    this.clickOption = this.clickOption.bind(this);
+    this.renderUsername = this.renderUsername.bind(this);
+
+
+  }
+
+  handleClick() {
+    this.setState(prevState => ({
+      isOpen: !prevState.isOpen
+    }));
   }
 
   handleSubmit(e) {
@@ -30,7 +38,8 @@ class GroupCreate extends React.Component {
       name: this.state.name,
       users: this.state.values.map(username => this.props.usernameMapping[username])
     };
-    this.props.createGroup(newGroup);
+    this.props.createGroup(newGroup)
+      .then(this.props.closeGroupForm());
   }
 
   update(field) {
@@ -41,11 +50,11 @@ class GroupCreate extends React.Component {
     };
   }
 
-  onFocus() {
+  focus() {
     this.setState({ isFocused: true });
   }
 
-  onBlur() {
+  blur() {
     this.setState({
       focusedValue: -1,
       isFocused: false,
@@ -53,13 +62,9 @@ class GroupCreate extends React.Component {
     });
   }
 
-  onClick() {
-    this.setState(prevState => ({
-      isOpen: !prevState.isOpen
-    }));
-  }
 
-  onDeleteOption(e) {
+
+  deleteOption(e) {
     const { value } = e.currentTarget.dataset;
 
     this.setState(prevState => {
@@ -72,7 +77,7 @@ class GroupCreate extends React.Component {
     });
   }
 
-  onHoverOption(e) {
+  hoverOption(e) {
     const { usernames } = this.props;
 
     const { value } = e.currentTarget.dataset;
@@ -81,7 +86,7 @@ class GroupCreate extends React.Component {
     this.setState({ focusedValue: index });
   }
 
-  onClickOption(e) {
+  clickOption(e) {
 
     const { value } = e.currentTarget.dataset;
 
@@ -119,13 +124,13 @@ class GroupCreate extends React.Component {
     return values.map(value => (
       <span
         key={value}
-        onClick={this.stopPropagation}
+        handleClick={this.stopPropagation}
         className="multiple value"
       >
         {value}
         <span
           data-value={value}
-          onClick={this.onDeleteOption}
+          handleClick={this.deleteOption}
           className="delete"
         >
           <RemoveButton />
@@ -162,8 +167,8 @@ class GroupCreate extends React.Component {
         key={value}
         data-value={value}
         className={className}
-        onMouseOver={this.onHoverOption}
-        onClick={this.onClickOption}
+        onMouseOver={this.hoverOption}
+        handleClick={this.clickOption}
       >
         <span className="checkbox">
           {selected ? <CheckMark /> : null}
@@ -176,6 +181,7 @@ class GroupCreate extends React.Component {
   render() {
     const label = "Select Group Members";
     const { isOpen } = this.state;
+    const disabled = this.state.name ? false : true;
     return (
 
       <div className="group-create-container">
@@ -184,6 +190,7 @@ class GroupCreate extends React.Component {
         </div>
         <form onSubmit={this.handleSubmit}>
           <div className="input-field col s6">
+            <label htmlFor="name">Name of Group</label>
             <input
               autoComplete="off"
               id="name"
@@ -191,26 +198,30 @@ class GroupCreate extends React.Component {
               className="validate"
               onChange={this.update('name')}
             />
-            <label htmlFor="name">Name of Group</label>
           </div>
-          <div
-            className="select"
-            tabIndex="0"
-            onFocus={this.onFocus}
-            onBlur={this.onBlur}
-            onKeyDown={this.onKeyDown}
-          >
-            <label className="label">{label}</label>
-            <div className="selection" onClick={this.onClick}>
-              {this.renderValues()}
-              <span className="arrow">
-                {isOpen ? <UpArrow /> : <DownArrow />}
-              </span>
+          <div className="group-select">
+            <div
+              className="select"
+              tabIndex="0"
+              focus={this.focus}
+              blur={this.blur}
+              onKeyDown={this.onKeyDown}
+            >
+              <label className="label">{label}</label>
+              <div className="selection" onClick={this.handleClick}>
+                {this.renderValues()}
+                <span className="arrow">
+                  {isOpen ? <UpArrow /> : <DownArrow />}
+                </span>
+              </div>
+              {this.renderUsernames()}
             </div>
-            {this.renderUsernames()}
+            <button
+              className="group-create-button"
+              type="submit"
+              disabled={disabled}
+            >CREATE GROUP</button>
           </div>
-          <button className="btn waves-effect waves-light" type="submit"> Create Group </button>
-
         </form>
 
       </div>

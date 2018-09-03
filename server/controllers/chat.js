@@ -1,11 +1,9 @@
-'use strict'
 const Chat = require('../models/chat');
 const Message = require('../models/message');
 
 exports.getChats = (req, res, next) => {
   // index view for chats
-  Chat.find({ participants: req.user._id })
-    .select('name participants')
+  Chat.find({ participants: req.query.userId })
     .exec((err, chats) => {
       if (err) {
         res.status(400).send({ error: err });
@@ -13,83 +11,58 @@ exports.getChats = (req, res, next) => {
       }
 
       let allChats = [];
-      // only returns most recent message for preview
-      chats.forEach((chat) => {
-        Message.findOne({ 'chatId' : chat._id })
-          .sort('-createdAt')
-          .limit(1)
-          .populate({
-            path: 'author',
-            select: 'fName lName'
-          })
-          .exec((err, message) => {
-            if (err) {
-              res.status(400).send({ error: err });
-              return next(err);
-            }
-            allChats.push(message);
-            if (allChats.length === chats.length) {
-              return res.status(200).send({ chats: allChats });
-            }
-          });
-      });
+      chats.forEach(chat => {
+        Message.find({ chatId: chat._id })
+        .sort('-timestamp')
+        .exec((err, message) => {
+          allChats.push({ chat, message })
+          if (allChats.length === chats.length) {
+            res.status(200).json({ chats: allChats })
+            return next();
+          }
+        })
+      })
     });
 };
 
 exports.getChat = (req, res, next) => {
   // show view for chat messages
-  const chatId = req.params.chatId
-  Message.findById({ chatId })
-    .sort('-createdAt')
-    .populate({
-      path: 'author',
-      select: 'fName lName'
-    })
-    .exec(function (err, messages) {
+  const chatId = req.query.chatId;
+  Chat.find({ _id: chatId })
+    .exec((err, chat) => {
       if (err) {
         res.status(400).send({ error: err });
         return next(err);
-      };
+      }
+      let chatMessages = [];
+      let messageArray = [];
+      chat.forEach(chat => {
+        Message.find({ chatId: chat._id })
+        .sort('-timestamp')
+        .exec((err, messages) => {
+          messages.forEach(message => {
+            messageArray.push(message)
+          });
+          chatMessages.push(chat, messageArray)
 
-      res.status(200).send({ messages });
-      return next();
+          res.status(200).json({ chat: chatMessages });
+          return next();
+        })
+      })
     });
 };
 
 exports.newChat = (req, res, next) => {
-  if(!req.body.composedMessage) {
-    res.status(422).send({ errors: 'Please enter a message' });
-    return next();
-  }
+  const newChat = new Chat({
+    name: req.body.name,
+    participants: req.body.participants,
+    timestamp: Date(Date.now())
+  })
 
-  const chat = new Chat(
-    { name: req.body.name },
-    { $push: { participants: req.user._id }},
-    { $addToSet: { participants: { $each: req.body.participants } } }
-  );
-  
-  chat.save((err, newChat) => {
-    if (err) {
-      res.status(400).send({ error: err });
-      return next(err);
-    };
-
-    const message = new Message({
-      chatId: newChat._id,
-      body: req.body.composedMessage,
-      author: req.user._id,
-      anon: req.body.anon
-    });
-
-    message.save((err, newMessage) => {
-      if (err) {
-        res.status(400).send({ error: err });
-        return next(err);
-      };
-
-      res.status(200).send({ chatId: chat._id, message: newMessage });
-      return next();
-    });
+  newChat.save().then(chat => {
+    res.json({ chat });
+  }, err => {
+    res.status(400).send(err);
   });
 };
 
