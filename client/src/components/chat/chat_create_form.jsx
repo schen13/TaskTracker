@@ -11,6 +11,7 @@ class ChatCreate extends React.Component {
       groupUsers: this.props.users,
       query: '',
       queryResults: [],
+      errors: '',
       //Chat Params
       name: '',
       participants: [this.props.currentUser.id],
@@ -28,6 +29,7 @@ class ChatCreate extends React.Component {
     this.removeParticipant = this.removeParticipant.bind(this)
     this.filterUsers = this.filterUsers.bind(this);
     this.emitChatSubmit = this.emitChatSubmit.bind(this);
+    this.renderErrors = this.renderErrors.bind(this)
   }
 
   handleName(e) {
@@ -39,7 +41,11 @@ class ChatCreate extends React.Component {
     e.preventDefault();
     const userQuery = e.currentTarget.value;
     this.setState({ query: userQuery }, () => {
-      this.filterUsers(userQuery);
+      if (userQuery === '') {
+        this.setState({ queryResults: [] })
+      } else {
+        this.filterUsers(userQuery);
+      }
     });
   }
 
@@ -55,7 +61,7 @@ class ChatCreate extends React.Component {
         if ((user.username && user.username.toLowerCase().search(userQuery.toLowerCase()) !== -1) ||
             (user.fName && user.fName.toLowerCase().search(userQuery.toLowerCase()) !== -1) ||
             (user.lName && user.fName.toLowerCase().search(userQuery.toLowerCase()) !== -1)) {
-          return searchQuery.push(user);
+          if (searchQuery.length < 7) return searchQuery.push(user);
         }
       }
       return searchQuery;
@@ -81,10 +87,17 @@ class ChatCreate extends React.Component {
     });
   }
 
+  renderErrors(errors) {
+    this.setState({ errors })
+  }
+
   emitChatSubmit(e) {
     e.preventDefault();
     const { name, participants } = this.state;
     this.socket.emit("newChat", { name, participants });
+    this.socket.on('error', err => {
+      this.renderErrors(err);
+    })
     this.socket.on("newChatCreated", chatId => {
       this.setState({ chatId }, () => {
         const { chatId, body, author, anon } = this.state;
@@ -101,23 +114,25 @@ class ChatCreate extends React.Component {
     return (
       <div className="chat-create-container">
         <div className="chat-modal-content">
-          <h2 className="chat-name">Create A New Message</h2>
+          <h2 className="chat-name">Create A New Chat</h2>
           <form onSubmit={this.emitChatSubmit}>
-            <input 
-              type="text"
-              id="chat-input"
-              value={this.state.name}
-              placeholder="Add a name to your chat"
-              onChange={this.handleName} />
+            <div className="chat-input-box">
+              <input 
+                type="text"
+                id="chat-input"
+                value={this.state.name}
+                placeholder="Add a name to your chat"
+                onChange={this.handleName} />
+            </div>
 
-            <div>
+            <div className="add-participants">
               <ul>
-                <li>To: </li>
+                <li className="to">To:</li>
                 {this.state.participantNames.map(participant => {
                   return(
-                    <li key={participant.username}>
-                      {participant.username}
-                      <div onClick={() => this.removeParticipant(participant.id)}>x</div>
+                    <li className="participants" key={participant.username}>
+                      <div className="participant">{participant.username}</div>
+                      <div className="remove-participant" onClick={() => this.removeParticipant(participant.id)}>x</div>
                     </li>
                   );
                 })}
@@ -134,26 +149,32 @@ class ChatCreate extends React.Component {
             <ul>
               {queryResults.map(user => {
                 return (
-                  <li key={user.id} onClick={() => this.handleClickParticipants(user)}>
-                    <div>{user.username}</div>
-                    <div>{user.fName} {user.lName}</div>
+                  <li className="user-query" key={user.id} onClick={() => this.handleClickParticipants(user)}>
+                    <div>
+                      <div>username: {user.username}</div>
+                      <div>name: {user.fName} {user.lName}</div>
+                    </div>
                   </li>
                 );
               })}
             </ul>
+            
+            <div className="chat-input-box">
+              <input
+                type="text"
+                id="chat-input"
+                onChange={this.handleMessage}
+                placeholder="Type a message"
+                value={this.state.body} />
+            </div>
 
-            <input
-              type="text"
-              id="chat-input"
-              onChange={this.handleMessage}
-              placeholder="Type a message"
-              value={this.state.body} />
+            <div className="chat-errors">{this.state.errors}</div>
 
             <button 
               className="chat-create-button"
               type="submit"
               disabled={disabled}    
-              >Create Chat</button>
+              >CREATE CHAT</button>
           </form>
         </div>
       </div>

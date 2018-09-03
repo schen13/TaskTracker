@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 import ChatShowContainer from '../chat/chat_show_container';
-import ChatCreateContainer from '../chat/chat_create_container';
 
 const mapStateToProps = state => ({
   chatModal: state.ui.chatModal
