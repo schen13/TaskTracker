@@ -74,7 +74,7 @@ class TaskIndex extends React.Component {
               <ListItem className={`collection-item hvr-fade`} key={task._id}>
                 <ListItemAvatar>
                   <Avatar className={`folder-icon ${task.completed ? "complete" : "incomplete"}`}>
-                    {task.completed ? <i class="fas fa-check"></i> : <FolderIcon/>}
+                    {task.completed ? <i className="fas fa-check"></i> : <FolderIcon/>}
                   </Avatar>
                 </ListItemAvatar>
                 <ListItemText

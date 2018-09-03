@@ -86,7 +86,15 @@ class TaskCreate extends React.Component {
     });
 
     let groupOptions = [];
-    groups.forEach(group => {
+    let groupFilter = groups;
+    // if(this.state.userId) {
+    //   let user = users.find(user => user._id == this.state.userId);
+
+    //   groupFilter = groupFilter.filter(group => {
+    //     user.groupId.includes(group._id);
+    //   });
+    // }
+    groupFilter.forEach(group => {
       groupOptions.push({
         label: group.name,
         value: group._id
