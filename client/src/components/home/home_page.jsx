@@ -5,6 +5,7 @@ import TaskIndexContainer from '../task/task_index_container';
 import GroupModal from '../modal/group_modal';
 import ChatModal from '../modal/chat_modal';
 import NavBarContainer from '../navbar/navbar_container';
+
 class HomePage extends React.Component {
 
   componentDidMount() {
