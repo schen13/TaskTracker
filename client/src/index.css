@@ -1211,10 +1211,18 @@ body {
   justify-content: space-between;
   align-items: center;
   flex-flow: row nowrap;
-  padding: 0 10px; }
+  padding: 0 10px;
+  cursor: default; }
   .chat-header h1 {
     font-size: 20px;
     margin-right: -10px; }
+  .chat-header .create-chat:hover {
+    background-color: #efefef; }
+  .chat-header .create-chat {
+    cursor: pointer;
+    margin-right: 5px; }
+    .chat-header .create-chat i {
+      font-size: 20px; }
 
 .conversations {
   border-bottom: 1px solid gray; }

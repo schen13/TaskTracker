@@ -40,13 +40,13 @@ app.get('/api/groups/:groupId', group.getGroup);
 app.post('/api/groups', group.createGroup);
 app.patch('/api/groups/:groupId', group.updateGroup);
 app.delete('/api/groups/:groupId', group.deleteGroup);
+app.get('/api/groups', group.getGroupUsers);
 
 app.get('/api/chats', chat.getChats);
 app.get('/api/chat', chat.getChat);
 app.post('/api/chats', chat.newChat);
 app.delete('/api/chats/:chatId', chat.deleteChat);
 app.post('/api/messages/:chatId', message.createMessage);
-
 
 const io = require('socket.io')(server);
 

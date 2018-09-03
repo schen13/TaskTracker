@@ -18,10 +18,24 @@
   align-items: center;
   flex-flow: row nowrap;
   padding: 0 10px;
+  cursor: default;
 
   h1 {
     font-size: 20px;
     margin-right: -10px;
+  }
+
+  .create-chat:hover {
+    background-color: $lightest-gray;
+  }
+
+  .create-chat {
+    cursor: pointer;
+    margin-right: 5px;
+
+    i {
+      font-size: 20px;
+    }
   }
 }
 
