@@ -1,5 +1,5 @@
-import Group from '../models/group';
-import validateGroupInput from '../validation/group';
+const Group = require('../models/group');
+// import validateGroupInput from '../validation/group';
 
 exports.getGroups = [
   function (req, res) {
