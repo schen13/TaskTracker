@@ -92,6 +92,8 @@ body {
 #task-header {
   display: flex;
   justify-content: space-between;
+  border-left: none;
+  border-right: none;
 }
 
 #create-task-button {
