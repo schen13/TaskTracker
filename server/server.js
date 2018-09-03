@@ -72,11 +72,15 @@ io.on('connection', function(socket){
     };
 
     Chat.create(newChat, (err, chat) => {
-      io.emit('newChatCreated', chat._id)
+      if (err) {
+        io.emit('error', err);
+      } else {
+        io.emit('newChatCreated', chat._id);
+      }
     })
   })
 
   socket.on('newMessage', (message) => {
-    io.emit('newMessage', message)
+    io.emit('newMessage', message);
   });
 });
