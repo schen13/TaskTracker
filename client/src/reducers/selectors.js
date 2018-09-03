@@ -23,7 +23,3 @@ export const selectChat = ({ entities }, chatId) => {
     chat[0]
   )
 };
-
-export const selectChatMessage = ({ entities }, chatId) => (
-  entities.chats.id === chatId
-);

@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const MessageSchema = new Schema({
   chatId: {
-    type: Schema.Types.ObjectId,
+    type: String,
     required: true
   },
   body: {
@@ -18,11 +18,10 @@ const MessageSchema = new Schema({
     type: Boolean,
     default: false,
     required: true
+  },
+  timestamp: {
+    type: Date
   }
-},
-{
-  //createdAt and updatedAt as dates
-  timestamps: true
 });
 
 const Message = mongoose.model('Message', MessageSchema);
