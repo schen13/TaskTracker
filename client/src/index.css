@@ -1189,7 +1189,9 @@ body {
   z-index: -1; }
 
 .modal-close {
-  background-color: #fc5a57; }
+  background-color: #fc5a57;
+  font-weight: 500;
+  font-size: 15px; }
 
 .modal-close:hover {
   background-color: #fc5a57;
@@ -1217,6 +1219,14 @@ body {
 
 .modal-footer {
   display: none; }
+
+#message-id {
+  display: flex;
+  align-items: center;
+  font-size: 16px; }
+
+#check-icon {
+  margin-right: 15px; }
 
 .chat-bar {
   grid-area: chats;

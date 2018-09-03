@@ -33,6 +33,7 @@ class TaskCreate extends React.Component {
 
     this.props.createTask(task);
     this.clearInput();
+    this.props.snack();
   }
 
   clearInput() {

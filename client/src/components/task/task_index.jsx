@@ -11,17 +11,23 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import FolderIcon from '@material-ui/icons/Folder';
+import Snackbar from '@material-ui/core/Snackbar';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import { withStyles } from '@material-ui/core/styles';
+
 
 const $ = window.$;
-
 
 class TaskIndex extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      modalIsOpen: false
+      snackOpen: false
     };
+
+    this.handleClick = this.handleClick.bind(this);
+    this.handleClose = this.handleClose.bind(this);
   }
 
   componentDidMount() {
@@ -34,10 +40,23 @@ class TaskIndex extends React.Component {
     return date.toDateString();
   }
 
+  handleClick() {
+    this.setState({ snackOpen: true });
+  }
+
+  handleClose(event, reason) {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    this.setState({ snackOpen: false });
+  }
+
   render() {
     if (!this.props.tasks) return null;
     let { tasks } = this.props;
     let createTaskButton = <Button floating id="create-task-button"><i className="fas fa-plus"></i></Button>;
+
     return (
       <div className="task-parent-container">
         <List className="task-index-container collection with-header">
@@ -45,7 +64,7 @@ class TaskIndex extends React.Component {
             <h4>My Tasks</h4>
             <Modal id="create-task-modal" trigger={createTaskButton} >
               <div className="modal-content">
-                <TaskCreateContainer />
+                <TaskCreateContainer snack={this.handleClick}/>
               </div>
             </Modal>
           </ListItem>
@@ -73,6 +92,25 @@ class TaskIndex extends React.Component {
             </Modal>
           ))}
         </List>
+          <button onClick={this.handleClick}>hhi</button>
+        <Snackbar id="success"
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'right',
+          }}
+          open={this.state.snackOpen}
+          autoHideDuration={4000}
+          onClose={this.handleClose}
+          ContentProps={{
+            'aria-describedby': 'message-id',
+          }}
+          message={
+            <div id="message-id">
+              <CheckCircleIcon id="check-icon"/>
+              <div>Task Created</div>
+            </div>
+          }
+        />
       </div>
     );
   }
