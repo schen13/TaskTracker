@@ -42,7 +42,10 @@ exports.createGroup = [
       tasks: []
     });
     newGroup.save().then(group => {
-      res.send(group);
+      res.json({
+        success: true,
+        group
+      });
     }, err => {
       res.status(400).send(err);
     });

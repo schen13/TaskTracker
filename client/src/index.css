@@ -1315,14 +1315,13 @@ body {
       background-color: white;
       width: 50px;
       height: 50px;
-      border-radius: 25%;
+      border-radius: 50%;
       display: flex;
       justify-content: center; }
       .home-page .home-page-header .left-nav img {
-        width: 60px;
+        width: 50px;
         height: 50px;
-        padding: 5px;
-        padding-right: 8px; }
+        padding: 5px; }
       .home-page .home-page-header .left-nav:hover {
         background-color: #dedede; }
     .home-page .home-page-header .right-nav ul {
@@ -1331,13 +1330,33 @@ body {
       display: flex;
       align-items: center;
       justify-content: flex-end;
-      color: #8e8e8e;
       list-style: none; }
       .home-page .home-page-header .right-nav ul .nav-title {
-        margin-right: 300px; }
-      .home-page .home-page-header .right-nav ul li {
+        margin-right: 300px;
+        border: none; }
+      .home-page .home-page-header .right-nav ul .nav-home,
+      .home-page .home-page-header .right-nav ul .nav-name,
+      .home-page .home-page-header .right-nav ul .github-link,
+      .home-page .home-page-header .right-nav ul .logout {
         margin-right: 10px;
         color: white; }
+    .home-page .home-page-header .github-link {
+      height: 100%; }
+      .home-page .home-page-header .github-link a {
+        height: 100%;
+        display: flex;
+        align-items: center; }
+        .home-page .home-page-header .github-link a i {
+          width: 30px;
+          height: 30px;
+          font-size: 30px; }
+    .home-page .home-page-header .logout-button {
+      color: white;
+      background-color: transparent;
+      border: none;
+      height: 64px; }
+      .home-page .home-page-header .logout-button:hover {
+        cursor: pointer; }
   .home-page .home-page-content {
     display: grid;
     grid-template-columns: 1fr 3fr 1fr;
