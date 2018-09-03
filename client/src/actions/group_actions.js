@@ -51,7 +51,7 @@ const receiveGroup = group => ({
 
 const removeGroup = group => ({
   type: REMOVE_GROUP,
-  group: group.data
+  group: group.data.group
 });
 
 export const receiveGroupErrors = errors => ({
