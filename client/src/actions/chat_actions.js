@@ -19,14 +19,14 @@ export const removeChat = payload => ({
   chat: payload.data.chat
 });
 
-export const fetchChats = () => dispatch => (
-  ChatApiUtil.fetchChats().then(chats => {
+export const fetchChats = (userId) => dispatch => (
+  ChatApiUtil.fetchChats(userId).then(chats => {
     dispatch(receiveChats(chats))
   })
 );
 
-export const fetchChat = id => dispatch => (
-  ChatApiUtil.fetchChat(id).then(chat => {
+export const fetchChat = chatId => dispatch => (
+  ChatApiUtil.fetchChat(chatId).then(chat => {
     dispatch(receiveChat(chat))
   })
 );
@@ -34,12 +34,6 @@ export const fetchChat = id => dispatch => (
 export const createChat = chat => dispatch => (
   ChatApiUtil.createChat(chat).then(newChat => {
     dispatch(receiveChat(newChat))
-  })
-);
-
-export const replyToChat = chat => dispatch => (
-  ChatApiUtil.replyToChat(chat).then(newMessage => {
-    dispatch(receiveChat(newMessage))
   })
 );
 

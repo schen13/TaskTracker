@@ -1,17 +1,20 @@
 import { connect } from 'react-redux';
-
-import { fetchChat, replyToChat, deleteChat } from '../../actions/chat_actions';
-import { selectChatMessages } from '../../reducers/selectors';
+import { fetchChat, deleteChat } from '../../actions/chat_actions';
+import { replyToChat } from "../../actions/message_actions";
+import { selectChat } from '../../reducers/selectors';
+import { closeChatModal } from "../../actions/modal_actions";
 import ChatShow from './chat_show';
 
-const mapStateToProps = ({ entities }, ownProps) => ({
-  messages: selectChatMessages({ entities }, ownProps.match.params.chatId)
+const mapStateToProps = ({ entities, session }, ownProps) => ({
+  chat: selectChat({ entities }, ownProps.chatId),
+  currentUser: session
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchChat: id => dispatch(fetchChat(id)),
+  fetchChat: chatId => dispatch(fetchChat(chatId)),
   replyToChat: chat => dispatch(replyToChat(chat)),
-  deleteChat: id => dispatch(deleteChat(id))
+  deleteChat: chatId => dispatch(deleteChat(chatId)),
+  closeChatModal: () => dispatch(closeChatModal())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChatShow);

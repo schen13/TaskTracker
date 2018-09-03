@@ -1,3 +1,4 @@
+// Chat Index
 .chat-bar {
   // position: fixed;
   // width: 20vw;
@@ -16,32 +17,51 @@
   justify-content: space-between;
   align-items: center;
   flex-flow: row nowrap;
+  padding: 0 10px;
+
+  h1 {
+    font-size: 20px;
+    margin-right: -10px;
+  }
 }
 
 .conversations {
   border-bottom: 1px solid gray;
   // height: 100vh;
+
+  .chats:hover {
+    background-color: $lightest-gray;
+  }
   
   .chats {
     padding: 10px;
     height: 60px;
+    width: 100%;
     display: flex;
     justify-content: flex-start;
     align-items: center;
     flex-flow: row nowrap;
     cursor: pointer;
 
-    .user-pictures{
+    .user-pictures {
       width: 50px;
       height: 50px;
-      border-radius: 999px;
-      border: 1px solid black;
       margin-right: 9px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      #pf-pic {
+        width: 50px;
+        height: 50px;
+        font-size: 40px;
+      }
     }
 
     .chat {
       display: flex;
       flex: 1 1 auto;
+      width: 184px;
       justify-content: space-between;
       align-items: center;
       flex-flow: row nowrap;
@@ -49,23 +69,59 @@
       
       .chat-content {
         display: flex;
+        color: black;
         justify-content: flex-start;
         flex-direction: column;
 
-        h2 {
+        .participants {
+          max-width: 100px;
           font-weight: bold;
-          font-size: 16px;
-          margin-bottom: 5px; 
+          white-space: nowrap;
+          font-size: 14px;
+          margin: 0px 5px 5px 0px;
+          overflow: hidden;
         }
 
         p {
           font-size: 12px;
+          margin: none;
+          color: black;
         }
       }
 
       .date {
+        color: black;
         font-size: 12px;
       }
     }
   }
+}
+
+.chat-modal-background {
+  grid-area: main;
+  height: 100%;
+  background-color: white;
+  z-index: 5;
+  transform: translateX(0%);
+}
+
+.chat-open {
+  animation: slide-left 0.2s forwards;
+}
+
+.chat-closed {
+  animation: slide-right 0.2s forwards;
+}
+
+@keyframes slide-right {
+    100% { transform: translateX(0%); }
+}
+
+@keyframes slide-left {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-100%); }
+}
+
+.chat-show {
+  background-color: white;
 }
