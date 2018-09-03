@@ -1191,6 +1191,13 @@ body {
 .waves-effect {
   z-index: 0; }
 
+.collection-item {
+  cursor: pointer; }
+
+#task-header {
+  display: flex;
+  justify-content: space-between; }
+
 .chat-bar {
   grid-area: chats; }
 

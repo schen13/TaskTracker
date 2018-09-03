@@ -1,7 +1,5 @@
 import React from 'react';
 import Select from 'react-select';
-import 'react-dates/initialize';
-import { SingleDatePicker } from 'react-dates';
 
 import { withRouter } from 'react-router-dom';
 
