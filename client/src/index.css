@@ -1226,7 +1226,9 @@ body {
       font-size: 20px; }
 
 .conversations {
-  border-bottom: 1px solid #dedede; }
+  border-bottom: 1px solid #dedede;
+  height: 81vh;
+  overflow: auto; }
   .conversations .chats:hover {
     background-color: #efefef; }
   .conversations .chats {

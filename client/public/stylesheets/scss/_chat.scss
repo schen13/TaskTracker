@@ -38,7 +38,8 @@
 
 .conversations {
   border-bottom: 1px solid $lighter-gray;
-  // height: 100vh;
+  height: 81vh;
+  overflow: auto;
 
   .chats:hover {
     background-color: $lightest-gray;
