@@ -6,14 +6,30 @@ body {
   sans-serif;
 }
 
-.modal1 {
-  height: auto;
-}
-
-.modal {
+#create-task-modal {
   overflow-y: visible;
   height: auto;
   width: 60%;
+}
+
+.hvr-fade {
+  // display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  overflow: hidden;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.2s;
+  -webkit-transition-property: color, background-color;
+  transition-property: color, background-color;
+}
+
+.hvr-fade:hover,
+.hvr-fade:focus,
+.hvr-fade:active {
+  background-color: rgb(59, 130, 163);
+  color: white;
 }
 
 .task-parent-container {

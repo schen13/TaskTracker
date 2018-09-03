@@ -1,5 +1,7 @@
 import React from 'react';
 import Select from 'react-select';
+import 'react-dates/initialize';
+import { SingleDatePicker } from 'react-dates';
 
 import { withRouter } from 'react-router-dom';
 
@@ -14,7 +16,7 @@ class TaskCreate extends React.Component {
       userId: "",
       groupId: "",
       validGroups: [],
-      validUsers: []
+      validUsers: [],
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -26,7 +28,7 @@ class TaskCreate extends React.Component {
       name: this.state.name,
       description: this.state.description,
       estTime: this.state.estTime,
-      deadline: this.date.value,
+      deadline: this.state.deadline,
       userId: this.state.userId,
       groupId: this.state.groupId
     };
@@ -77,7 +79,7 @@ class TaskCreate extends React.Component {
 
     let { users, groups } = this.props;
     let userOptions = [];
-    users.map(user => {
+    users.forEach(user => {
       userOptions.push({
         label: user.username,
         value: user.id
@@ -85,7 +87,7 @@ class TaskCreate extends React.Component {
     });
 
     let groupOptions = [];
-    groups.map(group => {
+    groups.forEach(group => {
       groupOptions.push({
         label: group.name,
         value: group._id
@@ -137,15 +139,7 @@ class TaskCreate extends React.Component {
             </div>
             <div className="input-field col s6">
               <i className="far fa-calendar-alt prefix"></i>
-              <input
-                type="text"
-                value={this.state.deadline}
-                id="deadline"
-                className="datepicker"
-                onChange={this.update("deadline")}
-                ref={(date) => { this.date = date; }}
-              />
-              <label htmlFor="deadline">Complete By?</label>
+              <input type="date" onChange={this.update("deadline")}/>
             </div>
             <div className="input-field col s6">
               <i className="fas fa-user prefix"></i>

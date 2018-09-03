@@ -1,11 +1,11 @@
 //import stylesheets below the reset file
 
-@import './materialize/materialize.min.scss';
 @import './reset/reset.scss';
 @import './base/colors.scss';
+@import './scss/react-dates.scss';
 
 @import './scss/_task.scss';
 @import './scss/_chat.scss';
 @import './scss/_home.scss';
 @import './scss/_group.scss';
-@import './scss/_login.scss'
+@import './scss/_login.scss';
