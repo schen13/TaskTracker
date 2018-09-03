@@ -28,7 +28,7 @@ body {
 .hvr-fade:hover,
 .hvr-fade:focus,
 .hvr-fade:active {
-  background-color: $citrus;
+  background-color: #f0e5f0;
   color: white;
 }
 
@@ -39,10 +39,17 @@ body {
 
 .task-modal-container {
   h1 {
-    padding: 0 0 15px 0;
+    padding: 0 0 5px 0;
     font-size: 30px;
     font-weight: 500;
     color: rgb(72, 72, 72);
+  }
+
+  h2 {
+    padding: 0 0 15px 0;
+    font-size: 16px;
+    font-weight: 400;
+    color: rgb(128, 128, 128);
   }
 
   form {
@@ -103,4 +110,22 @@ body {
 
 #check-icon {
   margin-right: 15px;
+}
+
+.secondary-action-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.complete-button {
+  display: flex;
+  justify-content: center;
+}
+
+.complete {
+  background-color: #a5c67a !important;
+}
+
+.incomplete {
+  // background-color: red !important;
 }

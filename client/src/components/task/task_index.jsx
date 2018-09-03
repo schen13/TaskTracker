@@ -45,6 +45,14 @@ class TaskIndex extends React.Component {
     this.setState({ snackOpen: false });
   }
 
+  renderComplete(complete) {
+    if(complete) {
+      return "complete";
+    } else {
+      return "incomplete";
+    }
+  }
+
   render() {
     if (!this.props.tasks) return null;
     let { tasks } = this.props;
@@ -63,10 +71,11 @@ class TaskIndex extends React.Component {
           </ListItem>
           {tasks.map(task => (
             <Modal key={task._id} trigger={
-              <ListItem className="collection-item hvr-fade" key={task._id}>
+              <ListItem className={`collection-item hvr-fade`} key={task._id}>
                 <ListItemAvatar>
-                  <Avatar>
-                    <FolderIcon />
+                  <Avatar className={`folder-icon ${task.completed ? "complete" : "incomplete"}`}>
+                    {task.completed ? <i class="fas fa-check"></i> : <FolderIcon/>}
+                    {/* <FolderIcon/> */}
                   </Avatar>
                 </ListItemAvatar>
                 <ListItemText
@@ -74,15 +83,17 @@ class TaskIndex extends React.Component {
                   secondary={`Finish by: ${Moment(task.deadline).utc().format("MMMM Do, YYYY")}`}
                 />
                 <ListItemSecondaryAction>
-                  <TaskEdit
-                    snack={this.handleClick}
-                    updateTask={this.props.updateTask}
-                    users={this.props.users}
-                    task={task}
-                  />
-                  <IconButton aria-label="Delete" onClick={() => this.props.deleteTask(task._id)}>
-                    <i className="fas fa-trash"></i>
-                  </IconButton>
+                  <div className="secondary-action-container">
+                    <TaskEdit
+                      snack={this.handleClick}
+                      updateTask={this.props.updateTask}
+                      users={this.props.users}
+                      task={task}
+                    />
+                    <IconButton aria-label="Delete" onClick={() => this.props.deleteTask(task._id)}>
+                      <i className="fas fa-trash"></i>
+                    </IconButton>
+                  </div>
                 </ListItemSecondaryAction>
               </ListItem>
             }>

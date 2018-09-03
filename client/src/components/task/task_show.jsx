@@ -1,52 +1,107 @@
 import React from 'react';
-import TaskCreateContainer from './task_create_container';
+import Moment from 'moment';
 
 class TaskShow extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      _id: this.props.task._id,
       name: this.props.task.name,
       description: this.props.task.description,
       estTime: this.props.task.estTime,
       deadline: this.props.task.deadline,
       userId: this.props.task.userId,
       groupId: this.props.task.groupId,
-      editMode: false
+      completed: this.props.task.completed
+    };
+    this.handleMark = this.handleMark.bind(this);
+  }
+
+  handleMark(e) {
+    e.preventDefault();
+    //If already marked as completed, make it incomplete:
+
+    const task = {
+      _id: this.state._id,
+      name: this.state.name,
+      description: this.state.description,
+      estTime: this.state.estTime,
+      deadline: this.state.deadline,
+      userId: this.state.userId,
+      groupId: this.state.groupId
     };
 
-    this.handleEditClick = this.handleEditClick.bind(this);
-  }
+    if (this.state.completed === true) {
+      task.completed = false;
+      this.setState({ completed: false });
+    } else {
+      task.completed = true;
+      this.setState({ completed: true });
+    }
 
-  handleEditClick() {
-    this.setState({editMode: true});
-  }
-
-  editForm() {
-
+    this.props.updateTask(task);
   }
 
   render() {
     let {task} = this.props;
-    let form;
+    let buttonText = this.state.completed ? "Mark as Incomplete" : "Mark as Complete";
 
-    if(this.state.editMode) {
-      form =
-        <div>
-          goodbye
-        </div>
-      ;
-    } else {
-      form =
-        <div>
-          hello
-        </div>;
-    }
     return(
       <div className="task-modal-container">
         <div className="label">
           <h1>{task.name}</h1>
+          <h2>{this.props.group[task.groupId].name}</h2>
         </div>
-        { form }
+        <div>
+          <div className="row">
+            <div className="input-field col s6">
+              <i className="fas fa-tasks prefix"></i>
+              <input
+                disabled
+                autoComplete="off"
+                value={task.name}
+                id="name" type="text"
+                className="validate"
+              />
+              <label className="active" htmlFor="name">Name of Task</label>
+            </div>
+            <div className="input-field col s6">
+              <i className="fas fa-comment prefix"></i>
+              <input
+                disabled
+                autoComplete="off"
+                value={task.description}
+                id="description"
+                type="text"
+                className="validate"
+              />
+              <label className="active" htmlFor="description">Additional Info</label>
+            </div>
+            <div className="input-field col s6">
+              <i className="far fa-clock prefix"></i>
+              <input
+                disabled
+                autoComplete="off"
+                value={task.estTime}
+                id="estTime"
+                type="number"
+                className="validate"
+              />
+              <label className="active" htmlFor="estTime">Estimated Time</label>
+            </div>
+            <div className="input-field col s6">
+              <i className="far fa-calendar-alt prefix"></i>
+              <input
+                disabled
+                type="date"
+                value={Moment(task.deadline).utc().format("YYYY-MM-DD")}
+              />
+            </div>
+          </div>
+          <div className="complete-button">
+            <button onClick={this.handleMark} className="btn waves-effect waves-light modal-close"> {buttonText} </button>
+          </div>
+        </div>
       </div>
     );
   }
