@@ -1,22 +1,49 @@
-'use strict'
 const Message = require('../models/message');
 
+exports.getMessages = (req, res, next) => {
+  Message.find({ chatId: req.query.chatId })
+    .sort("-createdAt")
+    .exec((err, messages) => {
+      if (err) {
+        res.status(400).send({ error: err });
+        return next(err);
+      }
+      console.log(messages)
+      res.status(200).json({ messages });
+      return next();
+    });
+};
+
+exports.getMessage = (req, res, next) => {
+  Message.findOne({ chatId: req.query.chatId })
+    .sort("-createdAt")
+    .limit(1)
+    .exec((err, message) => {
+      if (err) {
+        res.status(400).send({ error: err });
+        return next(err);
+      };
+      res.status(200).json({ message });
+      return next();
+    });
+}
+
 exports.createMessage = (req, res, next) => {
-  const message = new Message({
-    chatId: req.params.chatId,
-    body: req.body.composedMessage,
-    author: req.user._id,
-    anon: req.body.anon
+  const newMessage = new Message({
+    chatId: req.body.chatId,
+    body: req.body.body,
+    author: req.body.author,
+    anon: req.body.anon,
+    timestamp: Date(Date.now())
   });
 
-  message.save(function (err, newMessage) {
+  newMessage.save((err, message) => {
     if (err) {
       res.status(400).send({ error: err });
       return next(err);
     };
 
-    res.status(200).send({ message: newMessage });
+    res.status(200).json({ message });
     return next();
   });
 };
-
