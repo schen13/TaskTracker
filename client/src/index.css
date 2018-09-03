@@ -1887,7 +1887,8 @@ svg {
 .other-session-link {
   width: 310px;
   margin: 10px 0;
-  height: 40px;
+  height: 35px;
+  letter-spacing: 0.5px;
   border-radius: 5px;
   background-color: #ac98c2;
   color: white;
