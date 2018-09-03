@@ -105,6 +105,7 @@ class ChatCreate extends React.Component {
           <form onSubmit={this.emitChatSubmit}>
             <input 
               type="text"
+              id="chat-input"
               value={this.state.name}
               placeholder="Add a name to your chat"
               onChange={this.handleName} />
@@ -124,6 +125,7 @@ class ChatCreate extends React.Component {
 
               <input
                 type="text"
+                id="chat-input"
                 value={this.state.query}
                 placeholder="Type the name or username of a person"
                 onChange={this.handleInput} />
@@ -142,6 +144,7 @@ class ChatCreate extends React.Component {
 
             <input
               type="text"
+              id="chat-input"
               onChange={this.handleMessage}
               placeholder="Type a message"
               value={this.state.body} />

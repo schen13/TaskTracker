@@ -83,7 +83,7 @@ class ChatShow extends React.Component {
         );
       } else {
         conversation.push(
-          <li className="own-message">
+          <li className="own-message" key={messages[i]._id}>
             <div className="message">
               <span>
                 {messages[i].body}

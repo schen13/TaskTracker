@@ -15,7 +15,7 @@ class ChatIndex extends React.Component {
   }
 
   render() {
-    const { users, currentUser, fetchChat, openChatModal } = this.props;
+    const { users, currentUser, fetchChat, openChatModal, closeChatModal, closeGroupModal } = this.props;
 
     return (
       <div className="chat-bar">
@@ -36,6 +36,8 @@ class ChatIndex extends React.Component {
                 currentUser={currentUser.id}
                 fetchChat={fetchChat}
                 openChatModal={openChatModal}
+                closeChatModal={closeChatModal}
+                closeGroupModal={closeGroupModal}
               />
             );
           })}
