@@ -33,6 +33,7 @@ class TaskCreate extends React.Component {
 
     this.props.createTask(task);
     this.clearInput();
+    this.props.snack();
   }
 
   clearInput() {
@@ -85,7 +86,15 @@ class TaskCreate extends React.Component {
     });
 
     let groupOptions = [];
-    groups.forEach(group => {
+    let groupFilter = groups;
+    // if(this.state.userId) {
+    //   let user = users.find(user => user._id == this.state.userId);
+
+    //   groupFilter = groupFilter.filter(group => {
+    //     user.groupId.includes(group._id);
+    //   });
+    // }
+    groupFilter.forEach(group => {
       groupOptions.push({
         label: group.name,
         value: group._id
@@ -94,7 +103,7 @@ class TaskCreate extends React.Component {
 
 
     return (
-      <div className="task-create-container">
+      <div className="task-modal-container">
         <div className="label">
           <h1>Create New Task</h1>
         </div>
@@ -160,7 +169,9 @@ class TaskCreate extends React.Component {
               />
             </div>
           </div>
-          <button className="btn waves-effect waves-light modal-close" type="submit"> Create Task </button>     
+          <div id="close-button">
+            <button className="btn waves-effect waves-light modal-close" type="submit"> Create Task </button>     
+          </div>
         </form>
       </div>
     );

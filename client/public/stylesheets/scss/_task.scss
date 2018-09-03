@@ -6,7 +6,7 @@ body {
   sans-serif;
 }
 
-#create-task-modal {
+#create-task-modal, .edit-task{
   overflow-y: visible;
   height: auto;
   width: 60%;
@@ -28,7 +28,7 @@ body {
 .hvr-fade:hover,
 .hvr-fade:focus,
 .hvr-fade:active {
-  background-color: rgb(59, 130, 163);
+  background-color: #ebe6f0;
   color: white;
 }
 
@@ -37,12 +37,19 @@ body {
   grid-area: main;
 }
 
-.task-create-container {
+.task-modal-container {
   h1 {
-    padding: 0 0 15px 0;
+    padding: 0 0 5px 0;
     font-size: 30px;
     font-weight: 500;
     color: rgb(72, 72, 72);
+  }
+
+  h2 {
+    padding: 0 0 15px 0;
+    font-size: 16px;
+    font-weight: 400;
+    color: rgb(128, 128, 128);
   }
 
   form {
@@ -54,6 +61,17 @@ body {
   }
 }
 
+.modal-close {
+  background-color: #8c6faa;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.modal-close:hover {
+  background-color: #8c6faa;
+  opacity: .7;
+}
+
 .waves-effect {
   z-index: 0;
 }
@@ -62,7 +80,67 @@ body {
   cursor: pointer;
 }
 
+.collection-item:hover {
+  color: white;
+}
+
 #task-header {
   display: flex;
   justify-content: space-between;
+}
+
+#create-task-button {
+  background-color: #ac98c2;
+}
+
+#close-button {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.modal-footer {
+  display: none;
+}
+
+#message-id {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+}
+
+#check-icon {
+  margin-right: 15px;
+}
+
+.secondary-action-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.complete-button {
+  display: flex;
+  justify-content: center;
+}
+
+.complete {
+  background-color: #a5c67a !important;
+}
+
+.task-title {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .fa-check {
+    color: #a5c67a;
+  }
+
+  .fa-times {
+    color: #da6fa0;
+  }
+}
+
+.complete-show {
+  background-color: white;
 }
