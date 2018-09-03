@@ -10,7 +10,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "server": "node --exec babel-node server.js"
+    "server": "babel-node server.js"
   },
   "author": "",
   "license": "MIT",
