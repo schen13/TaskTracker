@@ -1201,6 +1201,9 @@ body {
   display: flex;
   justify-content: space-between; }
 
+#create-task-button {
+  background-color: #fc5a57; }
+
 .chat-bar {
   grid-area: chats;
   height: 100%;

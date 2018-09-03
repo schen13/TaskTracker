@@ -33,20 +33,20 @@ class TaskIndex extends React.Component {
   render() {
     if (!this.props.tasks) return null;
     let { tasks } = this.props;
-
+    let createTaskButton = <Button floating id="create-task-button"><i className="fas fa-plus"></i></Button>;
     return (
       <div className="task-parent-container">
         <List className="task-index-container collection with-header">
           <li className="collection-header" id="task-header">
             <h4>My Tasks</h4>
-            <Modal id="create-task-modal" trigger={<Button floating><i className="fas fa-plus"></i></Button>} >
+            <Modal id="create-task-modal" trigger={createTaskButton} >
               <div className="modal-content">
                 <TaskCreateContainer />
               </div>
             </Modal>
           </li>
           {tasks.map(task => (
-            <Modal id="task-show" trigger={
+            <Modal id="task-show" key={task._id} trigger={
               <ListItem className="collection-item hvr-fade" key={task._id}>
                 <ListItemAvatar>
                   <Avatar>
@@ -58,8 +58,8 @@ class TaskIndex extends React.Component {
                   secondary={`Finish by: ${task.deadline}`}
                 />
                 <ListItemSecondaryAction>
-                  <IconButton aria-label="Delete">
-                    <i class="fas fa-trash"></i>
+                  <IconButton aria-label="Delete" onClick={() => this.props.deleteTask(task._id)}>
+                    <i className="fas fa-trash"></i>
                   </IconButton>
                 </ListItemSecondaryAction>
               </ListItem>
