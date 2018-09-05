@@ -1855,7 +1855,7 @@ svg {
   background-size: cover;
   background-repeat: no-repeat;
   margin: 0px auto;
-  overflow: hidden; }
+  overflow-y: auto; }
 
 .session-form-container {
   width: 350px;
@@ -1900,6 +1900,11 @@ svg {
   .other-session-link:hover {
     opacity: 0.7;
     cursor: pointer; }
+
+.session-input {
+  height: 35px; }
+  .session-input:focus {
+    box-shadow: none; }
 
 .demo-login-container {
   width: 100%;
