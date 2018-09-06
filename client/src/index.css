@@ -1347,7 +1347,7 @@ body {
           color: #717171; }
       .conversations .chats .chat .date {
         color: #717171;
-        font-size: 0.650rem; }
+        font-size: 0.65rem; }
 
 .chat-modal-background {
   grid-area: main;
@@ -1506,7 +1506,7 @@ body {
       font-size: 0.8rem; }
 
 .chat-show-messages {
-  height: 65vh;
+  height: 60vh;
   overflow: auto; }
 
 .own-message {
@@ -1527,7 +1527,24 @@ body {
   width: 100%; }
   .chat-input #message-input-body {
     box-sizing: border-box;
-    padding: 0 10px 0 10px; }
+    padding: 10px 10px 10px 10px;
+    display: inline-block;
+    vertical-align: middle;
+    resize: none;
+    max-height: 15vh;
+    overflow: hidden;
+    outline: none; }
+
+.anon {
+  font-size: 30px;
+  width: 40px;
+  height: 40px;
+  margin: none;
+  cursor: pointer; }
+  .anon #anon {
+    color: #755298; }
+  .anon #non-anon {
+    color: #ac98c2; }
 
 body {
   background-color: white;

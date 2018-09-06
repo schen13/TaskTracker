@@ -45,7 +45,7 @@
   .chats:hover {
     background-color: $lightest-gray;
   }
-  
+
   .chats {
     padding: 10px;
     height: 60px;
@@ -79,7 +79,7 @@
       justify-content: space-between;
       align-items: center;
       flex-flow: row nowrap;
-      
+
       .chat-content {
         display: flex;
         color: $black;
@@ -105,7 +105,7 @@
 
       .date {
         color: $dark-gray;
-        font-size: 0.650rem;
+        font-size: 0.65rem;
       }
     }
   }
@@ -128,12 +128,18 @@
 }
 
 @keyframes slide-right {
-  100% { transform: translateX(0%); }
+  100% {
+    transform: translateX(0%);
+  }
 }
 
 @keyframes slide-left {
-  0% { transform: translateX(0%); }
-  100% { transform: translateX(-100%); }
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
 }
 
 // Chat Create Modal
@@ -306,7 +312,7 @@
 }
 
 .chat-show-messages {
-  height: 65vh;
+  height: 60vh;
   overflow: auto;
 }
 
@@ -332,6 +338,27 @@
 
   #message-input-body {
     box-sizing: border-box;
-    padding: 0 10px 0 10px;
+    padding: 10px 10px 10px 10px;
+    display: inline-block;
+    vertical-align: middle;
+    resize: none;
+    max-height: 15vh;
+    overflow: hidden;
+    outline: none;
+  }
+}
+
+.anon {
+  font-size: 30px;
+  width: 40px;
+  height: 40px;
+  margin: none;
+  cursor: pointer;
+
+  #anon {
+    color: $ultra-violet;
+  }
+  #non-anon {
+    color: $light-violet;
   }
 }

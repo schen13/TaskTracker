@@ -1,4 +1,4 @@
-const Message = require('../models/message');
+const Message = require("../models/message");
 
 exports.getMessages = (req, res, next) => {
   Message.find({ chatId: req.query.chatId })
@@ -21,11 +21,11 @@ exports.getMessage = (req, res, next) => {
       if (err) {
         res.status(400).send({ error: err });
         return next(err);
-      };
+      }
       res.status(200).json({ message });
       return next();
     });
-}
+};
 
 exports.createMessage = (req, res, next) => {
   const newMessage = new Message({
@@ -40,7 +40,7 @@ exports.createMessage = (req, res, next) => {
     if (err) {
       res.status(400).send({ error: err });
       return next(err);
-    };
+    }
 
     res.status(200).json({ message });
     return next();
