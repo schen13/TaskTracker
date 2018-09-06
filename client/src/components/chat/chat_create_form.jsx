@@ -28,7 +28,7 @@ class ChatCreate extends React.Component {
     this.handleClickParticipants = this.handleClickParticipants.bind(this);
     this.removeParticipant = this.removeParticipant.bind(this)
     this.filterUsers = this.filterUsers.bind(this);
-    this.emitChatSubmit = this.emitChatSubmit.bind(this);
+    this.handleChatSubmit = this.handleChatSubmit.bind(this);
     this.renderErrors = this.renderErrors.bind(this)
   }
 
@@ -91,7 +91,7 @@ class ChatCreate extends React.Component {
     this.setState({ errors })
   }
 
-  emitChatSubmit(e) {
+  handleChatSubmit(e) {
     e.preventDefault();
     const { name, participants } = this.state;
     this.socket.emit("newChat", { name, participants });
@@ -100,8 +100,8 @@ class ChatCreate extends React.Component {
     })
     this.socket.on("newChatCreated", chatId => {
       this.setState({ chatId }, () => {
-        const { chatId, body, author, anon } = this.state;
-        this.props.replyToChat({ chatId, body, author, anon }, () => this.props.fetchChats(this.props.currentUser.id));
+        const chatParams = { chatId, body, author, anon } = this.state;
+        this.props.replyToChat(chatParams, () => this.props.fetchChats(this.props.currentUser.id));
         this.props.closeChatForm();
       });
     });
@@ -115,7 +115,7 @@ class ChatCreate extends React.Component {
       <div className="chat-create-container">
         <div className="chat-modal-content">
           <h2 className="chat-name">Create A New Chat</h2>
-          <form onSubmit={this.emitChatSubmit}>
+          <form onSubmit={this.handleChatSubmit}>
             <div className="chat-input-box">
               <input 
                 type="text"
