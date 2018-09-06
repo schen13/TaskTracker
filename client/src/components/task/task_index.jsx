@@ -15,7 +15,7 @@ import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import FolderIcon from '@material-ui/icons/Folder';
 
-const $ = window.$;
+// const $ = window.$;
 
 class TaskIndex extends React.Component {
   constructor(props) {
@@ -31,6 +31,7 @@ class TaskIndex extends React.Component {
 
   componentDidMount() {
     this.props.fetchTasks();
+    this.props.fetchUsers();
   }
 
   handleClick() {

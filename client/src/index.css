@@ -1220,7 +1220,9 @@ body {
 
 #task-header {
   display: flex;
-  justify-content: space-between; }
+  justify-content: space-between;
+  border-left: none;
+  border-right: none; }
 
 #create-task-button {
   background-color: #ac98c2; }
@@ -1853,7 +1855,7 @@ svg {
   background-size: cover;
   background-repeat: no-repeat;
   margin: 0px auto;
-  overflow: hidden; }
+  overflow-y: auto; }
 
 .session-form-container {
   width: 350px;
@@ -1863,7 +1865,7 @@ svg {
   border: 1px solid #e2e2e2;
   font-family: HelveticaNeue;
   text-align: center;
-  font-size: 16px;
+  font-size: 14px;
   box-sizing: border-box;
   padding-top: 20px; }
   .session-form-container img {
@@ -1885,7 +1887,8 @@ svg {
 .other-session-link {
   width: 310px;
   margin: 10px 0;
-  height: 40px;
+  height: 35px;
+  letter-spacing: 0.5px;
   border-radius: 5px;
   background-color: #ac98c2;
   color: white;
@@ -1897,6 +1900,11 @@ svg {
   .other-session-link:hover {
     opacity: 0.7;
     cursor: pointer; }
+
+.session-input {
+  height: 35px; }
+  .session-input:focus {
+    box-shadow: none; }
 
 .demo-login-container {
   width: 100%;
@@ -1910,34 +1918,131 @@ svg {
     height: inherit; }
 
 .splash-greeting-container {
-  height: 100%; }
-  .splash-greeting-container .splash-greeting {
-    background-image: url(https://s15.postimg.cc/go49ot2y3/background.jpg);
-    height: 75%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    text-align: center;
-    position: relative;
+  height: 100%;
+  position: relative;
+  display: flex;
+  flex-flow: column wrap; }
+  .splash-greeting-container .nav-bar {
+    height: 64px;
+    position: fixed;
+    width: 100%;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    background-color: white;
+    font-size: 18px; }
+    .splash-greeting-container .nav-bar a {
+      text-decoration: none;
+      color: #ac98c2; }
+  .splash-greeting-container .left-nav {
+    margin-left: 10px;
+    position: fixed;
+    background-color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center; }
+    .splash-greeting-container .left-nav img {
+      width: 50px;
+      height: 50px;
+      padding: 5px; }
+    .splash-greeting-container .left-nav:hover {
+      background-color: #dedede; }
+  .splash-greeting-container .right-nav ul {
+    height: 100%;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    list-style: none; }
+    .splash-greeting-container .right-nav ul .nav-title {
+      margin-right: 300px;
+      border: none; }
+    .splash-greeting-container .right-nav ul .nav-home,
+    .splash-greeting-container .right-nav ul .nav-name,
+    .splash-greeting-container .right-nav ul .github-link,
+    .splash-greeting-container .right-nav ul .logout {
+      margin-right: 10px; }
+  .splash-greeting-container .github-link {
+    height: 100%; }
+    .splash-greeting-container .github-link a {
+      height: 100%;
+      display: flex;
+      align-items: center; }
+      .splash-greeting-container .github-link a i {
+        width: 30px;
+        height: 30px;
+        font-size: 30px;
+        color: #ac98c2; }
+  .splash-greeting-container .splash-greeting-top {
+    position: absolute;
+    top: 64px;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 2fr 1fr 2fr;
+    grid-template-areas: "msg pic pic"; }
+    .splash-greeting-container .splash-greeting-top .top-message {
+      grid-area: msg;
+      padding: 0 30px;
+      display: flex;
+      flex-flow: column;
+      justify-content: center; }
+      .splash-greeting-container .splash-greeting-top .top-message .top-text {
+        margin-bottom: 20px;
+        font-size: 32px;
+        font-weight: bold; }
+      .splash-greeting-container .splash-greeting-top .top-message .welcome-button {
+        width: fit-content;
+        padding: 10px;
+        border-radius: 8px;
+        background-color: #ac98c2;
+        color: white;
+        font-size: 18px; }
+        .splash-greeting-container .splash-greeting-top .top-message .welcome-button:hover {
+          opacity: 0.7; }
+    .splash-greeting-container .splash-greeting-top .splash-greeting-top-image {
+      grid-area: pic;
+      background-image: url(https://s15.postimg.cc/go49ot2y3/background.jpg);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      animation: fadein 1.5s;
+      opacity: 0.7; }
+
+.splash-greeting-bottom {
+  position: absolute;
+  top: 994px;
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 2fr 1fr 2fr;
+  grid-template-areas: "pic pic msg"; }
+  .splash-greeting-bottom .splash-greeting-bottom-image {
+    grid-area: pic;
+    animation: fadein 1.5s;
     opacity: 0.7; }
-    .splash-greeting-container .splash-greeting .welcome-message {
-      margin-top: 15%;
-      display: inline-block;
-      position: relative;
-      color: white;
-      text-shadow: 2px 2px black;
-      font-size: 25px; }
-      .splash-greeting-container .splash-greeting .welcome-message .splash-signup-button {
-        text-decoration: none;
-        background-color: #EEEEEE;
-        color: black;
-        text-shadow: none;
-        padding: 2px 6px 2px 6px;
-        border-top: 1px solid #CCCCCC;
-        border-right: 1px solid #333333;
-        border-bottom: 1px solid #333333;
-        border-left: 1px solid #CCCCCC; }
-        .splash-greeting-container .splash-greeting .welcome-message .splash-signup-button:hover {
-          background-color: gray; }
+    .splash-greeting-bottom .splash-greeting-bottom-image img {
+      height: 100%;
+      width: 100%; }
+  .splash-greeting-bottom .bottom-message {
+    grid-area: msg;
+    padding: 0 30px;
+    display: flex;
+    flex-flow: column;
+    justify-content: center; }
+    .splash-greeting-bottom .bottom-message .bottom-text {
+      margin-bottom: 20px;
+      font-size: 32px;
+      font-weight: bold; }
+    .splash-greeting-bottom .bottom-message .bottom-text-2 {
+      font-size: 18px; }
+
+@keyframes fadein {
+  from {
+    opacity: 0.2; }
+  to {
+    opacity: 0.7; } }
 
 /*# sourceMappingURL=index.css.map */
