@@ -136,11 +136,19 @@ class ChatShow extends React.Component {
           />
         </form>
 
-        <div className="button-holder">
+        <div className="chat-button-holder">
           <div className="anon" onClick={this.handleAnon}>
             {anonymous}
           </div>
-          <button onClick={this.handleSubmitMessage}>SEND</button>
+          <div className="icon-message">
+            <span id="anon-message">Click to make this message anonymous</span>
+          </div>
+          <div className="send-message" onClick={this.handleSubmitMessage}>
+            SEND
+          </div>
+          <div className="icon-message">
+            <span id="send-message">Press Enter to send</span>
+          </div>
         </div>
       </div>
     );

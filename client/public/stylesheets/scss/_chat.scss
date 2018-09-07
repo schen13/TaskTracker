@@ -38,7 +38,6 @@
 }
 
 .conversations {
-  border-bottom: 1px solid $lighter-gray;
   height: 81vh;
   overflow: auto;
 
@@ -302,6 +301,7 @@
       border-radius: 1em;
       padding: 0.25em 0.6em;
       margin: 0 0 0.1em 0;
+      font-weight: 400;
       width: auto;
     }
 
@@ -328,6 +328,7 @@
     color: $white;
     padding: 0.25em 0.6em;
     font-size: 1rem;
+    font-weight: 400;
     margin: 0 0 0.1em 0;
   }
 }
@@ -335,6 +336,7 @@
 .chat-input {
   border-top: 1px solid $lightest-gray;
   width: 100%;
+  max-height: 50vh;
 
   #message-input-body {
     box-sizing: border-box;
@@ -342,16 +344,28 @@
     display: inline-block;
     vertical-align: middle;
     resize: none;
-    max-height: 15vh;
     overflow: hidden;
     outline: none;
+    height: auto;
+    border: none;
   }
+}
+
+.chat-button-holder {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-flow: row nowrap;
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  margin: 0px 10px 5px 10px;
 }
 
 .anon {
   font-size: 30px;
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   margin: none;
   cursor: pointer;
 
@@ -361,4 +375,40 @@
   #non-anon {
     color: $light-violet;
   }
+}
+
+.send-message {
+  margin: 0 10px 0 15px;
+  color: $ultra-violet;
+  font-size: 15px;
+  cursor: pointer;
+  border: none;
+}
+
+.icon-message {
+  span {
+    background-color: $light-violet;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 13px;
+    color: $white;
+  }
+
+  #anon-message {
+    display: none;
+    position: absolute;
+    right: 15px;
+    bottom: 40px;
+  }
+  #send-message {
+    display: none;
+    position: absolute;
+    right: 5px;
+    bottom: 40px;
+  }
+}
+
+.anon:hover + #anon-message {
+  // color: $red;
+  display: block;
 }
