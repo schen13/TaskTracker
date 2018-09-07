@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 class ChatIndexItem extends React.Component {
   constructor(props) {
@@ -15,28 +15,26 @@ class ChatIndexItem extends React.Component {
 
   renderParticipants() {
     let usernames = [];
-    const { participants } = this.props.chatData.chat;
+    const { chat } = this.props.chatData;
     const { users } = this.props;
 
-    participants.map(user => {
-      let username;
-      if (user === this.state.currentUser) return usernames;
-
-      if (users[user].username) {
-        username = users[user].username;
-      } else if (users[user].fName) {
-        username = `${users[user].fName} ${users[user].lName}`;
-      } else {
-        username = 'No Name'
-      }
-      return usernames.push(username);
-    });
-
+    if (chat.name) {
+      usernames.push(chat.name);
+    } else {
+      chat.participants.map(user => {
+        if (user === this.state.currentUser.id) {
+          return usernames;
+        } else {
+          return usernames.push(users[user].username);
+        }
+      });
+    }
     return <div className="participants">{usernames.join(", ")}</div>;
   }
 
   renderTime() {
-    const time = this.props.chatData.message[0].timestamp;
+    const message = this.props.chatData.messages;
+    const time = message[message.length - 1].timestamp;
     const month = time.slice(5, 7);
     const date = time.slice(8, 10);
     const year = time.slice(2, 4);
@@ -50,19 +48,18 @@ class ChatIndexItem extends React.Component {
 
   renderMessage() {
     let message;
-    if (this.props.chatData.message[0].body) {
-      message = this.props.chatData.message[0].body;
+    const chatMessage = this.props.chatData.messages;
+
+    if (chatMessage[chatMessage.length - 1].body) {
+      message = chatMessage[chatMessage.length - 1].body;
     } else {
-      message = ''
+      message = "";
     }
-    return (
-      <p>{message}</p>
-    )
+    return <p>{message}</p>;
   }
 
   handleClick(e) {
     e.preventDefault();
-    this.props.closeChatModal();
     this.props.closeGroupModal();
     const chatId = this.props.chatData.chat._id;
     this.props.openChatModal(chatId);
@@ -72,7 +69,7 @@ class ChatIndexItem extends React.Component {
     return (
       <li className="chats" onClick={this.handleClick}>
         <div className="user-pictures">
-          <i id="pf-pic" className="fas fa-user-circle"></i>
+          <i id="pf-pic" className="fas fa-user-circle" />
         </div>
         <div className="chat">
           <div className="chat-content">
