@@ -1,6 +1,6 @@
-import React from 'react';
-import { withRouter } from 'react-router-dom';
-import ChatIndexItem from './chat_index_item';
+import React from "react";
+import { withRouter } from "react-router-dom";
+import ChatIndexItem from "./chat_index_item";
 
 class ChatIndex extends React.Component {
   componentDidMount() {
@@ -15,7 +15,13 @@ class ChatIndex extends React.Component {
   }
 
   render() {
-    const { users, currentUser, fetchChat, openChatModal, closeChatModal, closeGroupModal } = this.props;
+    const {
+      users,
+      currentUser,
+      fetchChat,
+      openChatModal,
+      closeGroupModal
+    } = this.props;
 
     return (
       <div className="chat-bar">
@@ -36,7 +42,6 @@ class ChatIndex extends React.Component {
                 currentUser={currentUser.id}
                 fetchChat={fetchChat}
                 openChatModal={openChatModal}
-                closeChatModal={closeChatModal}
                 closeGroupModal={closeGroupModal}
               />
             );

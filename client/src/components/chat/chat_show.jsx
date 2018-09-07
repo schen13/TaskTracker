@@ -1,28 +1,42 @@
-import React from 'react';
-import { withRouter } from 'react-router-dom';
+import React from "react";
+import { withRouter } from "react-router-dom";
 import io from "socket.io-client";
 
 class ChatShow extends React.Component {
   constructor(props) {
     super(props);
     this.socket = io.connect();
-    const { chat, users, currentUser } = this.props;
+    const { users, currentUser } = this.props;
 
     this.state = {
-      chatId: chat.chat._id,
-      name: chat.chat.name,
-      body: '',
+      chatId: null,
+      body: "",
       author: currentUser.id,
-      participants: chat.chat.participants,
+      participants: [],
       anon: false,
-      messages: chat.message,
+      messages: [],
       users: users
     };
     this.handleInput = this.handleInput.bind(this);
     this.handleSubmitMessage = this.handleSubmitMessage.bind(this);
-    this.chatOnEmit = this.chatOnEmit.bind(this)
-    this.renderMessages = this.renderMessages.bind(this)
+    this.handleAnon = this.handleAnon.bind(this);
+    this.chatOnEmit = this.chatOnEmit.bind(this);
+    this.renderMessages = this.renderMessages.bind(this);
     this.chatOnEmit();
+  }
+
+  componentDidUpdate() {
+    if (this.state.chatId !== this.props.chat.chat._id) {
+      this.setState({
+        chatId: this.props.chat.chat._id,
+        participants: this.props.chat.chat.participants,
+        messages: this.props.chat.messages
+      });
+    }
+  }
+
+  componentDidMount() {
+    this.props.fetchMessages(this.props.chat.chat._id);
   }
 
   handleInput(e) {
@@ -33,41 +47,46 @@ class ChatShow extends React.Component {
   handleSubmitMessage(e) {
     e.preventDefault();
     const { chatId, body, author, anon } = this.state;
-    
-    // Send chat to database 
+
+    // Send chat to database
     this.props.replyToChat({ chatId, body, author, anon });
 
     // Send chat to everyone in message
-    this.socket.emit('newMessage', { body, author, anon });
-    this.setState({ body: '' });
+    this.socket.emit("newMessage", { body, author, anon });
+    this.setState({ body: "" });
     return false;
   }
 
+  handleAnon(e) {
+    e.preventDefault();
+    this.setState(prevState => ({
+      anon: !prevState.anon
+    }));
+  }
+
   chatOnEmit() {
-    this.socket.on('newMessage', (message) => {
-      this.setState(
-        {
-          messages: [...this.state.messages, message]
-        }
-      )
+    this.socket.on("newMessage", message => {
+      this.setState({
+        messages: [...this.state.messages, message]
+      });
     });
   }
 
-  renderMessages(){
-    let { messages, users } = this.state;
+  renderMessages() {
+    let { users, messages } = this.state;
     if (!messages) return;
 
     let conversation = [];
     let authorName;
-    for (let i = messages.length - 1; i > 0; i--) {
+    for (let i = 0; i < messages.length; i++) {
       if (messages[i].author !== this.props.currentUser.id) {
-        let author = users.filter(user => user.id === messages[i].author) 
-        if (author.username) {
-          authorName = author.username;
-        } else {
-          authorName = 'anonymous';
+        let author = users.filter(user => user.id === messages[i].author);
+        authorName = author[0].username;
+
+        // Anonymous message
+        if (messages[i].anon) {
+          authorName = "anonymous";
         }
-        
         conversation.push(
           <li className="other-message" key={messages[i]._id}>
             <div>
@@ -85,36 +104,54 @@ class ChatShow extends React.Component {
         conversation.push(
           <li className="own-message" key={messages[i]._id}>
             <div className="message">
-              <span>
-                {messages[i].body}
-              </span>
+              <span>{messages[i].body}</span>
             </div>
           </li>
         );
-      };
-    };
-    return conversation
+      }
+    }
+    return conversation;
   }
 
   render() {
-    
+    let anonymous = this.state.anon ? (
+      <i id="anon" className="far fa-eye-slash" />
+    ) : (
+      <i id="non-anon" className="far fa-eye" />
+    );
+
     return (
       <div>
         <div className="chat-show">
-          <h1 className="chat-name">{this.state.name}</h1>
-          <ul className="chat-show-messages">
-            {this.renderMessages()}
-          </ul>
+          <h1 className="chat-name">{this.props.chat.chat.name}</h1>
+          <ul className="chat-show-messages">{this.renderMessages()}</ul>
         </div>
-          
+
         <form onSubmit={this.handleSubmitMessage} className="chat-input">
-          <input 
+          <input
             type="text"
+            autoComplete="off"
             id="message-input-body"
             onChange={this.handleInput}
             placeholder="Type a message"
-            value={this.state.body} />
+            value={this.state.body}
+          />
         </form>
+
+        <div className="chat-button-holder">
+          <div className="anon" onClick={this.handleAnon}>
+            {anonymous}
+          </div>
+          <div className="icon-message">
+            <span id="anon-message">Click to make this message anonymous</span>
+          </div>
+          <div className="send-message" onClick={this.handleSubmitMessage}>
+            SEND
+          </div>
+          <div className="icon-message">
+            <span id="send-message">Press Enter to send</span>
+          </div>
+        </div>
       </div>
     );
   }
