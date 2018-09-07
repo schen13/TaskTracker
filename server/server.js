@@ -19,12 +19,12 @@ const app = express();
 const server = require('http').Server(app);
 server.listen(port, () => console.log(`websockets are running on ${port}`));
 
-// if (process.env.NODE_ENV === "production") {
-//   app.use(express.static("../client/build"));
-//   app.get("*", (req, res) => {
-//     res.sendFile(path.resolve(__dirname, "..", "client", "build", "index.html"));
-//   });
-// }
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("../client/build"));
+  app.get("/", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "..", "client", "build", "index.html"));
+  });
+}
 
 mongoose
   .connect(db)
@@ -58,7 +58,7 @@ app.post('/api/messages/:chatId', message.createMessage);
 
 const io = require('socket.io')(server);
 
-io.on('connection', function(socket){
+io.on('connection', function (socket) {
   // console.log('a user connected');
   // socket.on("disconnect", function(){
   //   console.log('a user disconnected');

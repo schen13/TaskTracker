@@ -8,7 +8,8 @@ $session-width: 350px;
   background-size: cover;
   background-repeat: no-repeat;
   margin: 0px auto;
-  overflow: hidden;
+  // overflow: hidden;
+  overflow-y: auto;
 }
 
 .session-form-container {
@@ -19,7 +20,7 @@ $session-width: 350px;
   border: 1px solid $light-gray;
   font-family: HelveticaNeue;
   text-align: center;
-  font-size: 16px;
+  font-size: 14px;
   box-sizing: border-box;
   padding-top: 20px;
   img {
@@ -46,7 +47,8 @@ $session-width: 350px;
 .other-session-link {
   width: 310px;
   margin: 10px 0;
-  height: 40px;
+  height: 35px;
+  letter-spacing: 0.5px;
   border-radius: 5px;
   background-color: $light-violet;
   color: white;
@@ -56,6 +58,13 @@ $session-width: 350px;
   &:hover {
     opacity: 0.7;
     cursor: pointer;
+  }
+}
+
+.session-input {
+  height: 35px;
+  &:focus {
+    box-shadow: none;
   }
 }
 

@@ -1855,7 +1855,7 @@ svg {
   background-size: cover;
   background-repeat: no-repeat;
   margin: 0px auto;
-  overflow: hidden; }
+  overflow-y: auto; }
 
 .session-form-container {
   width: 350px;
@@ -1865,7 +1865,7 @@ svg {
   border: 1px solid #e2e2e2;
   font-family: HelveticaNeue;
   text-align: center;
-  font-size: 16px;
+  font-size: 14px;
   box-sizing: border-box;
   padding-top: 20px; }
   .session-form-container img {
@@ -1887,7 +1887,8 @@ svg {
 .other-session-link {
   width: 310px;
   margin: 10px 0;
-  height: 40px;
+  height: 35px;
+  letter-spacing: 0.5px;
   border-radius: 5px;
   background-color: #ac98c2;
   color: white;
@@ -1899,6 +1900,11 @@ svg {
   .other-session-link:hover {
     opacity: 0.7;
     cursor: pointer; }
+
+.session-input {
+  height: 35px; }
+  .session-input:focus {
+    box-shadow: none; }
 
 .demo-login-container {
   width: 100%;
@@ -2007,7 +2013,7 @@ svg {
 
 .splash-greeting-bottom {
   position: absolute;
-  top: 950px;
+  top: 994px;
   height: 100%;
   width: 100%;
   display: grid;
