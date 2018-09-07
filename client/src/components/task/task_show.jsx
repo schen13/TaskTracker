@@ -52,7 +52,7 @@ class TaskShow extends React.Component {
         <div className="label">
           <div className="task-title">
             <h1>{task.name}</h1>
-            {this.state.completed ? <i className="fas fa-check fa-2x"></i> : <i className="fas fa-times fa-2x"></i>}
+            {this.state.completed ? <i className="fas fa-check fa-2x"></i> : <i id="incomplete" className="fas fa-check fa-2x"></i>}
           </div>
           <h2>{group[task.groupId].name}</h2>
         </div>
