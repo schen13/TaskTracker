@@ -128,7 +128,9 @@ class ChatShow extends React.Component {
         </div>
 
         <form onSubmit={this.handleSubmitMessage} className="chat-input">
-          <textarea
+          <input
+            type="text"
+            autoComplete="off"
             id="message-input-body"
             onChange={this.handleInput}
             placeholder="Type a message"
