@@ -1179,7 +1179,10 @@ body {
   grid-area: main; }
 
 #task-index-list {
-  padding-bottom: 0px; }
+  padding-bottom: 0px;
+  border-left: none;
+  border-right: none;
+  border-bottom: none; }
 
 .task-create-container h1,
 .task-modal-container h1 {
