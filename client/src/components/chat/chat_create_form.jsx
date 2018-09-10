@@ -63,7 +63,7 @@ class ChatCreate extends React.Component {
         if (
           (user.username &&
             user.username.toLowerCase().search(userQuery.toLowerCase()) !==
-              -1) ||
+            -1) ||
           (user.fName &&
             user.fName.toLowerCase().search(userQuery.toLowerCase()) !== -1) ||
           (user.lName &&

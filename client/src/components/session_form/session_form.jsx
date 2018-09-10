@@ -54,7 +54,7 @@ class SessionForm extends React.Component {
                         <input type="text"
               value={this.state.username}
               onChange={this.update('username')}
-              className="login-input"
+              className="session-input"
               required
               autoComplete="off"
             />
@@ -63,7 +63,7 @@ class SessionForm extends React.Component {
                         <input type="text"
               value={this.state.fName}
               onChange={this.update('fName')}
-              className="login-input"
+              className="session-input"
               autoComplete="off"
             />
           </label>
@@ -71,7 +71,7 @@ class SessionForm extends React.Component {
                         <input type="text"
               value={this.state.lName}
               onChange={this.update('lName')}
-              className="login-input"
+              className="session-input"
               autoComplete="off"
             />
           </label>
