@@ -30,8 +30,6 @@ class ChatCreate extends React.Component {
     this.filterUsers = this.filterUsers.bind(this);
     this.handleChatSubmit = this.handleChatSubmit.bind(this);
     this.renderErrors = this.renderErrors.bind(this);
-    this.emitChatSubmit = this.emitChatSubmit.bind(this);
-    this.renderErrors = this.renderErrors.bind(this);
   }
 
   handleName(e) {
