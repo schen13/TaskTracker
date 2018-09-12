@@ -1,8 +1,5 @@
 import axios from 'axios';
 
-// const $ = window.$; //wildcard to grab everything defined on the window
-
-
 // We can use axios to set a default header
 export const setAuthToken = token => {
     if (token) {
