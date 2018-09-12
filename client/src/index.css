@@ -1983,6 +1983,15 @@ svg {
   background-color: #dedede;
   border-radius: 0 0 10px 10px; }
 
+.session-errors {
+  color: red;
+  padding: 10px;
+  padding-left: 10px;
+  margin: 5px 0;
+  border-radius: 10px;
+  background-color: #E8E8EE;
+  text-align: left; }
+
 #root {
   height: 100%; }
   #root .app {
