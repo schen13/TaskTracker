@@ -18,7 +18,7 @@ export const registerUser = userData => (
 
 // Login - Get User Token
 export const loginUser = userData => (
-    axios.post('/api/users/', userData)
+    axios.post('/api/users/login', userData)
 );
 
 
