@@ -15,7 +15,8 @@ class ChatShow extends React.Component {
       participants: [],
       anon: false,
       messages: [],
-      users: users
+      users: users,
+      newMessage: false
     };
     this.handleInput = this.handleInput.bind(this);
     this.handleSubmitMessage = this.handleSubmitMessage.bind(this);
@@ -36,7 +37,9 @@ class ChatShow extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchMessages(this.props.chat.chat._id);
+    this.props
+      .fetchMessages(this.props.chat.chat._id)
+      .then(this.setState({ messages: this.props.chat.messages }));
   }
 
   handleInput(e) {
@@ -49,10 +52,9 @@ class ChatShow extends React.Component {
     const { chatId, body, author, anon } = this.state;
 
     // Send chat to database
-    this.props.replyToChat({ chatId, body, author, anon });
+    this.socket.emit("newMessage", { chatId, body, author, anon });
 
     // Send chat to everyone in message
-    this.socket.emit("newMessage", { body, author, anon });
     this.setState({ body: "" });
     return false;
   }
@@ -65,10 +67,8 @@ class ChatShow extends React.Component {
   }
 
   chatOnEmit() {
-    this.socket.on("newMessage", message => {
-      this.setState({
-        messages: [...this.state.messages, message]
-      });
+    this.socket.on("chatMessages", messages => {
+      this.setState({ messages });
     });
   }
 

@@ -1,5 +1,5 @@
-const Chat = require("../models/chat");
-const Message = require("../models/message");
+const Chat = require('../models/chat');
+const Message = require('../models/message');
 
 exports.getChats = (req, res, next) => {
   // index view for chats
@@ -9,10 +9,10 @@ exports.getChats = (req, res, next) => {
       return next(err);
     }
 
-    let allChats = [];
-    chats.forEach(chat => {
+    const allChats = [];
+    chats.forEach((chat) => {
       Message.find({ chatId: chat._id })
-        .sort("-createdAt")
+        .sort('-createdAt')
         .exec((err, messages) => {
           allChats.push({ chat, messages });
           if (allChats.length === chats.length) {
@@ -26,19 +26,19 @@ exports.getChats = (req, res, next) => {
 
 exports.getChat = (req, res, next) => {
   // show view for chat messages
-  const chatId = req.query.chatId;
+  const { chatId } = req.query;
   Chat.find({ _id: chatId }).exec((err, chat) => {
     if (err) {
       res.status(400).send({ error: err });
       return next(err);
     }
-    let chatMessages = [];
-    let messageArray = [];
-    chat.forEach(chat => {
+    const chatMessages = [];
+    const messageArray = [];
+    chat.forEach((chat) => {
       Message.find({ chatId: chat._id })
-        .sort("-timestamp")
+        .sort('-timestamp')
         .exec((err, messages) => {
-          messages.forEach(message => {
+          messages.forEach((message) => {
             messageArray.push(message);
           });
           chatMessages.push(chat, messageArray);
@@ -53,33 +53,34 @@ exports.getChat = (req, res, next) => {
 exports.newChat = (req, res, next) => {
   const newChat = new Chat({
     name: req.body.name,
-    participants: req.body.participants,
-    timestamp: Date(Date.now())
+    participants: req.body.users,
+    groupChat: true,
+    timestamp: Date(Date.now()),
   });
 
   newChat.save().then(
-    chat => {
+    (chat) => {
       res.json({ chat });
     },
-    err => {
+    (err) => {
       res.status(400).send(err);
-    }
+    },
   );
 };
 
 exports.deleteChat = (req, res, next) => {
   Chat.findOneAndDelete(
     {
-      $and: [{ _id: req.params.chatId }, { participants: req.user._id }]
+      $and: [{ _id: req.params.chatId }, { participants: req.user._id }],
     },
-    err => {
+    (err) => {
       if (err) {
         res.status(422).send({ error: err });
         return next(err);
       }
 
-      res.status(200).json({ message: "Conversation removed!" });
+      res.status(200).json({ message: 'Conversation removed!' });
       return next();
-    }
+    },
   );
 };
