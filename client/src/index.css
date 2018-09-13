@@ -1297,6 +1297,15 @@ body {
 .conversations {
   height: 81vh;
   overflow: auto; }
+  .conversations .chat-type {
+    height: 30px;
+    padding: 5px 10px;
+    margin: 0 auto;
+    text-align: center;
+    vertical-align: middle;
+    background-color: #755298;
+    color: #fff;
+    border-bottom: 1px solid #dedede; }
   .conversations .chats:hover {
     background-color: #efefef; }
   .conversations .chats {
@@ -1474,13 +1483,13 @@ body {
 
 .chat-show {
   background-color: #fff;
-  padding: 24px;
+  padding-left: 23px;
   height: 100%; }
 
 .chat-name {
   font-size: 2.4rem;
   font-weight: 500;
-  padding: 0 0 15px 0; }
+  padding: 24px 24px 15px 0px; }
 
 .other-message {
   display: flex;
@@ -1490,7 +1499,7 @@ body {
   font-size: 1rem;
   margin: 2px 0 0 0; }
   .other-message #pf {
-    font-size: 2rem;
+    font-size: 1.95rem;
     margin: 0 0.5em 0 0; }
   .other-message .message-box {
     display: flex;
@@ -1509,7 +1518,8 @@ body {
       font-size: 0.65rem; }
 
 .chat-show-messages {
-  min-height: 62vh;
+  height: 62vh;
+  padding: 0px 20px 20px 10px;
   overflow: auto; }
 
 .own-message {

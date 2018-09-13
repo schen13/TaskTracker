@@ -67,7 +67,6 @@ io.on('connection', (socket) => {
   // });
 
   socket.on('newChat', chatData => createChat(chatData, socket));
-  socket.on('newGroupChat', groupData => createGroupChat(groupData, socket));
   socket.on('newMessage', messageData => createMessage(messageData, socket));
   socket.on('fetchMessages', chatId => getMessages(chatId, socket));
   socket.on('fetchMessage', chatId => getMessage(chatId, socket));
@@ -90,25 +89,6 @@ function createChat(chatData, socket) {
   });
 }
 
-function createGroupChat(groupData, socket) {
-  const newChat = {
-    name: groupData.name,
-    participants: groupData.users,
-    groupChat: true,
-    timestamp: Date(Date.now()),
-  };
-  console.log(newChat, 'this is the group chat to be created');
-
-  Chat.create(newChat, (err, chat) => {
-    if (err) {
-      socket.emit('error', err);
-    } else {
-      console.log(chat, 'this is the gchat that was created');
-      socket.emit('newChatCreated', chat._id);
-    }
-  });
-}
-
 function createMessage(messageData, socket) {
   const newMessage = {
     chatId: messageData.chatId,
@@ -120,9 +100,10 @@ function createMessage(messageData, socket) {
 
   Message.create(newMessage, (err, createdMessage) => {
     if (err) {
-      io.emit('error', err);
+      socket.emit('error', err);
     } else {
-      getMessages(createdMessage.chatId, socket);
+      console.log(createdMessage);
+      socket.broadcast.to(createdMessage.chatId).emit('newChatMessage', createdMessage);
     }
   });
 }

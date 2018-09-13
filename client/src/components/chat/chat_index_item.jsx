@@ -55,7 +55,7 @@ class ChatIndexItem extends React.Component {
   }
 
   renderTime() {
-    if (this.state.message) {
+    if (this.state.message.length > 0) {
       const message = this.state.message;
       const time = message[message.length - 1].timestamp;
       const month = time.slice(5, 7);
@@ -99,6 +99,7 @@ class ChatIndexItem extends React.Component {
             {this.renderParticipants()}
             {this.renderMessage()}
           </div>
+          {this.renderTime()}
         </div>
       </li>
     );

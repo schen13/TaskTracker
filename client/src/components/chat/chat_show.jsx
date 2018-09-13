@@ -67,9 +67,19 @@ class ChatShow extends React.Component {
   }
 
   chatOnEmit() {
-    this.socket.on("chatMessages", messages => {
-      this.setState({ messages });
+    this.scrollToBottom();
+    this.socket.on("newChatMessage", message => {
+      this.setState({ messages: [...this.state.messages, message] });
+      this.scrollToBottom();
     });
+  }
+
+  scrollToBottom() {
+    let chatScroll = document.getElementById("chat-show");
+    if (chatScroll) {
+      let chatHeight = chatScroll.scrollHeight;
+      chatScroll.scrollTop = chatHeight;
+    }
   }
 
   renderMessages() {
@@ -122,7 +132,7 @@ class ChatShow extends React.Component {
 
     return (
       <div>
-        <div className="chat-show">
+        <div className="chat-show" id="chat-show">
           <h1 className="chat-name">{this.props.chat.chat.name}</h1>
           <ul className="chat-show-messages">{this.renderMessages()}</ul>
         </div>

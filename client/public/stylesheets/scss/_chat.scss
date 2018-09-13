@@ -41,6 +41,17 @@
   height: 81vh;
   overflow: auto;
 
+  .chat-type {
+    height: 30px;
+    padding: 5px 10px;
+    margin: 0 auto;
+    text-align: center;
+    vertical-align: middle;
+    background-color: $ultra-violet;
+    color: $white;
+    border-bottom: 1px solid $lighter-gray;
+  }
+
   .chats:hover {
     background-color: $lightest-gray;
   }
@@ -269,14 +280,14 @@
 // Chat Show
 .chat-show {
   background-color: $white;
-  padding: 24px;
+  padding-left: 23px;
   height: 100%;
 }
 
 .chat-name {
   font-size: 2.4rem;
   font-weight: 500;
-  padding: 0 0 15px 0;
+  padding: 24px 24px 15px 0px;
 }
 
 .other-message {
@@ -288,7 +299,7 @@
   margin: 2px 0 0 0;
 
   #pf {
-    font-size: 2rem;
+    font-size: 1.95rem;
     margin: 0 0.5em 0 0;
   }
 
@@ -315,7 +326,8 @@
 }
 
 .chat-show-messages {
-  min-height: 62vh;
+  height: 62vh;
+  padding: 0px 20px 20px 10px;
   overflow: auto;
 }
 
