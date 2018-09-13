@@ -42,8 +42,8 @@ class TaskCreate extends React.Component {
       description: "",
       estTime: "",
       deadline: "",
-      userId: "",
-      groupId: "",
+      userId: null,
+      groupId: null,
       validGroups: [],
       validUsers: []
     });
@@ -139,12 +139,13 @@ class TaskCreate extends React.Component {
             </div>
             <div className="input-field col s6">
               <i className="far fa-calendar-alt prefix"></i>
-              <input type="date" onChange={this.update("deadline")} />
+              <input type="date" value={this.state.deadline} onChange={this.update("deadline")} />
             </div>
             <div className="input-field col s6">
               <i className="fas fa-user prefix"></i>
               <Select
                 id="userId"
+                value={this.state.userId}
                 options={userOptions}
                 isSearchable="true"
                 placeholder="Assign To?"
@@ -155,6 +156,7 @@ class TaskCreate extends React.Component {
               <i className="far fa-folder-open prefix"></i>
               <Select
                 id="groupId"
+                value={this.state.groupId}
                 options={groupOptions}
                 isSearchable="true"
                 placeholder="Which Group?"
