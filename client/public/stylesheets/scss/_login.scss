@@ -74,3 +74,13 @@ $session-width: 350px;
   background-color: $lighter-gray;
   border-radius: 0 0 10px 10px;
 }
+
+.session-errors {
+  color: red;
+  padding: 10px;
+  padding-left: 10px;
+  margin: 5px 0;
+  border-radius: 10px;
+  background-color: #E8E8EE;
+  text-align: left;
+}

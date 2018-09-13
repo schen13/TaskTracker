@@ -1,5 +1,7 @@
 import React from 'react';
 import TaskIndexContainer from '../task/task_index_container';
+import { selectGroupTaskIds } from '../../reducers/selectors';
+
 class GroupDetail extends React.Component {
 
   constructor(props) {
@@ -9,8 +11,9 @@ class GroupDetail extends React.Component {
 
   handleDelete(e) {
     e.preventDefault();
-    this.props.deleteGroup(this.props.group._id)
-      .then(this.props.closeGroupModal());
+    const { group, tasks, closeGroupModal, deleteGroup, deleteTask } = this.props;
+    selectGroupTaskIds(group._id, tasks).forEach(taskId => deleteTask(taskId));
+    deleteGroup(group._id).then(closeGroupModal());
   }
 
   render() {
@@ -18,7 +21,7 @@ class GroupDetail extends React.Component {
     return (
       <div className="group-detail-container">
         <div className="group-detail-header">
-          <h5>{group.name}</h5>
+          <h3>{group.name}</h3>
           <div className="group-detail-buttons">
             <button
               className="edit-group-button"

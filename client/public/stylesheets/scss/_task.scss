@@ -39,6 +39,9 @@ body {
 
 #task-index-list {
   padding-bottom: 0px;
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
 }
 
 .task-create-container,
@@ -144,7 +147,7 @@ body {
   }
 
   #incomplete {
-    color: rgb(173, 173, 173); git pu
+    color: rgb(173, 173, 173);
   }
 
   .fa-times {

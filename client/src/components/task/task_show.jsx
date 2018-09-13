@@ -43,8 +43,8 @@ class TaskShow extends React.Component {
   }
 
   render() {
-    const { task, group } = this.props;
-    if (!group) return null;
+    const { task, groups } = this.props;
+    if (!groups || !task) return null;
     let buttonText = this.state.completed ? "Mark as Incomplete" : "Mark as Complete";
 
     return (
@@ -54,7 +54,7 @@ class TaskShow extends React.Component {
             <h1>{task.name}</h1>
             {this.state.completed ? <i className="fas fa-check fa-2x"></i> : <i id="incomplete" className="fas fa-check fa-2x"></i>}
           </div>
-          <h2>{group[task.groupId].name}</h2>
+          <h2>{groups[task.groupId].name}</h2>
         </div>
         <div>
           <div className="row">
