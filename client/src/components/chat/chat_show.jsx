@@ -1,11 +1,11 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
-import io from "socket.io-client";
+// import io from "socket.io-client";
 
 class ChatShow extends React.Component {
   constructor(props) {
     super(props);
-    this.socket = io.connect();
+    // this.socket = io.connect();
     const { users, currentUser } = this.props;
 
     this.state = {
@@ -33,12 +33,6 @@ class ChatShow extends React.Component {
         messages: this.props.chat.messages
       });
     }
-    if (this.state.messages.length !== this.props.chat.messages.length) {
-      debugger;
-      this.props
-        .fetchMessages(this.props.chat.chat._id)
-        .then(this.setState({ messages: this.props.chat.messages }));
-    }
   }
 
   componentDidMount() {
@@ -59,14 +53,13 @@ class ChatShow extends React.Component {
     // Send chat to database
     this.props.replyToChat({ chatId, body, author, anon }).then(
       this.setState({
-        // messages: [...this.state.messages, { chatId, body, author, anon }],
+        messages: [...this.state.messages, { chatId, body, author, anon }],
         body: ""
       })
     );
 
     // Send chat to everyone in message
-    // this.socket.emit("newChatMessage", { chatId, body, author, anon });
-    // this.setState({ body: "" });
+    // this.socket.emit("newMessage", { body, author, anon });
     return false;
   }
 
@@ -79,8 +72,10 @@ class ChatShow extends React.Component {
 
   // chatOnEmit() {
   //   this.scrollToBottom();
-  //   this.socket.on("newChatMessage", message => {
-  //     this.setState({ messages: [...this.state.messages, message] });
+  //   this.socket.on("newMessage", message => {
+  //     this.setState({
+  //       messages: [...this.state.messages, message]
+  //     });
   //     this.scrollToBottom();
   //   });
   // }
@@ -100,7 +95,7 @@ class ChatShow extends React.Component {
     let conversation = [];
     let authorName;
     let prevId = "";
-    for (let i = messages.length - 1; i > 0; i--) {
+    for (let i = messages.length - 1; i >= 0; i--) {
       let author = users.filter(user => user.id === messages[i].author);
       authorName = author[0].username;
 
@@ -114,12 +109,13 @@ class ChatShow extends React.Component {
           </li>
         );
         prevId = "";
-      } else if (messages[i].author.anon) {
+      } else if (messages[i].anon) {
         // message sent anonymously so username is set to anon
+        debugger;
         conversation.unshift(
           <li className="other-message" key={messages[i]._id}>
             <div>
-              <i id="pf" className="fas fa-user-circle" />
+              <i id="pf" class="fas fa-question-circle" />
             </div>
             <div className="message-box">
               <div className="message">
