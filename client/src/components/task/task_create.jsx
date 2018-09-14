@@ -11,8 +11,8 @@ class TaskCreate extends React.Component {
       description: "",
       estTime: "",
       deadline: "",
-      userId: "",
-      groupId: "",
+      userId: null,
+      groupId: null,
       validGroups: [],
       validUsers: [],
     };
@@ -27,8 +27,8 @@ class TaskCreate extends React.Component {
       description: this.state.description,
       estTime: this.state.estTime,
       deadline: this.state.deadline,
-      userId: this.state.userId,
-      groupId: this.state.groupId
+      userId: this.state.userId.value,
+      groupId: this.state.groupId.value
     };
 
     this.props.createTask(task);
@@ -55,16 +55,12 @@ class TaskCreate extends React.Component {
     });
   }
 
-  updateUser(user) {
-    this.setState({
-      userId: user.value
-    });
+  handleUserChange = user => {
+    this.setState({userId: user})
   }
 
-  updateGroup(group) {
-    this.setState({
-      groupId: group.value
-    });
+  handleGroupChange = group => {
+    this.setState({ groupId: group })
   }
 
   updateDeadline(deadline) {
@@ -149,7 +145,7 @@ class TaskCreate extends React.Component {
                 options={userOptions}
                 isSearchable="true"
                 placeholder="Assign To?"
-                onChange={user => this.updateUser(user)}
+                onChange={this.handleUserChange}
               />
             </div>
             <div className="input-field col s6">
@@ -160,7 +156,7 @@ class TaskCreate extends React.Component {
                 options={groupOptions}
                 isSearchable="true"
                 placeholder="Which Group?"
-                onChange={group => this.updateGroup(group)}
+                onChange={this.handleGroupChange}
               />
             </div>
           </div>
