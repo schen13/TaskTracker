@@ -1263,6 +1263,8 @@ body {
   justify-content: space-between; }
   .task-title .fa-check {
     color: #a5c67a; }
+  .task-title #incomplete {
+    color: #adadad; }
   .task-title .fa-times {
     color: #da6fa0; }
 

@@ -28,7 +28,7 @@ body {
 .hvr-fade:hover,
 .hvr-fade:focus,
 .hvr-fade:active {
-  background-color: #ebe6f0;
+  background-color: #ebe6f0; 
   color: white;
 }
 
@@ -144,6 +144,10 @@ body {
 
   .fa-check {
     color: #a5c67a;
+  }
+
+  #incomplete {
+    color: rgb(173, 173, 173); 
   }
 
   .fa-times {
