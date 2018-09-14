@@ -67,7 +67,7 @@ io.on('connection', (socket) => {
   // });
 
   socket.on('newChat', chatData => createChat(chatData, socket));
-  socket.on('newMessage', messageData => createMessage(messageData, socket));
+  socket.on('newMessage', messageData => sendMessage(messageData, socket));
   socket.on('fetchMessages', chatId => getMessages(chatId, socket));
   socket.on('fetchMessage', chatId => getMessage(chatId, socket));
 });
@@ -89,24 +89,28 @@ function createChat(chatData, socket) {
   });
 }
 
-function createMessage(messageData, socket) {
-  const newMessage = {
-    chatId: messageData.chatId,
-    body: messageData.body,
-    author: messageData.author,
-    anon: messageData.anon,
-    timestamp: Date(Date.now()),
-  };
-
-  Message.create(newMessage, (err, createdMessage) => {
-    if (err) {
-      socket.emit('error', err);
-    } else {
-      console.log(createdMessage);
-      socket.broadcast.to(createdMessage.chatId).emit('newChatMessage', createdMessage);
-    }
-  });
+function sendMessage(messageData, socket) {
+  socket.broadcast.to(messageData.chatId)
 }
+
+// function createMessage(messageData, socket) {
+//   const newMessage = {
+//     chatId: messageData.chatId,
+//     body: messageData.body,
+//     author: messageData.author,
+//     anon: messageData.anon,
+//     timestamp: Date(Date.now()),
+//   };
+
+//   Message.create(newMessage, (err, createdMessage) => {
+//     if (err) {
+//       socket.emit('error', err);
+//     } else {
+//       console.log(createdMessage);
+//       socket.broadcast.to(createdMessage.chatId).emit('newChatMessage', createdMessage);
+//     }
+//   });
+// }
 
 function getMessages(chatId, socket) {
   Message.find({ chatId })

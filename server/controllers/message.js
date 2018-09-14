@@ -8,6 +8,7 @@ exports.getMessages = (req, res, next) => {
         res.status(400).send({ error: err });
         return next(err);
       }
+
       res.status(200).json({ messages });
       return next();
     });

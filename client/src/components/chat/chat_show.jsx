@@ -15,15 +15,14 @@ class ChatShow extends React.Component {
       participants: [],
       anon: false,
       messages: [],
-      users: users,
-      newMessage: false
+      users: users
     };
     this.handleInput = this.handleInput.bind(this);
     this.handleSubmitMessage = this.handleSubmitMessage.bind(this);
     this.handleAnon = this.handleAnon.bind(this);
-    this.chatOnEmit = this.chatOnEmit.bind(this);
+    // this.chatOnEmit = this.chatOnEmit.bind(this);
     this.renderMessages = this.renderMessages.bind(this);
-    this.chatOnEmit();
+    // this.chatOnEmit();
   }
 
   componentDidUpdate() {
@@ -33,6 +32,12 @@ class ChatShow extends React.Component {
         participants: this.props.chat.chat.participants,
         messages: this.props.chat.messages
       });
+    }
+    if (this.state.messages.length !== this.props.chat.messages.length) {
+      debugger;
+      this.props
+        .fetchMessages(this.props.chat.chat._id)
+        .then(this.setState({ messages: this.props.chat.messages }));
     }
   }
 
@@ -52,10 +57,16 @@ class ChatShow extends React.Component {
     const { chatId, body, author, anon } = this.state;
 
     // Send chat to database
-    this.socket.emit("newMessage", { chatId, body, author, anon });
+    this.props.replyToChat({ chatId, body, author, anon }).then(
+      this.setState({
+        // messages: [...this.state.messages, { chatId, body, author, anon }],
+        body: ""
+      })
+    );
 
     // Send chat to everyone in message
-    this.setState({ body: "" });
+    // this.socket.emit("newChatMessage", { chatId, body, author, anon });
+    // this.setState({ body: "" });
     return false;
   }
 
@@ -66,13 +77,13 @@ class ChatShow extends React.Component {
     }));
   }
 
-  chatOnEmit() {
-    this.scrollToBottom();
-    this.socket.on("newChatMessage", message => {
-      this.setState({ messages: [...this.state.messages, message] });
-      this.scrollToBottom();
-    });
-  }
+  // chatOnEmit() {
+  //   this.scrollToBottom();
+  //   this.socket.on("newChatMessage", message => {
+  //     this.setState({ messages: [...this.state.messages, message] });
+  //     this.scrollToBottom();
+  //   });
+  // }
 
   scrollToBottom() {
     let chatScroll = document.getElementById("chat-show");
@@ -88,16 +99,50 @@ class ChatShow extends React.Component {
 
     let conversation = [];
     let authorName;
-    for (let i = 0; i < messages.length; i++) {
-      if (messages[i].author !== this.props.currentUser.id) {
-        let author = users.filter(user => user.id === messages[i].author);
-        authorName = author[0].username;
+    let prevId = "";
+    for (let i = messages.length - 1; i > 0; i--) {
+      let author = users.filter(user => user.id === messages[i].author);
+      authorName = author[0].username;
 
-        // Anonymous message
-        if (messages[i].anon) {
-          authorName = "anonymous";
-        }
-        conversation.push(
+      if (messages[i].author === this.props.currentUser.id) {
+        // message sent by current user
+        conversation.unshift(
+          <li className="own-message" key={messages[i]._id}>
+            <div className="message">
+              <span>{messages[i].body}</span>
+            </div>
+          </li>
+        );
+        prevId = "";
+      } else if (messages[i].author.anon) {
+        // message sent anonymously so username is set to anon
+        conversation.unshift(
+          <li className="other-message" key={messages[i]._id}>
+            <div>
+              <i id="pf" className="fas fa-user-circle" />
+            </div>
+            <div className="message-box">
+              <div className="message">
+                <span>{messages[i].body}</span>
+              </div>
+              <div className="author">Anonymous</div>
+            </div>
+          </li>
+        );
+        prevId = "";
+      } else if (messages[i].author === prevId) {
+        // messages sent by previous message sender so username and picture arent shown again
+        conversation.unshift(
+          <li className="other-message" key={messages[i]._id}>
+            <div className="message-box" id="pf-placeholder">
+              <div className="message">
+                <span>{messages[i].body}</span>
+              </div>
+            </div>
+          </li>
+        );
+      } else {
+        conversation.unshift(
           <li className="other-message" key={messages[i]._id}>
             <div>
               <i id="pf" className="fas fa-user-circle" />
@@ -110,20 +155,15 @@ class ChatShow extends React.Component {
             </div>
           </li>
         );
-      } else {
-        conversation.push(
-          <li className="own-message" key={messages[i]._id}>
-            <div className="message">
-              <span>{messages[i].body}</span>
-            </div>
-          </li>
-        );
+        prevId = messages[i].author;
       }
     }
+
     return conversation;
   }
 
   render() {
+    // toggle for an anon message
     let anonymous = this.state.anon ? (
       <i id="anon" className="far fa-eye-slash" />
     ) : (

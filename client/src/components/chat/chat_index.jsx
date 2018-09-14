@@ -34,6 +34,7 @@ class ChatIndex extends React.Component {
   }
 
   renderChats() {
+    // separates group chats from private messages
     let gChats = [];
     let pChats = [];
     this.props.chats.map(chatData => {
@@ -65,7 +66,7 @@ class ChatIndex extends React.Component {
           </div>
         </div>
         <ul className="conversations">
-          <li className="chat-type">Group Chats</li>
+          <li className="chat-type">Group Messages</li>
           {this.state.groupChats.map(chatData => {
             return (
               <ChatIndexItem
@@ -79,7 +80,7 @@ class ChatIndex extends React.Component {
               />
             );
           })}
-          <li className="chat-type">Private Chats</li>
+          <li className="chat-type">Private Messages</li>
           {this.state.privateChats.map(chatData => {
             return (
               <ChatIndexItem
