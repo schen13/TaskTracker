@@ -1481,15 +1481,44 @@ body {
   font-size: 13px;
   margin: 15px 0 0 490px; }
 
+.chat-show-header {
+  display: flex;
+  justify-content: space-between;
+  margin: 15px; }
+
+.chat-details {
+  display: flex;
+  justify-content: flex-start;
+  flex-flow: column;
+  align-content: center; }
+  .chat-details .chat-name {
+    font-size: 2.5rem;
+    font-weight: 500; }
+  .chat-details .chat-users {
+    display: flex;
+    flex-flow: row; }
+    .chat-details .chat-users li {
+      margin: 5px 7px 0 0; }
+    .chat-details .chat-users h4 {
+      font-size: 0.75rem;
+      color: #717171; }
+
+.close-chat-modal-button {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: none;
+  background-color: #ac98c2;
+  color: white;
+  margin: 10px 0 10px 0; }
+  .close-chat-modal-button:hover {
+    opacity: 0.6;
+    cursor: pointer; }
+
 .chat-show {
   background-color: #fff;
   padding-left: 23px;
   height: 100%; }
-
-.chat-name {
-  font-size: 2.4rem;
-  font-weight: 500;
-  padding: 24px 24px 15px 0px; }
 
 .other-message {
   display: flex;

@@ -1,37 +1,49 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
+import ChatShowDetail from "./chat_show_detail";
 // import io from "socket.io-client";
 
 class ChatShow extends React.Component {
   constructor(props) {
     super(props);
     // this.socket = io.connect();
-    const { users, currentUser } = this.props;
 
     this.state = {
       chatId: null,
       body: "",
-      author: currentUser.id,
-      participants: [],
+      author: this.props.currentUser.id,
+      users: [],
       anon: false,
       messages: [],
-      users: users
     };
     this.handleInput = this.handleInput.bind(this);
     this.handleSubmitMessage = this.handleSubmitMessage.bind(this);
     this.handleAnon = this.handleAnon.bind(this);
-    // this.chatOnEmit = this.chatOnEmit.bind(this);
     this.renderMessages = this.renderMessages.bind(this);
+    // this.chatOnEmit = this.chatOnEmit.bind(this);
     // this.chatOnEmit();
   }
 
   componentDidUpdate() {
     if (this.state.chatId !== this.props.chat.chat._id) {
-      this.setState({
-        chatId: this.props.chat.chat._id,
-        participants: this.props.chat.chat.participants,
-        messages: this.props.chat.messages
+      const { chat, messages } = this.props.chat;
+      const { users, currentUser } = this.props;
+
+      // For ChatShowDetail participants
+      let chatParticipants = [];
+      chat.participants.map(userId => {
+        if (userId === currentUser.id) return chatParticipants;
+        let user = users.filter(user => user.id === userId);
+        return chatParticipants.push(user[0]) 
       });
+
+      this.props.fetchMessages(chat._id)
+        .then(this.setState({
+          chatId: chat._id,
+          messages: messages,
+          users: chatParticipants
+        })
+      )
     }
   }
 
@@ -52,10 +64,12 @@ class ChatShow extends React.Component {
 
     // Send chat to database
     this.props.replyToChat({ chatId, body, author, anon }).then(
+      this.props.fetchChats(author),
+      // this.props.fetchMessage(chatId)
       this.setState({
         messages: [
           ...this.state.messages,
-          { id: "temporaryId", chatId, body, author, anon }
+          { _id: "temporaryId", chatId, body, author, anon }
         ],
         body: ""
       })
@@ -92,7 +106,8 @@ class ChatShow extends React.Component {
   }
 
   renderMessages() {
-    let { users, messages } = this.state;
+    const { users } = this.props;
+    const { messages } = this.state;
     if (!messages) return;
 
     let conversation = [];
@@ -161,6 +176,7 @@ class ChatShow extends React.Component {
   }
 
   render() {
+    const {chat, closeChatModal} = this.props;
     // toggle for an anon message
     let anonymous = this.state.anon ? (
       <i id="anon" className="far fa-eye-slash" />
@@ -171,7 +187,12 @@ class ChatShow extends React.Component {
     return (
       <div>
         <div className="chat-show" id="chat-show">
-          <h1 className="chat-name">{this.props.chat.chat.name}</h1>
+          <ChatShowDetail 
+            chatName={chat.chat.name}
+            closeChatModal={closeChatModal}
+            users={this.state.users}
+          />
+          <h1 className="chat-name">{}</h1>
           <ul className="chat-show-messages">{this.renderMessages()}</ul>
         </div>
 
