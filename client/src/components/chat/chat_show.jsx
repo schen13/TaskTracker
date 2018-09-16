@@ -59,23 +59,22 @@ class ChatShow extends React.Component {
   handleSubmitMessage(e) {
     e.preventDefault();
     const { chatId, body, author, anon } = this.state;
+    // Temporary ID for chat to update state after user sends chat
+    const tempId = Math.random().toString(36).substr(2, 13);
 
     // Send chat to database
     this.props.replyToChat({ chatId, body, author, anon }).then(
       this.props.fetchChats(author),
-      // this.props.fetchMessage(chatId)
       this.setState({
         messages: [
           ...this.state.messages,
-          { _id: "temporaryId", chatId, body, author, anon }
+          { _id: tempId, chatId, body, author, anon }
         ],
         body: ""
       })
     );
-
     // Send chat to everyone in message
     // this.socket.emit("newMessage", { body, author, anon });
-    return false;
   }
 
   handleAnon(e) {
