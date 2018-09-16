@@ -1179,7 +1179,10 @@ body {
   grid-area: main; }
 
 #task-index-list {
-  padding-bottom: 0px; }
+  padding-bottom: 0px;
+  border-left: none;
+  border-right: none;
+  border-bottom: none; }
 
 .task-create-container h1,
 .task-modal-container h1 {
@@ -1260,6 +1263,8 @@ body {
   justify-content: space-between; }
   .task-title .fa-check {
     color: #a5c67a; }
+  .task-title #incomplete {
+    color: #adadad; }
   .task-title .fa-times {
     color: #da6fa0; }
 
@@ -1504,13 +1509,13 @@ body {
       color: #717171; }
 
 .close-chat-modal-button {
+  margin: 10px 0 10px 0;
   width: 30px;
   height: 30px;
   border-radius: 50%;
   border: none;
   background-color: #ac98c2;
-  color: white;
-  margin: 10px 0 10px 0; }
+  color: white; }
   .close-chat-modal-button:hover {
     opacity: 0.6;
     cursor: pointer; }
@@ -2020,6 +2025,15 @@ svg {
   border-top: 1px solid #e2e2e2;
   background-color: #dedede;
   border-radius: 0 0 10px 10px; }
+
+.session-errors {
+  color: red;
+  padding: 10px;
+  padding-left: 10px;
+  margin: 5px 0;
+  border-radius: 10px;
+  background-color: #E8E8EE;
+  text-align: left; }
 
 #root {
   height: 100%; }

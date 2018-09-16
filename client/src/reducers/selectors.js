@@ -1,7 +1,7 @@
-export const selectUserGroups = (user, groups) => {
+export const selectUserGroups = (userId, groups) => {
   const selectedGroups = [];
   Object.values(groups).forEach(group => {
-    if (group.users.includes(user.id)) selectedGroups.push(group);
+    if (group.users.includes(userId)) selectedGroups.push(group);
   });
   return selectedGroups;
 };
@@ -28,3 +28,10 @@ export const selectAllMessages = (entities) => {
   Object.values(entities.chats).map(chat => totalMessages += chat.messages.length);
   return totalMessages;
 }
+export const selectGroupTaskIds = (groupId, tasks) => {
+  const selectedTaskIds = [];
+  Object.values(tasks).forEach(task => {
+    if (task.groupId === groupId) selectedTaskIds.push(task._id);
+  });
+  return selectedTaskIds;
+};

@@ -35,14 +35,15 @@ class SessionForm extends React.Component {
   }
 
   renderErrors() {
+    const errors = Object.values(this.props.errors).length > 0 ? "session-errors" : "";
     return (
-      <ul>
+      <div className={errors}>
         {Object.values(this.props.errors).map((error, i) => (
           <li key={`error-${i}`}>
             {error}
           </li>
         ))}
-      </ul>
+      </div>
     );
   }
 
@@ -54,7 +55,7 @@ class SessionForm extends React.Component {
                         <input type="text"
               value={this.state.username}
               onChange={this.update('username')}
-              className="login-input"
+              className="session-input"
               required
               autoComplete="off"
             />
@@ -63,7 +64,7 @@ class SessionForm extends React.Component {
                         <input type="text"
               value={this.state.fName}
               onChange={this.update('fName')}
-              className="login-input"
+              className="session-input"
               autoComplete="off"
             />
           </label>
@@ -71,13 +72,13 @@ class SessionForm extends React.Component {
                         <input type="text"
               value={this.state.lName}
               onChange={this.update('lName')}
-              className="login-input"
+              className="session-input"
               autoComplete="off"
             />
           </label>
         </div>
-      )
-    };
+      );
+    }
   }
 
   render() {

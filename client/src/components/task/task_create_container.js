@@ -7,7 +7,7 @@ const mapStateToProps = (state) => ({
   users: Object.values(state.entities.users)
     .filter(user => user.username)
     .sort((a, b) => {
-      if(a.username < b.username)
+      if (a.username < b.username)
         return -1;
       else
         return 1;
@@ -19,7 +19,8 @@ const mapStateToProps = (state) => ({
         return -1;
       else
         return 1;
-    })
+    }),
+  currentUserId: state.session.id
 });
 
 const mapDispatchToProps = dispatch => ({
