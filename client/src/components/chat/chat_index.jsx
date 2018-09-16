@@ -35,15 +35,16 @@ class ChatIndex extends React.Component {
 
   renderChats() {
     // separates group chats from private messages
+    let { chats } = this.props;
     let gChats = [];
     let pChats = [];
-    this.props.chats.map(chatData => {
-      if (chatData.chat.groupChat) {
+
+    chats.map(chatData => {
+      if (chatData.chat && chatData.chat.groupChat) {
         return gChats.push(chatData);
       }
       return pChats.push(chatData);
     });
-
     this.setState({ groupChats: gChats, privateChats: pChats });
   }
 
@@ -51,7 +52,6 @@ class ChatIndex extends React.Component {
     const {
       users,
       currentUser,
-      fetchChat,
       openChatModal,
       closeGroupModal
     } = this.props;
@@ -74,7 +74,6 @@ class ChatIndex extends React.Component {
                 chatData={chatData}
                 users={users}
                 currentUser={currentUser.id}
-                fetchChat={fetchChat}
                 openChatModal={openChatModal}
                 closeGroupModal={closeGroupModal}
               />
@@ -88,7 +87,6 @@ class ChatIndex extends React.Component {
                 chatData={chatData}
                 users={users}
                 currentUser={currentUser.id}
-                fetchChat={fetchChat}
                 openChatModal={openChatModal}
                 closeGroupModal={closeGroupModal}
               />

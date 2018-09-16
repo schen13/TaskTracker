@@ -32,21 +32,17 @@ exports.getChat = (req, res, next) => {
       res.status(400).send({ error: err });
       return next(err);
     }
-    const chatMessages = [];
-    const messageArray = [];
-    chat.forEach((chat) => {
-      Message.find({ chatId: chat._id })
-        .sort('-timestamp')
-        .exec((err, messages) => {
-          messages.forEach((message) => {
-            messageArray.push(message);
-          });
-          chatMessages.push(chat, messageArray);
 
-          res.status(200).json({ chat: chatMessages });
-          return next();
-        });
-    });
+    Message.find({ chatId: chat._id })
+      .sort('-timestamp')
+      .exec((err, messages) => {
+        if (err) {
+          res.status(400).send({ error: err });
+          return next(err);
+        }
+        res.status(200).json({ chat, messages });
+        return next();
+      });
   });
 };
 

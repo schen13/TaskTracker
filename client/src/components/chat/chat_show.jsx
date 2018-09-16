@@ -53,7 +53,10 @@ class ChatShow extends React.Component {
     // Send chat to database
     this.props.replyToChat({ chatId, body, author, anon }).then(
       this.setState({
-        messages: [...this.state.messages, { chatId, body, author, anon }],
+        messages: [
+          ...this.state.messages,
+          { id: "temporaryId", chatId, body, author, anon }
+        ],
         body: ""
       })
     );
@@ -111,11 +114,10 @@ class ChatShow extends React.Component {
         prevId = "";
       } else if (messages[i].anon) {
         // message sent anonymously so username is set to anon
-        debugger;
         conversation.unshift(
           <li className="other-message" key={messages[i]._id}>
             <div>
-              <i id="pf" class="fas fa-question-circle" />
+              <i id="pf" className="fas fa-question-circle" />
             </div>
             <div className="message-box">
               <div className="message">

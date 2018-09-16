@@ -1,63 +1,40 @@
 import React from "react";
-import io from "socket.io-client";
 
 class ChatIndexItem extends React.Component {
   constructor(props) {
     super(props);
-    this.socket = io.connect();
-
-    this.state = {
-      currentUser: this.props.currentUser,
-      message: []
-    };
 
     this.renderParticipants = this.renderParticipants.bind(this);
     this.renderTime = this.renderTime.bind(this);
     this.renderMessage = this.renderMessage.bind(this);
-    this.chatOnEmit = this.chatOnEmit.bind(this);
     this.handleClick = this.handleClick.bind(this);
-    this.chatOnEmit();
-  }
-
-  componentDidMount() {
-    this.socket.emit("fetchMessage", this.props.chatData.chat._id);
-  }
-
-  chatOnEmit() {
-    this.socket.on("chatMessage", message => {
-      this.setState({ message });
-    });
-  }
-
-  renderMessageData() {
-    if (this.props.chatData.messages) {
-      this.renderParticipants();
-    }
   }
 
   renderParticipants() {
     let usernames = [];
     const { chat } = this.props.chatData;
-    const { users } = this.props;
+    const { users, currentUser } = this.props;
 
     if (chat.name) {
       usernames.push(chat.name);
     } else {
       chat.participants.map(user => {
-        if (user === this.state.currentUser.id) {
+        if (user === currentUser.id) {
           return usernames;
         } else {
           return usernames.push(users[user].username);
         }
       });
     }
+
     return <div className="participants">{usernames.join(", ")}</div>;
   }
 
   renderTime() {
-    if (this.state.message.length > 0) {
-      const message = this.state.message;
-      const time = message[message.length - 1].timestamp;
+    let { messages } = this.props.chatData;
+
+    if (messages.length > 0) {
+      const time = messages[messages.length - 1].timestamp;
       const month = time.slice(5, 7);
       const date = time.slice(8, 10);
       const year = time.slice(2, 4);
@@ -68,16 +45,17 @@ class ChatIndexItem extends React.Component {
         </p>
       );
     }
-    return <p className="date" />;
   }
 
   renderMessage() {
-    if (this.state.message.length > 0) {
-      const { message } = this.state;
+    let { messages } = this.props.chatData;
 
-      return <p>{message[0].body}</p>;
-    } else {
-      return <p />;
+    if (messages.length > 0) {
+      const message = messages[messages.length - 1];
+
+      return (
+        <p>{message.body}</p>
+      );
     }
   }
 
@@ -99,7 +77,7 @@ class ChatIndexItem extends React.Component {
             {this.renderParticipants()}
             {this.renderMessage()}
           </div>
-          {this.renderTime()}
+          <div></div>{this.renderTime()}
         </div>
       </li>
     );
