@@ -37,13 +37,11 @@ class ChatShow extends React.Component {
         return chatParticipants.push(user[0]) 
       });
 
-      this.props.fetchMessages(chat._id)
-        .then(this.setState({
-          chatId: chat._id,
-          messages: messages,
-          users: chatParticipants
-        })
-      )
+      this.setState({
+        chatId: chat._id,
+        messages: messages,
+        users: chatParticipants
+      });
     }
   }
 

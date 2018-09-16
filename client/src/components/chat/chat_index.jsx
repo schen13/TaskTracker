@@ -7,7 +7,8 @@ class ChatIndex extends React.Component {
     super(props);
     this.state = {
       groupChats: [],
-      privateChats: []
+      privateChats: [],
+      totalMessages: null
     };
     this.handleClick = this.handleClick.bind(this);
     this.renderChats = this.renderChats.bind(this);
@@ -18,6 +19,10 @@ class ChatIndex extends React.Component {
       this.state.groupChats.length + this.state.privateChats.length !==
       this.props.chats.length
     ) {
+      this.renderChats();
+    }
+    if (this.state.totalMessages !== this.props.messageTotal) {
+      this.setState({ totalMessages: this.props.messageTotal })
       this.renderChats();
     }
   }

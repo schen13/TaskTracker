@@ -5,12 +5,14 @@ import {
   openChatForm,
   closeGroupModal
 } from "../../actions/modal_actions";
+import {selectAllMessages} from "../../reducers/selectors";
 import ChatIndex from "./chat_index";
 
 const mapStateToProps = ({ entities, session }) => ({
   chats: Object.values(entities.chats),
   users: entities.users,
-  currentUser: session
+  currentUser: session,
+  messageTotal: selectAllMessages(entities)
 });
 
 const mapDispatchToProps = dispatch => ({

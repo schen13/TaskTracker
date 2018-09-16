@@ -3,7 +3,7 @@ import React from "react";
 class ChatIndexItem extends React.Component {
   constructor(props) {
     super(props);
-
+    
     this.renderParticipants = this.renderParticipants.bind(this);
     this.renderTime = this.renderTime.bind(this);
     this.renderMessage = this.renderMessage.bind(this);
