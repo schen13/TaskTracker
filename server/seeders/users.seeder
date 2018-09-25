@@ -3,7 +3,7 @@ import { User } from "../server/models";
  
 const data = [
   {
-    email: "tracer@blink.com",
+    email: "hiya@blink.com",
     username: "Tracer",
     password: "password",
     password_confirmation: "password",
@@ -18,12 +18,20 @@ const data = [
     fName: "Winston"
   },
   {
-    email: "CantTouchThis@overwatch.com",
+    email: "jack.morrison@overwatch.org",
     username: "Soldier76",
     password: "password",
     password_confirmation: "password",
     fName: "Jack",
     lName: "Morrison"
+  },
+  {
+    email: "heroesneverdie@overwatch.org",
+    username: "Mercy",
+    password: "password",
+    password_confirmation: "password",
+    fName: "Angela",
+    lName: "Ziegler"
   },
   {
       email: "harbinger@blackwatch.com",

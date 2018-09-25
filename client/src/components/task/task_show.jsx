@@ -44,9 +44,9 @@ class TaskShow extends React.Component {
 
   render() {
     const { task, groups } = this.props;
-    if (!groups || !task) return null;
+    if (Object.keys(groups).length === 0 || !task) return null;
     let buttonText = this.state.completed ? "Mark as Incomplete" : "Mark as Complete";
-
+    console.log(groups, task);
     return (
       <div className="task-modal-container">
         <div className="label">
