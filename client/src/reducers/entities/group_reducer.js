@@ -3,6 +3,7 @@ import {
   RECEIVE_SINGLE_GROUP,
   REMOVE_GROUP
 } from '../../actions/group_actions';
+import { LOGOUT_CURRENT_USER } from '../../actions/session_actions';
 import { merge } from 'lodash';
 
 export default (state = {}, action) => {
@@ -20,6 +21,8 @@ export default (state = {}, action) => {
     case REMOVE_GROUP:
       delete newState[action.group._id];
       return newState;
+    case LOGOUT_CURRENT_USER:
+      return {};
     default:
       return state;
   }

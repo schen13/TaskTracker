@@ -12,7 +12,7 @@ class GroupIndex extends React.Component {
 
   render() {
     const { user, groups, openGroupModal, openGroupForm, closeChatModal } = this.props;
-    const userGroups = selectUserGroups(user, groups);
+    const userGroups = selectUserGroups(user.id, groups);
     if (!userGroups) return null;
     return (
       <div className="group-index-container">

@@ -1,12 +1,36 @@
-import React from 'react';
-import { withRouter } from 'react-router-dom';
-import ChatIndexItem from './chat_index_item';
+import React from "react";
+import { withRouter } from "react-router-dom";
+import ChatIndexItem from "./chat_index_item";
 
 class ChatIndex extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      groupChats: [],
+      privateChats: [],
+      totalMessages: null
+    };
+    this.handleClick = this.handleClick.bind(this);
+    this.renderChats = this.renderChats.bind(this);
+  }
+
+  componentDidUpdate() {
+    if (
+      this.state.groupChats.length + this.state.privateChats.length !==
+      this.props.chats.length
+    ) {
+      this.renderChats();
+    }
+    if (this.state.totalMessages !== this.props.messageTotal) {
+      this.setState({ totalMessages: this.props.messageTotal })
+      this.renderChats();
+    }
+  }
+
   componentDidMount() {
     const userId = this.props.currentUser.id;
     this.props.fetchChats(userId);
-    this.handleClick = this.handleClick.bind(this);
+    this.renderChats();
   }
 
   handleClick(e) {
@@ -14,8 +38,28 @@ class ChatIndex extends React.Component {
     this.props.openChatForm();
   }
 
+  renderChats() {
+    // separates group chats from private messages
+    let { chats } = this.props;
+    let gChats = [];
+    let pChats = [];
+
+    chats.map(chatData => {
+      if (chatData.chat && chatData.chat.groupChat) {
+        return gChats.push(chatData);
+      }
+      return pChats.push(chatData);
+    });
+    this.setState({ groupChats: gChats, privateChats: pChats });
+  }
+
   render() {
-    const { users, currentUser, fetchChat, openChatModal, closeChatModal, closeGroupModal } = this.props;
+    const {
+      users,
+      currentUser,
+      openChatModal,
+      closeGroupModal
+    } = this.props;
 
     return (
       <div className="chat-bar">
@@ -27,16 +71,28 @@ class ChatIndex extends React.Component {
           </div>
         </div>
         <ul className="conversations">
-          {this.props.chats.map(chatData => {
+          <li className="chat-type">Group Messages</li>
+          {this.state.groupChats.map(chatData => {
             return (
               <ChatIndexItem
                 key={chatData.chat._id}
                 chatData={chatData}
                 users={users}
                 currentUser={currentUser.id}
-                fetchChat={fetchChat}
                 openChatModal={openChatModal}
-                closeChatModal={closeChatModal}
+                closeGroupModal={closeGroupModal}
+              />
+            );
+          })}
+          <li className="chat-type">Private Messages</li>
+          {this.state.privateChats.map(chatData => {
+            return (
+              <ChatIndexItem
+                key={chatData.chat._id}
+                chatData={chatData}
+                users={users}
+                currentUser={currentUser.id}
+                openChatModal={openChatModal}
                 closeGroupModal={closeGroupModal}
               />
             );

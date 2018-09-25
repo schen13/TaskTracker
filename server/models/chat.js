@@ -1,16 +1,20 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+const mongoose = require('mongoose');
+
+const { Schema } = mongoose;
 
 const ChatSchema = new Schema({
   name: {
-    type: String
+    type: String,
   },
   participants: {
-      type: Array
+    type: Array,
+  },
+  groupChat: {
+    type: Boolean,
   },
   timestamp: {
     type: Date,
-  }
+  },
 });
 
 const Chat = mongoose.model('Chat', ChatSchema);

@@ -8,7 +8,8 @@ $session-width: 350px;
   background-size: cover;
   background-repeat: no-repeat;
   margin: 0px auto;
-  overflow: hidden;
+  // overflow: hidden;
+  overflow-y: auto;
 }
 
 .session-form-container {
@@ -46,7 +47,8 @@ $session-width: 350px;
 .other-session-link {
   width: 310px;
   margin: 10px 0;
-  height: 40px;
+  height: 35px;
+  letter-spacing: 0.5px;
   border-radius: 5px;
   background-color: $light-violet;
   color: white;
@@ -59,9 +61,26 @@ $session-width: 350px;
   }
 }
 
+.session-input {
+  height: 35px;
+  &:focus {
+    box-shadow: none;
+  }
+}
+
 .demo-login-container {
   width: 100%;
   border-top: 1px solid $light-gray;
   background-color: $lighter-gray;
   border-radius: 0 0 10px 10px;
+}
+
+.session-errors {
+  color: red;
+  padding: 10px;
+  padding-left: 10px;
+  margin: 5px 0;
+  border-radius: 10px;
+  background-color: #E8E8EE;
+  text-align: left;
 }

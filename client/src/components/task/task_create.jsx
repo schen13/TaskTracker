@@ -1,6 +1,6 @@
 import React from 'react';
 import Select from 'react-select';
-
+import { selectUserGroups } from '../../reducers/selectors';
 import { withRouter } from 'react-router-dom';
 
 class TaskCreate extends React.Component {
@@ -11,8 +11,8 @@ class TaskCreate extends React.Component {
       description: "",
       estTime: "",
       deadline: "",
-      userId: "",
-      groupId: "",
+      userId: null,
+      groupId: null,
       validGroups: [],
       validUsers: [],
     };
@@ -27,8 +27,8 @@ class TaskCreate extends React.Component {
       description: this.state.description,
       estTime: this.state.estTime,
       deadline: this.state.deadline,
-      userId: this.state.userId,
-      groupId: this.state.groupId
+      userId: this.state.userId.value,
+      groupId: this.state.groupId.value
     };
 
     this.props.createTask(task);
@@ -42,8 +42,8 @@ class TaskCreate extends React.Component {
       description: "",
       estTime: "",
       deadline: "",
-      userId: "",
-      groupId: "",
+      userId: null,
+      groupId: null,
       validGroups: [],
       validUsers: []
     });
@@ -55,16 +55,12 @@ class TaskCreate extends React.Component {
     });
   }
 
-  updateUser(user) {
-    this.setState({
-      userId: user.value
-    });
+  handleUserChange = user => {
+    this.setState({userId: user})
   }
 
-  updateGroup(group) {
-    this.setState({
-      groupId: group.value
-    });
+  handleGroupChange = group => {
+    this.setState({ groupId: group })
   }
 
   updateDeadline(deadline) {
@@ -76,7 +72,7 @@ class TaskCreate extends React.Component {
   render() {
     if (!this.props.users) return null;
 
-    let { users, groups } = this.props;
+    let { users, groups, currentUserId } = this.props;
     let userOptions = [];
     users.forEach(user => {
       userOptions.push({
@@ -86,14 +82,7 @@ class TaskCreate extends React.Component {
     });
 
     let groupOptions = [];
-    let groupFilter = groups;
-    // if(this.state.userId) {
-    //   let user = users.find(user => user._id == this.state.userId);
-
-    //   groupFilter = groupFilter.filter(group => {
-    //     user.groupId.includes(group._id);
-    //   });
-    // }
+    const groupFilter = selectUserGroups(currentUserId, groups);
     groupFilter.forEach(group => {
       groupOptions.push({
         label: group.name,
@@ -111,24 +100,24 @@ class TaskCreate extends React.Component {
           <div className="row">
             <div className="input-field col s6">
               <i className="fas fa-tasks prefix"></i>
-              <input 
+              <input
                 autoComplete="off"
-                value={this.state.name} 
+                value={this.state.name}
                 id="name" type="text"
                 className="validate"
-                onChange={this.update("name")} 
+                onChange={this.update("name")}
               />
               <label htmlFor="name">Name of Task</label>
             </div>
             <div className="input-field col s6">
               <i className="fas fa-comment prefix"></i>
-              <input 
-                autoComplete="off" 
+              <input
+                autoComplete="off"
                 value={this.state.description}
-                id="description" 
-                type="text" 
-                className="validate" 
-                onChange={this.update("description")} 
+                id="description"
+                type="text"
+                className="validate"
+                onChange={this.update("description")}
               />
               <label htmlFor="description">Additional Info</label>
             </div>
@@ -146,31 +135,33 @@ class TaskCreate extends React.Component {
             </div>
             <div className="input-field col s6">
               <i className="far fa-calendar-alt prefix"></i>
-              <input type="date" onChange={this.update("deadline")}/>
+              <input type="date" value={this.state.deadline} onChange={this.update("deadline")} />
             </div>
             <div className="input-field col s6">
               <i className="fas fa-user prefix"></i>
               <Select
                 id="userId"
+                value={this.state.userId}
                 options={userOptions}
                 isSearchable="true"
                 placeholder="Assign To?"
-                onChange={user => this.updateUser(user)}
+                onChange={this.handleUserChange}
               />
             </div>
             <div className="input-field col s6">
               <i className="far fa-folder-open prefix"></i>
               <Select
                 id="groupId"
+                value={this.state.groupId}
                 options={groupOptions}
                 isSearchable="true"
                 placeholder="Which Group?"
-                onChange={group => this.updateGroup(group)}
+                onChange={this.handleGroupChange}
               />
             </div>
           </div>
           <div id="close-button">
-            <button className="btn waves-effect waves-light modal-close" type="submit"> Create Task </button>     
+            <button className="btn waves-effect waves-light modal-close" type="submit"> Create Task </button>
           </div>
         </form>
       </div>

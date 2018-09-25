@@ -1,6 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import logo from '../../assets/logo.png';
+// import logo from '../../assets/logo.png';
 
 class SessionForm extends React.Component {
   constructor(props) {
@@ -35,14 +35,15 @@ class SessionForm extends React.Component {
   }
 
   renderErrors() {
+    const errors = Object.values(this.props.errors).length > 0 ? "session-errors" : "";
     return (
-      <ul>
+      <div className={errors}>
         {Object.values(this.props.errors).map((error, i) => (
           <li key={`error-${i}`}>
             {error}
           </li>
         ))}
-      </ul>
+      </div>
     );
   }
 
@@ -54,27 +55,30 @@ class SessionForm extends React.Component {
                         <input type="text"
               value={this.state.username}
               onChange={this.update('username')}
-              className="login-input"
+              className="session-input"
               required
+              autoComplete="off"
             />
           </label>
           <label>First Name:
                         <input type="text"
               value={this.state.fName}
               onChange={this.update('fName')}
-              className="login-input"
+              className="session-input"
+              autoComplete="off"
             />
           </label>
           <label>Last Name:
                         <input type="text"
               value={this.state.lName}
               onChange={this.update('lName')}
-              className="login-input"
+              className="session-input"
+              autoComplete="off"
             />
           </label>
         </div>
-      )
-    };
+      );
+    }
   }
 
   render() {
@@ -86,6 +90,7 @@ class SessionForm extends React.Component {
             onChange={this.update('password2')}
             className="session-input"
             required
+            autoComplete="off"
           />
         </label >
       ) : (null);
@@ -105,6 +110,7 @@ class SessionForm extends React.Component {
                   onChange={this.update('email')}
                   className="session-input"
                   required
+                  autoComplete="off"
                 />
               </label>
               {this.additionalParams()}
@@ -114,6 +120,7 @@ class SessionForm extends React.Component {
                   onChange={this.update('password')}
                   className="session-input"
                   required
+                  autoComplete="off"
                 />
               </label>
               {pass2}
