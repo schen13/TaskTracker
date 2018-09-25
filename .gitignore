@@ -2,3 +2,5 @@ node_modules/
 .DS_Store
 .vscode/*
 .sass-cache/
+/server/config/cloudinary_keys.js
+/server/config/keys_dev.js

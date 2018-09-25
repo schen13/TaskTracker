@@ -2,6 +2,9 @@ const port = process.env.PORT || 5000;
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const express = require('express');
+const multer = require('multer');
+const cloudinary = require('cloudinary');
+const cloudinaryStorage = require('multer-storage-cloudinary');
 
 const app = express();
 const server = require('http').Server(app);
@@ -26,6 +29,19 @@ if (process.env.NODE_ENV === 'production') {
     res.sendFile(path.resolve(__dirname, '..', 'client', 'build', 'index.html'));
   });
 }
+
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.API_KEY,
+  api_secret: process.env.API_SECRET
+});
+const storage = cloudinaryStorage({
+  cloudinary,
+  folder: 'images',
+  allowedFormats: ['jpg', 'png'],
+  transformation: [{ width: 500, height: 500, crop: 'limit' }]
+});
+const parser = multer({ storage });
 
 mongoose
   .connect(db)
@@ -128,3 +144,4 @@ function getMessage(chatId, socket) {
       socket.emit('chatMessage', message);
     });
 }
+

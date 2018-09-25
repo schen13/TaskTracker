@@ -1,7 +1,7 @@
 {
   "name": "TaskTracker",
   "version": "1.0.0",
-  "description": "TaskTracker is an iOS mobile application that aims to delegate responsibilities between housemates and provide an outlet to express comments and suggestions to one another anonymously. Living with others can be difficult, but TASK_APP_NAME makes it easy to ensure everyone does their part. ### Functionality & MVP With this application, users will be able to: + Create a list of weekly responsibilities that can be randomly delegated + Participate in an anonymous group chat and post photos to highlight certain issues + Private messaging between members in your house + Track stats and visualize the distribution of responsibilities + Chat with other neighbors living near or around you",
+  "description": "TaskTracker is a web application that aims to delegate responsibilities between housemates and provide an outlet to express comments and suggestions to one another anonymously. Living with others can be difficult, but TaskTracker makes it easy to ensure everyone does their part. ### Functionality & MVP With this application, users will be able to: + Create a list of weekly responsibilities that can be randomly delegated + Participate in an anonymous group chat and post photos to highlight certain issues + Private messaging between members in your house + Track stats and visualize the distribution of responsibilities + Chat with other neighbors living near or around you",
   "main": "index.js",
   "directories": {
     "doc": "docs"
