@@ -1,0 +1,66 @@
+import { Seeder } from "mongoose-data-seed";
+import { User } from "../server/models";
+ 
+const data = [
+  {
+    email: "tracer@blink.com",
+    username: "Tracer",
+    password: "password",
+    password_confirmation: "password",
+    fName: "Lena",
+    lName: "Oxton"
+  },
+  {
+    email: "SizeDoesMatter@monkeyingaround.com",
+    username: "xQcDidNothingWrong",
+    password: "password",
+    password_confirmation: "password",
+    fName: "Winston"
+  },
+  {
+    email: "CantTouchThis@overwatch.com",
+    username: "Soldier76",
+    password: "password",
+    password_confirmation: "password",
+    fName: "Jack",
+    lName: "Morrison"
+  },
+  {
+      email: "harbinger@blackwatch.com",
+      username: "Reaper",
+      password: "password",
+      password_confirmation: "password",
+      fName: "Gabriel",
+      lName: "Reyes"
+  },
+  {
+      email: "1shot1kill@blackwatch.com",
+      username: "Widowmaker",
+      password: "password",
+      password_confirmation: "password",
+      fName: "Amélie ",
+      lName: "Lacroix"
+  },
+  {
+    email: "hackityhack@hackhack.com",
+    username: "Sombra",
+    password: "password",
+    password_confirmation: "password",
+    fName: "Olivia",
+    lName: "Colomar"
+  }
+];
+ 
+class UsersSeeder extends Seeder {
+  async shouldRun() {
+    return User.count()
+      .exec()
+      .then(count => count === 0);
+  }
+ 
+  async run() {
+    return User.create(data);
+  }
+}
+ 
+export default UsersSeeder;
